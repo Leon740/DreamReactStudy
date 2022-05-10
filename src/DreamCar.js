@@ -1,13 +1,16 @@
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import DisplayCar from './DisplayCar';
+import SelectCar from './SelectCar';
 
-const DreamCar = ({ car }) => {
+const DreamCar = () => {
+  const [carState, setCarState] = useState('Lancer Evolution 9');
+
   return (
-    <div>My Dream Car is {car ? car : 'Toyota Cresta JSX 100'}</div>
+    <div>
+      <DisplayCar car={carState} />
+      <SelectCar onChange={setCarState} />
+    </div>
   );
-};
-
-DreamCar.propTypes = {
-  car: PropTypes.string.isRequired,
 };
 
 export default DreamCar;
