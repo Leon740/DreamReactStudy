@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import DreamCar from "../Car/DreamCar";
+import Lazy from "../subjects/Lazy/Lazy";
 
 function App() {
   return (
