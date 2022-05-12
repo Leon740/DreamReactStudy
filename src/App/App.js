@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.scss";
-import Lazy from "../subjects/Lazy/Lazy";
+// import Car from "../subjects/Context/FromParentToChild/Car";
+import Car from "../subjects/Context/FromChildToParent/Car";
 
 function App() {
   return (
     <div className="App">
       <h1>Going good</h1>
-      <DreamCar />
+      <Car />
     </div>
   );
 }
