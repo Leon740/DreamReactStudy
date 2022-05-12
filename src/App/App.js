@@ -1,5 +1,6 @@
-import './App.scss';
-import DreamCar from '../Car/DreamCar';
+import React from "react";
+import "./App.scss";
+import DreamCar from "../Car/DreamCar";
 
 function App() {
   return (
