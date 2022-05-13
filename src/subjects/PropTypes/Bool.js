@@ -1,12 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Bool = ({ inStock }) => {
-  return <p>Toyota Supra {inStock ? "is" : "is not"} in Stock</p>;
+const CarAvailability = props => {
+  const { name, inStock } = props;
+
+  return (
+    <p>
+      <b>{name}</b> {inStock ? "is" : "is not"} in Stock
+    </p>
+  );
 };
 
-Bool.propTypes = {
+CarAvailability.propTypes = {
+  name: PropTypes.string.isRequired,
   inStock: PropTypes.bool.isRequired,
+};
+
+const Bool = () => {
+  return (
+    <div>
+      <CarAvailability name="Toyota Supra" inStock />
+      <CarAvailability name="Toyota Supra" inStock={false} />
+    </div>
+  );
 };
 
 export default Bool;

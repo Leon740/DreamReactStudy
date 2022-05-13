@@ -10,10 +10,10 @@ const FavoriteCar = ({ car }) => {
 };
 
 FavoriteCar.propTypes = {
-  car: PropTypes.string.isRequired,
+  car: PropTypes.any.isRequired,
 };
 
-const String = () => {
+const Any = () => {
   return (
     <div>
       <FavoriteCar car="Evo 9" />
@@ -21,4 +21,4 @@ const String = () => {
   );
 };
 
-export default String;
+export default Any;

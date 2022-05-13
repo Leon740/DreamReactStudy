@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Object from "./Object";
+import CarItem from "./CarItem";
 
-const Array = ({ array }) => {
+const CarsTable = ({ carsArray }) => {
   return (
     <table>
       <thead>
@@ -13,16 +13,16 @@ const Array = ({ array }) => {
         </tr>
       </thead>
       <tbody>
-        {array.map(item => (
-          <Object key={item.id} object={item} />
+        {carsArray.map(car => (
+          <CarItem key={car.id} car={car} />
         ))}
       </tbody>
     </table>
   );
 };
 
-Array.propTypes = {
-  array: PropTypes.array.isRequired,
+CarsTable.propTypes = {
+  carsArray: PropTypes.array.isRequired,
 };
 
-export default Array;
+export default CarsTable;

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Object = ({ object }) => {
-  const { name, model, year } = object;
+const CarItem = ({ car }) => {
+  const { name, model, year } = car;
 
   return (
     <tr>
@@ -13,8 +13,8 @@ const Object = ({ object }) => {
   );
 };
 
-Object.propTypes = {
-  object: PropTypes.object.isRequired,
+CarItem.propTypes = {
+  car: PropTypes.object.isRequired,
 };
 
-export default Object;
+export default CarItem;

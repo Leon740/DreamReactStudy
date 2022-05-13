@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const CarName = ({ name }) => {
-  return <p>Car is {name}</p>;
+  return <>{name}</>;
 };
 
 CarName.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
 };
 
 export default CarName;
