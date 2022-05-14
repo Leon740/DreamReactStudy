@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import Car from "../subjects/PropTypes/OneOf/Car";
+import Car from "../subjects/hooks/useState/objectState/Car";
 
 function App() {
   return (
