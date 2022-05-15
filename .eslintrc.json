@@ -31,7 +31,7 @@
       "jsx": true
     }
   },
-  "plugins": ["react"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
     "no-var": 2, // http://eslint.org/docs/rules/no-var
     "prefer-const": 2, // http://eslint.org/docs/rules/prefer-const
@@ -245,6 +245,7 @@
     ],
     // React
     "jsx-quotes": [2, "prefer-double"],
+    "react-hooks/rules-of-hooks": "error",
     "react/display-name": 0,
     "react/jsx-boolean-value": 1,
     "react/jsx-no-undef": 2,
