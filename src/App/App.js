@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Car from "../subjects/hooks/useContext/Car/Car";
+import Counter2 from "../subjects/hooks/useReducer/Counter/Counter2";
 
 function App() {
   return (
     <div className="App">
-      <Car />
+      <Counter2 initialCount={1} />
     </div>
   );
 }
