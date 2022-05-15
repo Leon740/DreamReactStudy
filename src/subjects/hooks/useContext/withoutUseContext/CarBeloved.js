@@ -1,17 +1,16 @@
 import React from "react";
-
 import CarContext from "./CarContext";
 
-const FavoriteCar = () => {
+const CarBeloved = () => {
   return (
     <CarContext.Consumer>
       {({ car }) => (
-        <p>
-          My <b>Dream</b> Car is <u>{car}</u>
-        </p>
+        <div>
+          My <u>Beloved</u> Car is <b>{car}</b>
+        </div>
       )}
     </CarContext.Consumer>
   );
 };
 
-export default FavoriteCar;
+export default CarBeloved;

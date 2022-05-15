@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Component from "../subjects/hooks/useCallback/Component";
+import Car from "../subjects/hooks/useContext/Car/Car";
 
 function App() {
   return (
     <div className="App">
-      <Component />
+      <Car />
     </div>
   );
 }
