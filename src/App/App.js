@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import SolutionM from "../subjects/hooks/customHook/SolutionM";
+import Component from "../subjects/hooks/useRef/forwardRef/Component";
 
 function App() {
   return (
-    <div className="App">
-      <SolutionM />
+    <div className="App container">
+      <Component />
     </div>
   );
 }
