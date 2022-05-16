@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // ErrorBoundary is possible only in class components
-
+// test
 class ErrorBoundary extends React.Component {
   static getDerivedStateFromError() {
     return { hasError: true };
