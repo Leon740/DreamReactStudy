@@ -1,0 +1,14 @@
+Hooks
+
+Motivation:
+  Classes is quite complicated concept, function components are easier to understand, code and maintain.
+  Hook is a javascript function which helps to connect to component state (lifecycle).
+
+Rules:
+  * hooks don't work inside class components, so use them inside function components
+  * don't call hooks inside conditions, loops, functions. Instead of this, place conditions inside of the hooks
+  * name of the user (custom) hooks starts with "use"
+
+Plugin for checking the rules :
+  eslint-plugin-react-hooks
+  eslint: react-hooks/rules-of-hooks": "error",

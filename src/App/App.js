@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Counter2 from "../subjects/hooks/useReducer/Counter/Counter2";
+import SolutionM from "../subjects/hooks/customHook/SolutionM";
 
 function App() {
   return (
     <div className="App">
-      <Counter2 initialCount={1} />
+      <SolutionM />
     </div>
   );
 }
