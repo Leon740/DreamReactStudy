@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Component from "../subjects/styles/Component";
+import VideoContainerConsumer from "../subjects/containerComponents/forwardRefExample/VideoContainerConsumer";
 
 function App() {
   return (
     <div className="App container">
-      <Component />
+      <VideoContainerConsumer />
     </div>
   );
 }
