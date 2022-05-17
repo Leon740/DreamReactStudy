@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import Component from "../subjects/hooks/useRef/forwardRef/Component";
+import Component from "../subjects/styles/Component";
 
 function App() {
   return (
