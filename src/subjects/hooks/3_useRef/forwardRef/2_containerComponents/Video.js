@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// Duplicate of : src\subjects\components\containerComponents\2_forwardRef\Video.js
+// Duplicate of : src\subjects\components\1_container\2_forwardRef\Video.js
 
 const Video = React.forwardRef((props, ref) => {
   const { className, poster, url, settings } = props;
