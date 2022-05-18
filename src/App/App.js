@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Car from "subjects/components/hocComponents/solutionHoc/Car";
+import Component from "subjects/hooks/3_useRef/forwardRef/1_basicExample/Component";
 
 function App() {
   return (
     <div className="App container">
-      <Car />
+      <Component />
     </div>
   );
 }
