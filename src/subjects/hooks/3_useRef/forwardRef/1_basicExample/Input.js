@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 // shorthand
 // const Input = React.forwardRef((props, ref) => <input ref={ref} />);
 
-const Input = React.forwardRef(
+const Input = forwardRef(
   // Concept
   // Problem: React-components can't be given refs (only for React-elements)
   // Solution: forwardRef to the component
@@ -15,14 +15,21 @@ const Input = React.forwardRef(
 
   // eslint-disable-next-line prefer-arrow-callback
   function inputFunc(props, ref) {
-    const { value } = props;
+    const { onChange } = props;
 
-    return <input ref={ref} value={value} />;
+    return (
+      <input
+        ref={ref}
+        onChange={event => {
+          onChange(event.target.value);
+        }}
+      />
+    );
   }
 );
 
 Input.propTypes = {
-  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Input;

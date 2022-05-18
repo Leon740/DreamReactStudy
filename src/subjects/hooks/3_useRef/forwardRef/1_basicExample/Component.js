@@ -5,10 +5,14 @@ import Button from "./Button";
 const Component = () => {
   const inputRef = useRef();
 
+  const onChange = value => {
+    console.log(value);
+  };
+
   return (
     <div>
       <div className="mt-3">
-        <Input ref={inputRef} value="" />
+        <Input ref={inputRef} onChange={onChange} />
       </div>
 
       <div className="mt-3">
