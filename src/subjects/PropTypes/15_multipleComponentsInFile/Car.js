@@ -17,7 +17,7 @@ CarModel.propTypes = {
   model: PropTypes.number.isRequired,
 };
 
-const MultipleComponentsInFile = () => {
+const Car = () => {
   return (
     <div>
       My Car is <CarName name="Lancer Evo" /> <CarModel model={9} />
@@ -25,4 +25,4 @@ const MultipleComponentsInFile = () => {
   );
 };
 
-export default MultipleComponentsInFile;
+export default Car;

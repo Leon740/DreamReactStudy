@@ -17,7 +17,7 @@ CarSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const Func = () => {
+const Car = () => {
   const [carState, setCarState] = useState("Evo 9");
 
   return (
@@ -28,4 +28,4 @@ const Func = () => {
   );
 };
 
-export default Func;
+export default Car;

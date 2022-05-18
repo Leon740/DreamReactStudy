@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Video from "./Video";
 import useWindowDimensions from "/subjects/hooks/examples/useWindowDimensions";
+import Video from "./Video";
+
+// Concept
+// Containering the components is a way in development to divide and reuse logic
+// (VideoContainer) is a container of (Video)
 
 const VideoContainer = props => {
   const { video, image } = props;

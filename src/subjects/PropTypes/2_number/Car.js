@@ -9,7 +9,7 @@ CarModel.propTypes = {
   model: PropTypes.number.isRequired,
 };
 
-const Number = () => {
+const Car = () => {
   return (
     <div>
       My Car is <b>Lancer Evo</b> <CarModel model={9} />
@@ -17,4 +17,4 @@ const Number = () => {
   );
 };
 
-export default Number;
+export default Car;

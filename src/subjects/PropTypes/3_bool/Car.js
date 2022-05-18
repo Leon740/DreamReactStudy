@@ -16,7 +16,7 @@ CarAvailability.propTypes = {
   inStock: PropTypes.bool.isRequired,
 };
 
-const Bool = () => {
+const Car = () => {
   return (
     <div>
       <CarAvailability name="Toyota Supra" inStock />
@@ -25,4 +25,4 @@ const Bool = () => {
   );
 };
 
-export default Bool;
+export default Car;
