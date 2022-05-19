@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import CarItem from "./CarItem";
 
-// Duplicate of : src\subjects\components\2_hoc\3_forwardRef\Car.js
+// Duplicate of : src\subjects\6_components\2_hoc\3_forwardRef\Car.js
 
 function carContainer(
   containerProps,

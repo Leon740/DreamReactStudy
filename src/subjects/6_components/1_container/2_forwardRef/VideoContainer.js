@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useWindowDimensions from "subjects/hooks/examples/useWindowDimensions";
+import useWindowDimensions from "subjects/5_hooks/examples/useWindowDimensions";
 import Video from "./Video";
 
 const VideoContainer = React.forwardRef((props, ref) => {
