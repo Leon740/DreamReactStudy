@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Form from "subjects/components/4_uncontrolled/Form";
+import Modal from "subjects/portals/Modal";
 
 function App() {
   return (
     <div className="App container">
-      <Form />
+      <Modal />
     </div>
   );
 }
