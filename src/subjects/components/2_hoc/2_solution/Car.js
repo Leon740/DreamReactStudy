@@ -1,9 +1,9 @@
 import React from "react";
 import CarItem from "./CarItem";
 
-// Solution: use HOC
+// === Solution: use HOC
 
-// Concept
+// === Concept
 // HOC - High Order Component
 // HOC is a function which accepts a component and returns a new component
 

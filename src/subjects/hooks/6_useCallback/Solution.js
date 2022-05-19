@@ -2,11 +2,11 @@ import React, { useCallback, useState } from "react";
 import ItemsList from "./ItemsList";
 
 const Problem = () => {
-  // Concept:
-  // Problem:
+  // === Concept
+  // === Problem
   // 1) each time (colored) is updated goes (re)render
   // 2) each (re)render calls (generateItemsFromAPI)
-  // Solution:
+  // === Solution
   // useCallback(() => {}, [])
   // (useCallback) returns callback which will be called when dependencies array is changed
   // Note: (useMemo) returns value, (useCallback) returns callback

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import useWindowDimensions from "/subjects/hooks/examples/useWindowDimensions";
 import Video from "./Video";
 
-// Concept
+// === Concept
 // Containering the components is a way in development to divide and reuse logic
 // (VideoContainer) is a container of (Video)
 

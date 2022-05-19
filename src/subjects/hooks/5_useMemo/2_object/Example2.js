@@ -4,14 +4,14 @@ const Example2 = () => {
   const [count, setCount] = useState(1);
   const [colored, setColored] = useState(false);
 
-  // Concept
-  // Problem:
+  // === Concept
+  // === Problem
   // const titleStyles = {
   //   color: colored ? "red" : "black",
   // };
   // 1) each time we update (count) goes a (re)render
   // each (re)render updates (titleStyles)
-  // Solution:
+  // === Solution
 
   // update (titleStyles) only if (colored) is changes
   const titleStyles = useMemo(() => {

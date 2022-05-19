@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 // const Input = React.forwardRef((props, ref) => <input ref={ref} />);
 
 const Input = forwardRef(
-  // Concept
-  // Problem: React-components can't be given refs (only for React-elements)
-  // Solution: forwardRef to the component
+  // === Concept
+  // === Problem
+  // React-components can't be given refs (only for React-elements)
+  // === Solution
+  // forwardRef to the component
 
   // forwardRef uses a render function
   // inputFunc = name of the func in devTools

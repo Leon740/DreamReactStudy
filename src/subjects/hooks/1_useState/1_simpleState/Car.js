@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Car = () => {
-  // concept
+  // === Concept
   // const [var, updVarFunc] = useState(defaultValue);
   // each state update = (re)render
   const [carState, setCarState] = useState("Evo 9");

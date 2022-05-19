@@ -7,9 +7,11 @@ const Car = () => {
     return "Evo 9";
   };
 
-  // Concept
-  // Problem: each state update = render, each render calls getDefaultCar()
-  // Solution: callback in useState = find default value once, and don't call it on rerenders
+  // === Concept
+  // === Problem
+  // each state update = render, each render calls getDefaultCar()
+  // === Solution
+  // callback in useState = find default value once, and don't call it on rerenders
   const [carState, setCarState] = useState(() => {
     getDefaultCar();
   });

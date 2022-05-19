@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 const Problem = () => {
-  // Concept
-  // Problem: much similar code
-  // Solution: use custom hook for each input
+  // === Concept
+  // === Problem
+  // much similar code
+  // === Solution
+  // use custom hook for each input
 
   const [carName, setCarName] = useState("Mitsu Evo 9");
   const [carYear, setCarYear] = useState("2002");

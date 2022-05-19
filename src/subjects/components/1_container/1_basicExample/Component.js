@@ -3,7 +3,7 @@ import Video from "./Video";
 import VideoContainer from "./VideoContainer";
 
 const Component = () => {
-  // Concept
+  // === Concept
   // Containering the components is a way in development to divide and reuse logic
   // (Component) is a container of (Video) and (VideoContainer)
 

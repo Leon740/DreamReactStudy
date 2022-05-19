@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// Concept
+// === Concept
 // you control the (input) with state: value, onChange
 // Motivation
 // more ability to control the logic of the component

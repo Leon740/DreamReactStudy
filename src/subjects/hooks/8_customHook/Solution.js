@@ -23,9 +23,11 @@ const useInput = initialValue => {
 };
 
 const Solution = () => {
-  // Concept
-  // Problem: much similar code
-  // Solution: use custom hook for each input
+  // === Concept
+  // === Problem
+  // much similar code
+  // === Solution
+  // use custom hook for each input
   const carName = useInput("Mitsu Evo 9");
 
   useLogger(carName.value);
