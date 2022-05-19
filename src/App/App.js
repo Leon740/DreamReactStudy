@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Modal from "subjects/7_portals/Modal";
+import Component from "subjects/8_profiler/Component";
 
 function App() {
   return (
     <div className="App container">
-      <Modal />
+      <Component />
     </div>
   );
 }
