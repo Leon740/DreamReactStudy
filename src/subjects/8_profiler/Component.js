@@ -1,7 +1,6 @@
 import React, { Profiler } from "react";
 import Car from "./Car";
 
-// useTransition
 // === Concept
 // === Problem
 // 1) the components should be optimized (reduce the amount of renders)

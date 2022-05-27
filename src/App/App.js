@@ -1,11 +1,13 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import "./App.scss";
-import Component from "subjects/8_profiler/Component";
+import Car from "subjects/10_strictMode/Car";
 
 function App() {
   return (
     <div className="App container">
-      <Component />
+      <StrictMode>
+        <Car />
+      </StrictMode>
     </div>
   );
 }
