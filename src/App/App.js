@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Parent from "subjects/12_dataPass/grandchildParent/withContext/Parent";
+import Component from "subjects/13_dataFetch/Component";
 
 function App() {
   return (
     <div className="App container">
-      <Parent />
+      <Component />
     </div>
   );
 }
