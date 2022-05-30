@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Component from "subjects/13_dataFetch/Component";
+import ReactBootstrapModal from "libraries/1_ReactBootstrapModal/ReactBootstrapModal";
 
 function App() {
   return (
-    <div className="App container">
-      <Component />
+    <div className="App">
+      <ReactBootstrapModal />
     </div>
   );
 }

@@ -11,7 +11,7 @@ import ModalContent from "./ModalContent";
 // placeToRender = element in DOM
 
 const Modal = () => {
-  const domNode = document.getElementById("js-modal");
+  const domNode = document.getElementById("modal");
 
   // <ModalContent /> will be rendered outside of our component, in (domNode)
   return ReactDOM.createPortal(<ModalContent />, domNode);
