@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import ReactBootstrapModal from "libraries/1_ReactBootstrapModal/ReactBootstrapModal";
+import Component from "libraries/2_ReactRouter/Component";
 
 function App() {
   return (
     <div className="App">
-      <ReactBootstrapModal />
+      <Component />
     </div>
   );
 }
