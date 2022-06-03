@@ -1,0 +1,4 @@
+Gatsby
+Jest
+SSR - Next.js
+Redux
