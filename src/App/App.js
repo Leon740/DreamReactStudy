@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.scss";
-import Modal from "subjects/7_portals/Modal";
+import Component from "libraries/2_ReactRouter/Component";
 
 function App() {
   return (
-    <div className="App container">
-      <Modal />
+    <div className="App">
+      <Component />
     </div>
   );
 }

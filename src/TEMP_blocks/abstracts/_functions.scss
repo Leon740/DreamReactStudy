@@ -1,0 +1,37 @@
+@use "./variables" as variables;
+
+@function getZIndex($name) {
+  @if map-has-key($map: variables.$zIndex, $key: $name) {
+    $result: map-get(
+      $map: variables.$zIndex,
+      $key: $name,
+    );
+    @return $result;
+  } @else {
+    @warn "Unknown z-index '#{$name}'";
+    @return null;
+  }
+}
+
+@function getColor($group, $color) {
+  @if map-has-key($map: variables.$colorGroups, $key: $group) {
+    $activeGroup: map-get(
+      $map: variables.$colorGroups,
+      $key: $group,
+    );
+
+    @if map-has-key($map: $activeGroup, $key: $color) {
+      $activeColor: map-get(
+        $map: $activeGroup,
+        $key: $color,
+      );
+      @return $activeColor;
+    } @else {
+      @warn "Unknown color '#{$color}' in '#{$group}'";
+      @return null;
+    }
+  } @else {
+    @warn "Unknown color group '#{$group}' in 'colorGroups'";
+    @return null;
+  }
+}
