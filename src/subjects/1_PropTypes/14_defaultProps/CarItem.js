@@ -21,4 +21,12 @@ CarItem.propTypes = {
   }),
 };
 
+CarItem.defaultProps = {
+  car: {
+    name: "name",
+    model: "model",
+    year: "year",
+  ),
+};
+
 export default CarItem;
