@@ -1,4 +1,4 @@
 Gatsby
 Jest
-SSR - Next.js
 Redux
+SSR - Next.js
