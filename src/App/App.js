@@ -1,13 +1,9 @@
 import React from "react";
 import "./App.scss";
-import Component from "libraries/2_ReactRouter/Component";
+import "2_Jest/1_matchers/matchers";
 
 function App() {
-  return (
-    <div className="App">
-      <Component />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
