@@ -1,3 +1,13 @@
+# Title
+React App which contains all of the React concepts and is build based on a [official React documentation](reactjs.org)
+
+# Motivation
+Learn React and all of it's concepts
+
+# Stack
+* React
+* Jest
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
