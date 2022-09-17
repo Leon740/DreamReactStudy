@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Snapshot 1`] = `
+<ul>
+  <li>
+    React
+  </li>
+  <li>
+    Redux
+  </li>
+  <li>
+    TypeScript
+  </li>
+</ul>
+`;
