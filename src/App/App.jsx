@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Component from '../3_Test/2_find/Component';
+import Parent from '../1_React/5_hooks/12_useImperativeHandle/Parent';
 
 function App() {
   return (
-    <div className="container">
-      <Component />
+    <div className="container pt-5">
+      <Parent />
     </div>
   );
 }

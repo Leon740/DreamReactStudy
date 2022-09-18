@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
-import ItemsList from "./ItemsList";
+import React, { useCallback, useState } from 'react';
+import ItemsList from './ItemsList';
 
-const Problem = () => {
+function Problem() {
   // === Concept
   // === Problem
   // 1) each time (colored) is updated goes (re)render
@@ -13,34 +13,37 @@ const Problem = () => {
   const [count, setCount] = useState(1);
   const [colored, setColored] = useState(false);
 
-  const titleStyles = { color: colored ? "red" : "black" };
+  const titleStyles = { color: colored ? 'red' : 'black' };
 
   const generateItemsFromAPI = useCallback(
-    sumNumber => {
-      return new Array(count)
-        .fill("")
-        .map((_, index) => `Element ${index + sumNumber}`);
-    },
-    [count]
+    (sumNumber) => new Array(count)
+      .fill('')
+      .map((_, index) => `Element ${index + sumNumber}`),
+    [count],
   );
 
   return (
     <div>
-      <h1 style={titleStyles}>Elements quantity : {count}</h1>
+      <h1 style={titleStyles}>
+        Elements quantity :
+        {count}
+      </h1>
 
       <div>
         <button
+          type="button"
           className="btn btn-success"
           onClick={() => {
-            setCount(prev => prev + 1);
+            setCount((prev) => prev + 1);
           }}
         >
           Add
         </button>
         <button
+          type="button"
           className="btn btn-warning"
           onClick={() => {
-            setColored(prev => !prev);
+            setColored((prev) => !prev);
           }}
         >
           Change title color
@@ -50,6 +53,6 @@ const Problem = () => {
       <ItemsList getItems={generateItemsFromAPI} />
     </div>
   );
-};
+}
 
 export default Problem;
