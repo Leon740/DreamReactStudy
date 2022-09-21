@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Parent from '../1_React/5_hooks/12_useImperativeHandle/Parent';
+import Component from '../1_React/9_renderProps/Component';
 
 function App() {
   return (
     <div className="container pt-5">
-      <Parent />
+      <Component />
     </div>
   );
 }

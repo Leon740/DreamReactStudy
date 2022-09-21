@@ -17,6 +17,7 @@ function Car() {
     <div className="Car">
       <h1>
         Car is
+        {' '}
         {car}
       </h1>
 
