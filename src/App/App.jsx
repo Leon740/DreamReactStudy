@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Component from '../1_React/9_renderProps/Component';
+import ComponentNew from '../1_React/13_data_fetch/ComponentNew';
 
 function App() {
   return (
     <div className="container pt-5">
-      <Component />
+      <ComponentNew />
     </div>
   );
 }
