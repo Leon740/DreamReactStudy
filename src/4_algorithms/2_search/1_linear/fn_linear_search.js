@@ -1,6 +1,8 @@
 // === Concept
 // Go through entire array and search for an element
 
+// === Counter = 3
+
 export default function fnLinearSearch(array = [1, 2, 3, 4, 5], target = 3) {
   let counter = 0;
 
@@ -17,11 +19,11 @@ export default function fnLinearSearch(array = [1, 2, 3, 4, 5], target = 3) {
   return -1;
 }
 
-const array = [10, 9, 8, 7, 3, 4, 5, 6];
-const number = 3;
+const array = [1, 2, 3, 4, 5];
+const target = 3;
 
-console.log(`index = ${fnLinearSearch(array, number)}`);
-console.log(`element = ${array[fnLinearSearch(array, number)]}`);
+console.log(`index = ${fnLinearSearch(array, target)}`);
+console.log(`element = ${array[fnLinearSearch(array, target)]}`);
 
 // === Linear search examples
 
