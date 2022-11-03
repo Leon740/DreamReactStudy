@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import bubbleSort from '4_algorithms/search/1_linear/fn_linear_search';
+import bubbleSort from '4_algorithms/2_search/2_binary/fn_binary_search';
 
 function App() {
   return (
