@@ -1,12 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import ComponentNew from '../1_React/13_data_fetch/ComponentNew';
+import bubbleSort from '4_algorithms/search/1_linear/fn_linear_search';
 
 function App() {
   return (
-    <div className="container pt-5">
-      <ComponentNew />
-    </div>
+    <div className="container pt-5" />
   );
 }
 

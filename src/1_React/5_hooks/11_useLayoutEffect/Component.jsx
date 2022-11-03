@@ -6,9 +6,9 @@ function Component() {
   const rfPopup = useRef();
 
   // === Concept
-  // use useEffect in most of the cases
+  // Use useEffect in most of the cases
   // useEffect runs after all DOM updates
-  // use useLayoutEffect for DOM manipulations, when useEffect doesn't solve your issue
+  // Use useLayoutEffect for DOM manipulations, when useEffect doesn't solve your issue
   // useLayoutEffect runs before all DOM updates
 
   useLayoutEffect(() => {
