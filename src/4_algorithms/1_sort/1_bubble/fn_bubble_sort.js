@@ -1,6 +1,7 @@
 // === Concept
 // 1) Get the max number
 // 2) Make it bubble to the end
+
 // === Note
 // Use (-k) to skip checking for the checked(moved to the end numbers).
 
@@ -12,6 +13,8 @@
 // [1, 2, 3, 4, 5]
 
 // === Counter = 15
+
+// === O(n^2)
 
 export default function fnBubbleSort(arr = [5, 4, 3, 2, 1]) {
   const array = arr;

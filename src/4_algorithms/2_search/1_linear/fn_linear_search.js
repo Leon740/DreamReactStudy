@@ -3,6 +3,8 @@
 
 // === Counter = 3
 
+// === O(n)
+
 export default function fnLinearSearch(array = [1, 2, 3, 4, 5], target = 3) {
   let counter = 0;
 

@@ -11,6 +11,8 @@
 
 // === Counter = 10
 
+// === O(n^2)
+
 export default function fnSelectionSort(arr = [5, 4, 3, 2, 1]) {
   const array = arr;
 

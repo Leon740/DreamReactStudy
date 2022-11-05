@@ -6,8 +6,6 @@
 
 // === Note: the searchable array has to be sorted
 
-// === Counter = 2
-
 // === Work
 // target = 2;
 // [1, 2, 3, 4, 5]; start = 0; end = 4; middle = 2; target (2) < array[middle = 2] (3) ==> end = 1;
@@ -19,6 +17,10 @@
 // [1, 2, 3, 4, 5]; start = 0; end = 4; middle = 2; target (4) > array[middle = 2] (3) ==> start = 3;
 // [4, 5]; start = 3; end = 4; middle = 3; target (4) == array[middle = 3] (4)
 // [4]; index = middle = 3;
+
+// === Counter = 2
+
+// === O(n)
 
 let counter = 0;
 
