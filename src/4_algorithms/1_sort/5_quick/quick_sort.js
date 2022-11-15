@@ -23,7 +23,6 @@ function fnPop(array = [1, 2, 3]) {
 }
 fnPop();
 
-// eslint-disable-next-line default-param-last
 function fnFilter(array = [1, 2, 3], func = () => {}) {
   const newArray = [];
 

@@ -2,11 +2,14 @@
 // RESULT > 0, sort A after B
 // a = 5, b = 4, res = 1 > 0, [4, 5]
 // RESULT < 0, sort A before B
-// RESULT === 0, keep original order of a and b
+// RESULT === 0, keep original order of A and B
 
 const array1 = [5, 4, 3, 2, 1];
 
-array1.sort((a, b) => a - b);
+array1.sort((a, b) => {
+  console.log(`a = ${a}, b = ${b}`);
+  return a - b;
+});
 
 console.log(array1);
 

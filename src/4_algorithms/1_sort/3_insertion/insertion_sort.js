@@ -1,7 +1,7 @@
 // === Concept
 // 1) Get the middle element
 // 2) Divide the array for 2 subarrays : one with numbers less than middle number, one with numbers greater than middle number
-// 3) Do the first 2 items for each subarray
+// 3) Do items 1, 2 until array.length will be 1
 
 // === Work
 // [5, 4, 3, 2, 1] => [2, 1], (3), [5, 4]
