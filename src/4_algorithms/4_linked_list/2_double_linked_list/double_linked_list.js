@@ -1,6 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable max-classes-per-file */
 
+// Used in 8_hash_table
+
 // === Concept
 // List of elements, each element has a (next) pointer to the next element, (prev) pointer to the previous element
 

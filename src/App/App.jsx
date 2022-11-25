@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import bubbleSort from '4_algorithms/7_trees/binary_search_tree';
+import HashTable from '4_algorithms/8_hash_table/3_hash_table';
 
 function App() {
   return (
