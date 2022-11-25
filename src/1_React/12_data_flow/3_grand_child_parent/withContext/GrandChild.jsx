@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import ComponentsContext from "./ComponentsContext";
+import React, { useContext } from 'react';
+import ComponentsContext from './ComponentsContext';
 
-const GrandChild = () => {
+function GrandChild() {
   const { carName, setCarName } = useContext(ComponentsContext);
 
   return (
@@ -10,10 +10,10 @@ const GrandChild = () => {
       <br />
       <input
         value={carName}
-        onChange={event => setCarName(event.target.value)}
+        onChange={(event) => setCarName(event.target.value)}
       />
     </>
   );
-};
+}
 
 export default GrandChild;
