@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable max-classes-per-file */
 
 // === Concept
@@ -11,7 +12,7 @@ class Node {
   }
 }
 
-class DoubleLinkedList {
+export default class DoubleLinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -111,8 +112,48 @@ class DoubleLinkedList {
       return null;
     }
 
-    // found.prev = prev (node) before (found), set (next) to the next el after (found)
-    found.prev.next = found.next;
+    if (!found.prev && !found.next) {
+      // if there is only one (node) in the (list), remove (head) and (tail)
+      this.head = null;
+      this.tail = null;
+      return this;
+    }
+
+    if (found.prev && found.next) {
+      // if there is both (prev) and (next) in (found)
+
+      // Ex: 1, 2, 3; remove 2
+      const foundPrev = found.prev; // 2.prev = 1
+      const foundNext = found.next; // 2.next = 3
+
+      found.prev.next = foundNext; // 1.next = 3
+      found.next.prev = foundPrev; // 3.prev = 1
+      return this;
+    }
+
+    if (!found.next) {
+      // if this is the last node
+
+      // Ex: 0, 1, 4; remove 4
+      // found.prev = 1
+      // 1.next = null
+      found.prev.next = null;
+
+      // this.tail = 1
+      this.tail = found.prev;
+    }
+
+    if (!found.prev) {
+      // if this is the first node
+
+      // Ex: 0, 1; remove 0
+      // found.next = 1
+      // 1.prev = null
+      found.next.prev = null;
+
+      // this.head = 1
+      this.head = found.next;
+    }
 
     return this;
   }
@@ -133,48 +174,72 @@ class DoubleLinkedList {
 const dll = new DoubleLinkedList();
 
 // prepend
-console.log('prepend 0');
+console.log('\n\n\n prepend 0');
 dll.prepend(0);
 console.log(dll.toArray());
 
-console.log('prepend -1');
-dll.prepend(-1);
-console.log(dll.toArray());
-
 // append
-console.log('append 1');
+console.log('\n\n\n append 1');
 dll.append(1);
 console.log(dll.toArray());
 
-console.log('append 2');
 dll.append(2);
+dll.append(3);
+dll.append(4);
 console.log(dll.toArray());
 
 // dll
-console.log('dll');
+console.log('\n\n\n dll');
 console.log(dll);
 
 // find
-console.log('find -7');
+console.log('\n\n\n find -7');
 console.log(dll.find(-7));
 
+console.log('');
 console.log('find 1');
 console.log(dll.find(1));
 
 // insertAfter
-console.log('insertAfter 0 - after 0');
+console.log('\n\n\n insertAfter 0 - after 0');
 console.log(dll.insertAfter(0, 'after 0'));
 console.log(dll.toArray());
 
 // remove
-console.log('remove -7');
+console.log('\n\n\n remove -7');
 console.log(dll.remove(-7));
 console.log(dll.toArray());
 
+console.log('');
+console.log('remove 2');
+console.log(dll.remove(2));
+console.log(dll.toArray());
+
+console.log('');
+console.log('remove 3');
+console.log(dll.remove(3));
+console.log(dll.toArray());
+
+console.log('');
+console.log('remove 4');
+console.log(dll.remove(4));
+console.log(dll.toArray());
+
+console.log('');
+console.log('remove 0');
+console.log(dll.remove(0));
+console.log(dll.toArray());
+
+console.log('');
 console.log('remove after 0');
 console.log(dll.remove('after 0'));
 console.log(dll.toArray());
 
+console.log('');
+console.log('remove 1');
+console.log(dll.remove(1));
+console.log(dll.toArray());
+
 // reverse
-console.log('reverse');
+console.log('\n\n\n reverse');
 console.log(dll.reverse().toArray());

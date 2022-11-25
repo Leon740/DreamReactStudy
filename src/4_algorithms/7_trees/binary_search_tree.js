@@ -219,7 +219,7 @@ const bst = new BinarySearchTree(15);
 console.log(bst);
 
 // insert
-console.log('insert 3');
+console.log('\n\n\n insert 3');
 bst.insert(3);
 console.log(bst);
 
@@ -244,38 +244,38 @@ bst.insert(39);
 console.log(bst);
 
 // size
-console.log('size');
+console.log('\n\n\n size');
 console.log(bst.size);
 
 // min
-console.log('min');
+console.log('\n\n\n min');
 console.log(bst.min());
 
 // max
-console.log('max');
+console.log('\n\n\n max');
 console.log(bst.max());
 
 // dfsInOrder
-console.log('dfsInOrder');
+console.log('\n\n\n dfsInOrder');
 console.log(bst.dfsInOrder());
 
 // dfsPreOrder
-console.log('dfsPreOrder');
+console.log('\n\n\n dfsPreOrder');
 console.log(bst.dfsPreOrder());
 
 // dfsPostOrder
-console.log('dfsPostOrder');
+console.log('\n\n\n dfsPostOrder');
 console.log(bst.dfsPostOrder());
 
 // bfs
-console.log('bfs');
+console.log('\n\n\n bfs');
 console.log(bst.bfs());
 
 // find
-console.log('find');
+console.log('\n\n\n find');
 console.log(bst.find(36));
 
 // remove
-console.log('remove');
+console.log('\n\n\n remove');
 console.log(bst.remove(3));
 console.log(bst.remove(3).dfsInOrder());

@@ -48,7 +48,7 @@ function fnMerge(arrayLeft, arrayRight) {
   return result;
 }
 
-function fnMergeSort(arr = [108, 15, 50, 4, 8, 42, 23, 16]) {
+export default function fnMergeSort(arr = [108, 15, 50, 4, 8, 42, 23, 16]) {
   const array = arr;
 
   const middleIndex = Math.floor(array.length / 2);

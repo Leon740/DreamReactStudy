@@ -24,7 +24,7 @@
 
 let counter = 0;
 
-function fnBinarySearch(array = [1, 2, 3, 4, 5], target = 2) {
+export default function fnBinarySearch(array = [1, 2, 3, 4, 5], target = 2) {
   let start = 0;
   let end = array.length - 1;
 

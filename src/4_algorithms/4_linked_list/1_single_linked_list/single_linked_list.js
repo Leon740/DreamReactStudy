@@ -11,7 +11,7 @@ class Node {
   }
 }
 
-class SingleLinkedList {
+export default class SingleLinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -136,48 +136,52 @@ class SingleLinkedList {
 const sll = new SingleLinkedList();
 
 // prepend
-console.log('prepend 0');
+console.log('\n\n\n prepend 0');
 sll.prepend(0);
 console.log(sll.toArray());
 
+console.log('');
 console.log('prepend -1');
 sll.prepend(-1);
 console.log(sll.toArray());
 
 // append
-console.log('append 1');
+console.log('\n\n\n append 1');
 sll.append(1);
 console.log(sll.toArray());
 
+console.log('');
 console.log('append 2');
 sll.append(2);
 console.log(sll.toArray());
 
 // sll
-console.log('sll');
+console.log('\n\n\n sll');
 console.log(sll);
 
 // find
-console.log('find -7');
+console.log('\n\n\n find -7');
 console.log(sll.find(-7));
 
+console.log('');
 console.log('find 1');
 console.log(sll.find(1));
 
 // insertAfter
-console.log('insertAfter 0 - after 0');
+console.log('\n\n\n insertAfter 0 - after 0');
 console.log(sll.insertAfter(0, 'after 0'));
 console.log(sll.toArray());
 
 // remove
-console.log('remove -7');
+console.log('\n\n\n remove -7');
 console.log(sll.remove(-7));
 console.log(sll.toArray());
 
+console.log('');
 console.log('remove after 0');
 console.log(sll.remove('after 0'));
 console.log(sll.toArray());
 
 // reverse
-console.log('reverse');
+console.log('\n\n\n reverse');
 console.log(sll.reverse().toArray());
