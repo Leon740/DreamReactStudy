@@ -4,7 +4,8 @@
 // Used in 8_hash_table
 
 // === Concept
-// List of elements, each element has a (next) pointer to the next element, (prev) pointer to the previous element
+// List of elements;
+// Each element has a (next) pointer to the next element, (prev) pointer to the previous element
 
 class Node {
   constructor(value, prev = null, next = null) {
