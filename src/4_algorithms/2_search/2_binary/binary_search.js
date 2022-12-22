@@ -24,18 +24,19 @@
 
 let counter = 0;
 
-export default function fnBinarySearch(array = [1, 2, 3, 4, 5], target = 2) {
+export default function fnBinarySearch(array = [1, 2, 3, 4, 5], target = 1) {
   let start = 0;
   let end = array.length - 1;
 
   while (start <= end) {
     counter += 1;
+
     const middle = Math.floor((end - start) / 2) + start;
-    console.log('===');
-    console.log(`start = ${start}`);
-    console.log(`middle = ${middle}`);
-    console.log(`end = ${end}`);
-    console.log(`counter = ${counter}`);
+    // console.log('===');
+    // console.log(`start = ${start}`);
+    // console.log(`end = ${end}`);
+    // console.log(`middle = ${middle}`);
+    // console.log(`counter = ${counter}`);
 
     if (target > array[middle]) {
       start = middle + 1;
@@ -50,7 +51,18 @@ export default function fnBinarySearch(array = [1, 2, 3, 4, 5], target = 2) {
 }
 
 const array = [1, 2, 3, 4, 5];
-const target = 3;
 
-console.log(`index = ${fnBinarySearch(array, target)}`);
-console.log(`element = ${array[fnBinarySearch(array, target)]}`);
+// less than arr[middle]
+console.log('\n');
+console.log(`index = ${fnBinarySearch(array, 1)}`);
+console.log(`element = ${array[fnBinarySearch(array, 1)]}`);
+
+// equals arr[middle]
+console.log('\n');
+console.log(`index = ${fnBinarySearch(array, 3)}`);
+console.log(`element = ${array[fnBinarySearch(array, 3)]}`);
+
+// greater than arr[middle]
+console.log('\n');
+console.log(`index = ${fnBinarySearch(array, 5)}`);
+console.log(`element = ${array[fnBinarySearch(array, 5)]}`);
