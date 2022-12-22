@@ -21,152 +21,164 @@ export default class DoubleLinkedList {
     this.tail = null;
   }
 
+  toArray() {
+    const arrResult = [];
+
+    // start with list (head)
+    let currentNode = this.head;
+
+    while (currentNode) {
+      arrResult.push(currentNode);
+
+      // go to the (next node)
+      currentNode = currentNode.next;
+    }
+
+    return arrResult;
+  }
+
   append(value) {
+    // add (node) to the end
+
+    // since (append) adds node to the end, there is no (next) in (node)
     const node = new Node(value);
 
-    // if there are no elements in the list
     if (!this.head) {
+      // if there are NO (nodes) in the (list)
       this.head = node;
       this.tail = node;
     } else {
-      // the order of this code is !important
+      // if there are (nodes) in the (list)
       const oldTail = this.tail;
       this.tail = node;
       oldTail.next = this.tail;
       this.tail.prev = oldTail;
     }
-
-    return this;
   }
 
   prepend(value) {
+    // add (node) to the start
+
     const node = new Node(value);
 
-    // if there are no elements in the list
     if (!this.head) {
+      // if there are NO (nodes) in the (list)
       this.head = node;
       this.tail = node;
     } else {
+      // if there are (nodes) in the (list)
       const oldHead = this.head;
       this.head = node;
       oldHead.prev = this.head;
       this.head.next = oldHead;
     }
-
-    return this;
-  }
-
-  toArray() {
-    const array = [];
-    let current = this.head;
-
-    while (current) {
-      array.push(current);
-      current = current.next;
-    }
-
-    return array;
   }
 
   find(value) {
-    let current = this.head;
+    // start with list (head)
+    let currentNode = this.head;
 
-    while (current) {
-      if (current.value === value) {
-        return current;
+    while (currentNode) {
+      if (currentNode.value === value) {
+        return currentNode;
       }
 
-      current = current.next;
+      // go to the (next node)
+      currentNode = currentNode.next;
     }
 
     return null;
   }
 
-  insertAfter(afterElValue, thisElValue) {
-    const found = this.find(afterElValue);
+  insertAfter(afterNodeValue, thisNodeValue) {
+    const foundNode = this.find(afterNodeValue);
 
-    // if the (node) is not found
-    if (!found) {
+    // if (node) is not found
+    if (!foundNode) {
       return null;
     }
 
-    // the (value) is (thisElValue), (prev) is found el, (next) is the next el after (found) el
-    const node = new Node(thisElValue, found, found.next);
+    // prev : foundNode, next: foundNode.next
+    const node = new Node(thisNodeValue, foundNode, foundNode.next);
 
-    // (prev) of the next el after (found) el
-    found.next.prev = node;
+    // (prev node) of (next node) after (found node) is (this node)
+    foundNode.next.prev = node;
 
-    // set the next (node) after (found) to this (node)
-    found.next = node;
+    // (next node) after (found node) is (this node)
+    foundNode.next = node;
 
     return this;
   }
 
-  remove(value) {
-    // if the list is empty
+  delete(value) {
+    // if the (list) is empty
     if (!this.head) {
       return null;
     }
 
-    const found = this.find(value);
+    const foundNode = this.find(value);
 
     // if the (node) is not found
-    if (!found) {
+    if (!foundNode) {
       return null;
     }
 
-    if (!found.prev && !found.next) {
-      // if there is only one (node) in the (list), remove (head) and (tail)
+    // if there is only one (node) in the (list)
+    if (!foundNode.prev && !foundNode.next) {
+      // delete (head) and (tail)
       this.head = null;
       this.tail = null;
-      return this;
+
+      return null;
     }
 
-    if (found.prev && found.next) {
-      // if there is both (prev) and (next) in (found)
-
+    // if there is both (prev) and (next) in (found)
+    if (foundNode.prev && foundNode.next) {
       // Ex: 1, 2, 3; remove 2
-      const foundPrev = found.prev; // 2.prev = 1
-      const foundNext = found.next; // 2.next = 3
+      const foundNodePrev = foundNode.prev; // 2.prev = 1
+      const foundNodeNext = foundNode.next; // 2.next = 3
 
-      found.prev.next = foundNext; // 1.next = 3
-      found.next.prev = foundPrev; // 3.prev = 1
-      return this;
+      foundNode.prev.next = foundNodeNext; // 1.next = 3
+      foundNode.next.prev = foundNodePrev; // 3.prev = 1
     }
 
-    if (!found.next) {
-      // if this is the last node
+    // if this is the (last node)
+    if (!foundNode.next) {
+      // Ex: 1, 2, 3; remove 3
+      // foundNode.prev = 2
+      // 2.next = null
+      foundNode.prev.next = null;
 
-      // Ex: 0, 1, 4; remove 4
-      // found.prev = 1
-      // 1.next = null
-      found.prev.next = null;
-
-      // this.tail = 1
-      this.tail = found.prev;
+      // this.tail = 2
+      this.tail = foundNode.prev;
     }
 
-    if (!found.prev) {
-      // if this is the first node
+    // if this is the (first node)
+    if (!foundNode.prev) {
+      // Ex: 1, 2, 3; remove 1
+      // foundNode.next = 2
+      // 2.prev = null
+      foundNode.next.prev = null;
 
-      // Ex: 0, 1; remove 0
-      // found.next = 1
-      // 1.prev = null
-      found.next.prev = null;
-
-      // this.head = 1
-      this.head = found.next;
+      // this.head = 2
+      this.head = foundNode.next;
     }
 
     return this;
   }
 
   reverse() {
+    // create new list
     const dll = new DoubleLinkedList();
 
+    // loop through this (list), start with (head)
     let current = this.head;
+
     while (current) {
+      // add (nodes) to the start of new (list)
       dll.prepend(current.value);
+
+      // go to the (next node)
       current = current.next;
     }
 
@@ -175,74 +187,76 @@ export default class DoubleLinkedList {
 }
 
 const dll = new DoubleLinkedList();
+console.log(dll);
+
+// append
+console.log('\n\n\n append(1)');
+dll.append(1);
+console.log(dll);
+
+console.log('\n append(2)');
+dll.append(2);
+console.log(dll);
+
+// toArray
+console.log('\n\n\n toArray()');
+console.log(dll.toArray());
 
 // prepend
-console.log('\n\n\n prepend 0');
+console.log('\n\n\n prepend(0)');
 dll.prepend(0);
 console.log(dll.toArray());
 
-// append
-console.log('\n\n\n append 1');
-dll.append(1);
+console.log('\n prepend(-1)');
+dll.prepend(-1);
 console.log(dll.toArray());
-
-dll.append(2);
-dll.append(3);
-dll.append(4);
-console.log(dll.toArray());
-
-// dll
-console.log('\n\n\n dll');
-console.log(dll);
 
 // find
-console.log('\n\n\n find -7');
-console.log(dll.find(-7));
-
-console.log('');
-console.log('find 1');
+console.log('\n\n\n find(1)');
 console.log(dll.find(1));
 
+console.log('\n find(100)');
+console.log(dll.find(100));
+
 // insertAfter
-console.log('\n\n\n insertAfter 0 - after 0');
+console.log('\n\n\n insertAfter(0, \'after 0\')');
 console.log(dll.insertAfter(0, 'after 0'));
 console.log(dll.toArray());
 
-// remove
-console.log('\n\n\n remove -7');
-console.log(dll.remove(-7));
-console.log(dll.toArray());
-
-console.log('');
-console.log('remove 2');
-console.log(dll.remove(2));
-console.log(dll.toArray());
-
-console.log('');
-console.log('remove 3');
-console.log(dll.remove(3));
-console.log(dll.toArray());
-
-console.log('');
-console.log('remove 4');
-console.log(dll.remove(4));
-console.log(dll.toArray());
-
-console.log('');
-console.log('remove 0');
-console.log(dll.remove(0));
-console.log(dll.toArray());
-
-console.log('');
-console.log('remove after 0');
-console.log(dll.remove('after 0'));
-console.log(dll.toArray());
-
-console.log('');
-console.log('remove 1');
-console.log(dll.remove(1));
-console.log(dll.toArray());
+console.log('\n insertAfter(100, \'after 100\')');
+console.log(dll.insertAfter(100, 'after 100'));
 
 // reverse
 console.log('\n\n\n reverse');
 console.log(dll.reverse().toArray());
+
+// delete
+
+// both (prev) and (next)
+console.log('\n\n\n delete(1)');
+console.log(dll.delete(1));
+console.log(dll.toArray());
+
+// (last node)
+console.log('\n delete(2)');
+console.log(dll.delete(2));
+console.log(dll.toArray());
+
+// (first node)
+console.log('\n delete(-1)');
+console.log(dll.delete(-1));
+console.log(dll.toArray());
+
+// (not found node)
+console.log('\n delete(100)');
+console.log(dll.delete(100));
+
+// both (prev) and (next)
+console.log('\n\n\n delete(\'after 0\')');
+console.log(dll.delete('after 0'));
+console.log(dll.toArray());
+
+// one (node)
+console.log('\n delete(0)');
+console.log(dll.delete(0));
+console.log(dll.toArray());

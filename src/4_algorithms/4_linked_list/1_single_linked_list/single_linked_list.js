@@ -17,115 +17,140 @@ export default class SingleLinkedList {
     this.tail = null;
   }
 
+  toArray() {
+    const arrResult = [];
+
+    // start with list (head)
+    let currentNode = this.head;
+
+    while (currentNode) {
+      arrResult.push(currentNode.value);
+
+      // go to the (next node)
+      currentNode = currentNode.next;
+    }
+
+    return arrResult;
+  }
+
   append(value) {
-    // since (append) adds the (node) to the end, there's no (next) in (node)
+    // add (node) to the end
+
+    // since (append) adds (node) to the end, there is no (next) in (node)
     const node = new Node(value);
 
-    // if there are no (nodes) in the list, set (head) to (node)
+    // if there are NO (nodes) in the list - (head) doesn't exist
     if (!this.head) {
+      // set (head) to (node)
       this.head = node;
     }
 
-    // if there are elements in the list - (tail) exists, set the (next) element after (tail) to (node)
+    // if there are (nodes) in the list - (tail) exists
     if (this.tail) {
+      // the (next node) after (current tail) is (this node)
       this.tail.next = node;
     }
 
-    // since (append) adds the (node) to the end, set (tail) always to (node)
+    // update (tail) to (this node)
     this.tail = node;
-
-    return this;
   }
 
   prepend(value) {
+    // add (node) to the start
+
     // since (prepend) adds the element to the start, the (next) (node) is (head)
     const node = new Node(value, this.head);
 
     // set (head) to (node)
     this.head = node;
 
-    // if there are no (nodes) in the list, set (tail) to (node)
+    // if there are NO (nodes) in the list
     if (!this.tail) {
+      // set (tail) to (node)
       this.tail = node;
     }
 
     return this;
   }
 
-  toArray() {
-    const array = [];
-    let current = this.head;
-
-    while (current) {
-      array.push(current);
-      current = current.next;
-    }
-
-    return array;
-  }
-
   find(value) {
-    let current = this.head;
+    // start with list (head)
+    let currentNode = this.head;
 
-    while (current) {
-      if (current.value === value) {
-        return current;
+    while (currentNode) {
+      if (currentNode.value === value) {
+        return currentNode;
       }
 
-      current = current.next;
+      // go to the (next node)
+      currentNode = currentNode.next;
     }
 
     return null;
   }
 
-  insertAfter(afterElValue, thisElValue) {
-    const found = this.find(afterElValue);
+  insertAfter(afterNodeValue, thisNodeValue) {
+    const foundNode = this.find(afterNodeValue);
 
-    // if the (node) is not found
-    if (!found) {
+    // if (node) is not found
+    if (!foundNode) {
       return null;
     }
 
-    // the (value) is (thisElValue), (next) is the next element after (found) element
-    const node = new Node(thisElValue, found.next);
+    // the (next) of (this node) is (foundNode.next)
+    const thisNode = new Node(thisNodeValue, foundNode.next);
 
-    // set the next (node) after (found) to this (node)
-    found.next = node;
+    // set the (next) of (foundNode) to (thisNode)
+    foundNode.next = thisNode;
 
     return this;
   }
 
-  remove(value) {
-    // if the list is empty
+  delete(value) {
+    // if (list) is empty
     if (!this.head) {
       return null;
     }
 
-    let current = this.head;
-    while (current.next) {
-      if (current.next.value === value) {
-        // if found, skip the element
-        current.next = current.next.next;
+    // if (node) is not found
+    const foundNode = this.find(value);
+
+    if (!foundNode) {
+      return null;
+    }
+
+    let currentNode = this.head;
+
+    while (currentNode.next) {
+      if (currentNode.next.value === value) {
+        // if (node) is found, skip (this node)
+        currentNode.next = currentNode.next.next;
       } else {
-        current = current.next;
+        currentNode = currentNode.next;
       }
     }
 
-    // if we need to delete the (tail)
+    // if (this node) is (tail)
     if (this.tail.value === value) {
-      // set (tail) to (previous) element
-      this.tail = current;
+      // set (tail) to (prev node)
+      this.tail = currentNode;
     }
 
     return this;
   }
 
   reverse() {
+    // create new list
     const sll = new SingleLinkedList();
 
+    // loop through this (list), start with (head)
     let current = this.head;
+
     while (current) {
+      // add (nodes) to the start of new (list)
       sll.prepend(current.value);
+
+      // go to the (next node)
       current = current.next;
     }
 
@@ -134,53 +159,51 @@ export default class SingleLinkedList {
 }
 
 const sll = new SingleLinkedList();
-
-// prepend
-console.log('\n\n\n prepend 0');
-sll.prepend(0);
-console.log(sll.toArray());
-
-console.log('');
-console.log('prepend -1');
-sll.prepend(-1);
-console.log(sll.toArray());
-
-// append
-console.log('\n\n\n append 1');
-sll.append(1);
-console.log(sll.toArray());
-
-console.log('');
-console.log('append 2');
-sll.append(2);
-console.log(sll.toArray());
-
-// sll
-console.log('\n\n\n sll');
 console.log(sll);
 
-// find
-console.log('\n\n\n find -7');
-console.log(sll.find(-7));
+console.log('\n\n\n prepend(0)');
+sll.prepend(0);
+console.log(sll);
 
-console.log('');
-console.log('find 1');
+console.log('\n prepend(-1)');
+sll.prepend(-1);
+console.log(sll);
+
+// append
+console.log('\n\n\n append(1)');
+sll.append(1);
+console.log(sll);
+
+console.log('\n append(2)');
+sll.append(2);
+console.log(sll);
+
+// toArray
+console.log('\n\n\n toArray()');
+console.log(sll.toArray());
+
+// find
+console.log('\n\n\n find(1)');
 console.log(sll.find(1));
 
+console.log('\n find(100)');
+console.log(sll.find(100));
+
 // insertAfter
-console.log('\n\n\n insertAfter 0 - after 0');
+console.log('\n\n\n insertAfter(0, \'after 0\')');
 console.log(sll.insertAfter(0, 'after 0'));
 console.log(sll.toArray());
 
-// remove
-console.log('\n\n\n remove -7');
-console.log(sll.remove(-7));
+console.log('\n insertAfter(100, \'after 100\')');
+console.log(sll.insertAfter(100, 'after 100'));
+
+// delete
+console.log('\n\n\n delete(0)');
+console.log(sll.delete(0));
 console.log(sll.toArray());
 
-console.log('');
-console.log('remove after 0');
-console.log(sll.remove('after 0'));
-console.log(sll.toArray());
+console.log('\n delete(-10)');
+console.log(sll.delete(-10));
 
 // reverse
 console.log('\n\n\n reverse');
