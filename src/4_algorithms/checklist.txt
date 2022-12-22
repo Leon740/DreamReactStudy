@@ -1,7 +1,6 @@
 graphs
 
 quick sort
-heap sort
 
 solid principles
 design patterns

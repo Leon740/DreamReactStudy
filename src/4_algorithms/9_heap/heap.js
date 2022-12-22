@@ -33,7 +33,7 @@
 // Right child = i * 2 + 2
 
 
-class Heap {
+export default class Heap {
   constructor() {
     this.data = [];
   }
@@ -65,8 +65,8 @@ class Heap {
 
     // while (current node) has parent
     while (currentIndex) {
-      console.log(this.data[currentIndex]);
-      console.log(this.data[this._getIndexParent(currentIndex)]);
+      // console.log(this.data[currentIndex]);
+      // console.log(this.data[this._getIndexParent(currentIndex)]);
 
       // if (current node) is greater than (parent node)
       if (this.data[currentIndex] > this.data[this._getIndexParent(currentIndex)]) {
@@ -82,20 +82,11 @@ class Heap {
   push(node) {
     // add (node) to the (heap)
 
-    // if (heap) is empty
-    if (!this.data[0]) {
-      // add the (heap root)
-      this.data[0] = node;
-    }
+    // 1) add (node) to the end
+    this.data[this.data.length] = node;
 
-    // if (heap) is not empty, and (heap root) is greater than (node)
-    if (this.data[0] && this.data[0] > node) {
-      // 1) add (node) to the end
-      this.data[this.data.length] = node;
-
-      // 2) reorganize (heap)
-      this._heapifyUp();
-    }
+    // 2) reorganize (heap)
+    this._heapifyUp();
 
     return this.data;
   }
@@ -106,6 +97,7 @@ class Heap {
   }
 
   search(node) {
+    // use binary tree searches
     return this.data.indexOf(node);
   }
 
@@ -118,7 +110,7 @@ class Heap {
   }
 
   _heapifyDown() {
-    console.log(this.data);
+    // console.log(this.data);
     // used in poll
     // from top to bottom
 
@@ -127,10 +119,10 @@ class Heap {
 
     // while (current node) has (left node)
     while (this.data[this._getIndexChildLeft(currentIndex)]) {
-      console.log('===');
-      console.log(`current = ${this.data[currentIndex]}`);
-      console.log(`left = ${this.data[this._getIndexChildLeft(currentIndex)]}`);
-      console.log(`right = ${this.data[this._getIndexChildRight(currentIndex)]}`);
+      // console.log('===');
+      // console.log(`current = ${this.data[currentIndex]}`);
+      // console.log(`left = ${this.data[this._getIndexChildLeft(currentIndex)]}`);
+      // console.log(`right = ${this.data[this._getIndexChildRight(currentIndex)]}`);
 
       // get the index of the (greatest node) from children
 
@@ -138,7 +130,7 @@ class Heap {
       let greatestChildIndex = this._getIndexChildLeft(currentIndex);
 
       // if (right node) exists and is bigger than (left node)
-      if (this.data[this._getIndexChildRight(currentIndex)] && this.data[this._getIndexChildRight] > this.data[greatestChildIndex]) {
+      if (this.data[this._getIndexChildRight(currentIndex)] && this.data[this._getIndexChildRight(currentIndex)] > this.data[greatestChildIndex]) {
         greatestChildIndex = this._getIndexChildRight(currentIndex);
       }
 
@@ -148,7 +140,7 @@ class Heap {
       if (this.data[currentIndex] < this.data[greatestChildIndex]) {
         // swap (these two nodes)
         this._swap(currentIndex, greatestChildIndex);
-        console.log(this.data);
+        // console.log(this.data);
 
         // go to the (next node)
         currentIndex = greatestChildIndex;
@@ -160,6 +152,7 @@ class Heap {
 
   poll() {
     // select (heap root) and delete it
+    const heapRoot = this.data[0];
 
     // 1) put the (last node) to (heap root)
     this.data[0] = this.data[this.data.length - 1];
@@ -170,59 +163,59 @@ class Heap {
     // 3) reorganize (heap)
     this._heapifyDown();
 
-    return this.data;
+    return heapRoot;
   }
 }
 
-const heap = new Heap();
-console.log(heap);
+// const heap = new Heap();
+// console.log(heap);
 
-// push
-console.log('\n\n\n push(90)');
-console.log(heap.push(90));
+// // push
+// console.log('\n\n\n push(90)');
+// console.log(heap.push(90));
 
-console.log('push(40)');
-console.log(heap.push(40));
+// console.log('push(40)');
+// console.log(heap.push(40));
 
-// (heapify) example
-console.log('push(44)');
-console.log(heap.push(44));
+// // (heapify) example
+// console.log('push(44)');
+// console.log(heap.push(44));
 
-// (node) greater than (heap root)
-console.log('push(120)');
-console.log(heap.push(120));
+// // (node) greater than (heap root)
+// console.log('push(120)');
+// console.log(heap.push(120));
 
-console.log('push(25)');
-console.log(heap.push(25));
+// console.log('push(25)');
+// console.log(heap.push(25));
 
-console.log('push(5)');
-console.log(heap.push(5));
+// console.log('push(5)');
+// console.log(heap.push(5));
 
-console.log('push(68)');
-console.log(heap.push(68));
+// console.log('push(68)');
+// console.log(heap.push(68));
 
-console.log('push(21)');
-console.log(heap.push(21));
+// console.log('push(21)');
+// console.log(heap.push(21));
 
-console.log('push(39)');
-console.log(heap.push(39));
+// console.log('push(39)');
+// console.log(heap.push(39));
 
-// peek
-console.log('\n\n\n peek()');
-console.log(heap.peek());
+// // peek
+// console.log('\n\n\n peek()');
+// console.log(heap.peek());
 
-// search
-console.log('\n\n\n search(44)');
-console.log(heap.search(44));
+// // search
+// console.log('\n\n\n search(44)');
+// console.log(heap.search(44));
 
-// size
-console.log('\n\n\n size()');
-console.log(heap.size());
+// // size
+// console.log('\n\n\n size()');
+// console.log(heap.size());
 
-// isEmpty
-console.log('\n\n\n isEmpty()');
-console.log(heap.isEmpty());
+// // isEmpty
+// console.log('\n\n\n isEmpty()');
+// console.log(heap.isEmpty());
 
-// poll
-console.log('\n\n\n poll()');
-console.log(heap.poll());
+// // poll
+// console.log('\n\n\n poll()');
+// console.log(heap.poll());
