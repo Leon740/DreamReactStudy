@@ -28,13 +28,17 @@ export default class HashTable {
   }
 
   set(key) {
+    // index of item in table (hash)
     const index = this._hash(key);
 
     // collision - more than one record in same (bucket)
+
+    // if (bucket) is empty
     if (!this.buckets[index]) {
-      // if (bucket) is empty, add empty linked list to (bucket)
+      // add empty linked list to (bucket)
       this.buckets[index] = new DoubleLinkedList();
     }
+
     // if (bucket) is not empty, add (records) to the linked list in (bucket)
     this.buckets[index].append(key);
 
@@ -55,12 +59,12 @@ export default class HashTable {
     const array = [];
 
     for (let k = 0; k < this.buckets.length; k += 1) {
+      // if (bucket) is not empty
       if (this.buckets[k]) {
-        // if (bucket) is not empty
         // console.log(this.buckets[k].toArray());
 
+        // loop through each (record) in (bucket)
         for (let j = 0; j < this.buckets[k].toArray().length; j += 1) {
-          // loop through each (record) in (bucket)
           // console.log(this.buckets[k].toArray()[j].value);
           array.push(this.buckets[k].toArray()[j].value);
         }

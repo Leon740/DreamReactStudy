@@ -30,10 +30,13 @@ export default class HashTable {
     const index = this._hash(key);
 
     // collision - more than one record in same (bucket)
+
+    // if (bucket) is empty
     if (!this.buckets[index]) {
-      // if (bucket) is empty, add empty array to (bucket)
+      // add empty array to (bucket)
       this.buckets[index] = [];
     }
+
     // if (bucket) is not empty, add (records) to the array in (bucket)
     this.buckets[index].push({ key, value });
 
@@ -42,21 +45,24 @@ export default class HashTable {
 
   get(key) {
     const index = this._hash(key);
+
     const bucket = this.buckets[index];
     // 1 - no such (record)
     // 2 - one (record) in (bucket)
     // 3 - more than one record in (bucket)
 
+    // if there is a (bucket) on this index(hash)
     if (bucket.length) {
-      // if there is a (bucket) on this index(hash)
+      // loop through each (record) in (bucket)
       for (let i = 0; i < bucket.length; i += 1) {
-        // loop through each (record) in (bucket)
+        // if (record) exists and the (key) of (record) = (key)
         if (bucket[i] && bucket[i].key === key) {
-          // if (record) exists and the (key) of (record) = (key), return the (value) of (record)
+          // return the (value) of (record)
           return bucket[i].value;
         }
       }
     }
+
     // if there is no (bucket) on this index(hash)
     return null;
   }
@@ -68,18 +74,20 @@ export default class HashTable {
     // 2 - one (record) in (bucket)
     // 3 - more than one record in (bucket)
 
+    // if there is a (bucket) on this index(hash)
     if (bucket.length) {
-      // if there is a (bucket) on this index(hash)
+      // loop through each (record) in (bucket)
       for (let i = 0; i < bucket.length; i += 1) {
-        // loop through each (record) in (bucket)
+        // if (record) exists and the (key) of (record) = (key)
         if (bucket[i] && bucket[i].key === key) {
-          // if (record) exists and the (key) of (record) = (key), delete (record)
+          // delete (record)
           const record = bucket[i];
           delete bucket[i];
           return record;
         }
       }
     }
+
     // if there is no (bucket) on this index(hash)
     return -1;
   }
@@ -88,15 +96,16 @@ export default class HashTable {
     const array = [];
 
     for (let k = 0; k < this.buckets.length; k += 1) {
+      // if (bucket) is not empty
       if (this.buckets[k]) {
-        // if (bucket) is not empty
         // console.log(this.buckets[k]);
 
+        // loop through each (record) in (bucket)
         for (let j = 0; j < this.buckets[k].length; j += 1) {
-          // loop through each (record) in (bucket)
           // console.log(this.buckets[k][j]);
+
+          // if (record) exists
           if (this.buckets[k][j]) {
-            // if (record) exists
             array.push(this.buckets[k][j].key);
           }
         }
@@ -110,15 +119,16 @@ export default class HashTable {
     const array = [];
 
     for (let k = 0; k < this.buckets.length; k += 1) {
+      // if (bucket) is not empty
       if (this.buckets[k]) {
-        // if (bucket) is not empty
         // console.log(this.buckets[k]);
 
+        // loop through each (record) in (bucket)
         for (let j = 0; j < this.buckets[k].length; j += 1) {
-          // loop through each (record) in (bucket)
           // console.log(this.buckets[k][j]);
+
+          // if (record) exists
           if (this.buckets[k][j]) {
-            // if (record) exists
             array.push(this.buckets[k][j].value);
           }
         }
@@ -132,15 +142,16 @@ export default class HashTable {
     const array = [];
 
     for (let k = 0; k < this.buckets.length; k += 1) {
+      // if (bucket) is not empty
       if (this.buckets[k]) {
-        // if (bucket) is not empty
         // console.log(this.buckets[k]);
 
+        // loop through each (record) in (bucket)
         for (let j = 0; j < this.buckets[k].length; j += 1) {
-          // loop through each (record) in (bucket)
           // console.log(this.buckets[k][j]);
+
+          // if (record) exists
           if (this.buckets[k][j]) {
-            // if (record) exists
             array.push([this.buckets[k][j].key, this.buckets[k][j].value]);
           }
         }

@@ -30,6 +30,7 @@ export default class HashTable {
   }
 
   set(key, value) {
+    // index of item in table (hash)
     const index = this._hash(key);
 
     this.buckets[index].set(key, value);
