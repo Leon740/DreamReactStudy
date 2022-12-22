@@ -21,10 +21,9 @@ export default function fnInsertionSort(arr = [5, 4, 3, 2, 1]) {
 
   counter += 1;
 
-  const middleIndex = Math.floor(array.length / 2);
-  const middle = array[middleIndex];
   const less = [];
   const greater = [];
+  const middle = array[Math.floor(array.length / 2)];
 
   if (array.length < 2) {
     return array;
@@ -41,8 +40,8 @@ export default function fnInsertionSort(arr = [5, 4, 3, 2, 1]) {
   }
 
   console.log(`array = ${array}`);
-  console.log(`less = ${less}`);
   console.log(`middle = ${middle}`);
+  console.log(`less = ${less}`);
   console.log(`greater = ${greater}`);
 
   return [

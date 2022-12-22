@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import fnBinarySearch from '../4_algorithms/2_search/2_binary/binary_search';
+import fnInsertionSort from '4_algorithms/1_sort/3_insertion/insertion_sort';
 
 function App() {
   return (
