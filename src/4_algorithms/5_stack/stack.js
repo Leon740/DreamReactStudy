@@ -42,14 +42,14 @@ class Stack {
   }
 
   pop() {
+    this.size -= 1;
     const deletedElement = this.storage[this.size];
     delete this.storage[this.size];
-    this.size -= 1;
     return deletedElement;
   }
 
   peek() {
-    return this.storage[this.size];
+    return this.storage[this.size - 1];
   }
 }
 
@@ -59,13 +59,14 @@ console.log('initial stack');
 console.log(stackCars);
 
 console.log('push');
-stackCars.push('Toyota Supra');
-console.log(stackCars);
+console.log(stackCars.push('Toyota Supra'));
+
+console.log('push');
+console.log(stackCars.push('Lancer Evo'));
 
 console.log('pop');
-stackCars.pop();
+console.log(stackCars.pop());
 console.log(stackCars);
 
 console.log('peek');
-stackCars.peek();
 console.log(stackCars.peek());

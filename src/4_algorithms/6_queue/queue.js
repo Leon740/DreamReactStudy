@@ -52,9 +52,11 @@ console.log('initial queue');
 console.log(queueCars);
 
 console.log('enqueue');
-queueCars.enqueue('Toyota Supra');
-console.log(queueCars);
+console.log(queueCars.enqueue('Toyota Supra'));
+
+console.log('enqueue');
+console.log(queueCars.enqueue('Lancer Evo'));
 
 console.log('dequeue');
-queueCars.dequeue();
+console.log(queueCars.dequeue());
 console.log(queueCars);
