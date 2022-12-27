@@ -1,5 +1,7 @@
 import Heap from '4_algorithms/9_heap/heap';
 
+// === O(log(n))
+
 export default function fnHeapSort(arr = [2, 8, 5, 3, 9, 1]) {
   const array = arr;
   const arrResult = [];

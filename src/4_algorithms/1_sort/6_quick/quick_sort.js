@@ -5,6 +5,27 @@
 // if (pivot) is greater than (element of array), swap (element) with (element) after the (wall) - put (element) before the (wall)
 // if (pivot) is less than (each element of array), swap (pivot) with the (first element) after the (wall)
 
+// === Work
+// [| 6, 5, 1, 3, 8, 4, 7, 9, 2], pivot = 2, wallIndex = 0
+// 2 > 1, swap 6 with 1, wallIndex++
+// [1, | 5, 6, 3, 8, 4, 7, 9, 2], pivot = 2, wallIndex = 1
+// pivot < each element of array, swap pivot (2) with arr[wallIndex] (5)
+// [1, 2, | 6, 3, 8, 4, 7, 9, 5], pivot = 5, wallIndex = 1
+// 5 > 3, swap 6 with 3, wallIndex++
+// [1, 2, 3, | 6, 8, 4, 7, 9, 5], pivot = 5, wallIndex = 2
+// 5 > 4, swap 6 with 4, wallIndex++
+// [1, 2, 3, 4, | 8, 6, 7, 9, 5], pivot = 5, wallIndex = 3
+// pivot < each element of array, swap pivot (5) with arr[wallIndex] (8)
+// [1, 2, 3, 4, 5, | 6, 7, 9, 8], pivot = 8, wallIndex = 4
+// 8 > 6, wallIndex++
+// [1, 2, 3, 4, 5, 6, | 7, 9, 8], pivot = 8, wallIndex = 5
+// 8 > 7, wallIndex++
+// [1, 2, 3, 4, 5, 6, 7, | 9, 8], pivot = 8, wallIndex = 6
+// pivot < each element of array, swap pivot (8) with arr[wallIndex] (9)
+// [1, 2, 3, 4, 5, 6, 7, 8, 9 | ]
+
+// === O(n log(n))
+
 export default function fnQuickSort(arr = [6, 5, 1, 3, 8, 4, 7, 9, 2]) {
   let counter = 0;
 
