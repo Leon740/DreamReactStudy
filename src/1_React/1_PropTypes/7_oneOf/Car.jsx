@@ -1,12 +1,14 @@
-import React from "react";
-import Toyota from "./Toyota";
+import React from 'react';
+import Toyota from './Toyota';
 
-const Car = () => {
+function Car() {
   return (
     <div>
-      Toyota <Toyota model="Supra" />
+      Toyota
+      {' '}
+      <Toyota model="Supra" />
     </div>
   );
-};
+}
 
 export default Car;

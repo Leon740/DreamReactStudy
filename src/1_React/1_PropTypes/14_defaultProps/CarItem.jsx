@@ -22,11 +22,11 @@ CarItem.propTypes = {
 };
 
 CarItem.defaultProps = {
-  car: PropTypes.shape({
+  car: {
     name: 'Toyota',
     model: 'Supra',
     year: '2000',
-  }),
+  },
 };
 
 export default CarItem;

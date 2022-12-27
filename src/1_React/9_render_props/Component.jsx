@@ -4,7 +4,8 @@ import Car from './Car';
 
 function Component() {
   // === Concept
-  // render prop is a prop, value of which is a function
+  // render-prop is a prop, function with own render-method
+  // So, instead of making render method in the component itself, we use render-props to define render-methods
 
   return (
     <Car

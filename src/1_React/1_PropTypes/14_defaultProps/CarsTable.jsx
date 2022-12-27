@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CarItem from "./CarItem";
+import React from 'react';
+import PropTypes from 'prop-types';
+import CarItem from './CarItem';
 
-const CarsTable = ({ carsArray }) => {
+function CarsTable({ carsArray }) {
   // 2 ways = argument default value
   // const CarsTable = ({
   //   carsArray = [{ id: 0, name: "Toyota", model: "Supra", year: "2010" }],
@@ -17,23 +17,30 @@ const CarsTable = ({ carsArray }) => {
         </tr>
       </thead>
       <tbody>
-        {carsArray.map(car => (
+        {carsArray.map((car) => (
           <CarItem key={car.id} car={car} />
         ))}
       </tbody>
     </table>
   );
-};
+}
 
 CarsTable.propTypes = {
-  carsArray: PropTypes.array.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  carsArray: PropTypes.array,
 };
 
 CarsTable.defaultProps = {
   carsArray: [
-    { id: 0, name: "Toyota", model: "Supra", year: "2010" },
-    { id: 1, name: "Mitsubishi", model: "Lancer Evo 9", year: "2018" },
-    { id: 2, name: "Nissan", model: "R32", year: "2016" },
+    {
+      id: 0, name: 'Toyota', model: 'Supra', year: '2010',
+    },
+    {
+      id: 1, name: 'Mitsubishi', model: 'Lancer Evo 9', year: '2018',
+    },
+    {
+      id: 2, name: 'Nissan', model: 'R32', year: '2016',
+    },
   ],
 };
 
