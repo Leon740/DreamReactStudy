@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import HashTable from '4_algorithms/8_hash_table/1_hash_table';
+import fnQuickSort from '../4_algorithms/1_sort/6_quick/quick_sort';
 
 function App() {
   return (
