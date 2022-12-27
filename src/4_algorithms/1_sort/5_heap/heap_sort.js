@@ -4,7 +4,7 @@ export default function fnHeapSort(arr = [2, 8, 5, 3, 9, 1]) {
   const array = arr;
   const arrResult = [];
 
-  // 1) create max-heap
+  // 1) create max-heap from array
   const heap = new Heap();
 
   for (let i = 0; i < array.length; i += 1) {
