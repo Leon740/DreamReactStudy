@@ -1,6 +1,5 @@
 graphs
-
-quick sort
+priority queues
 
 solid principles
 design patterns

@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 
 // === Concept
 // You can't control the input
+// Motivation
 // More ability to control the logic of the component
 
 function Form() {

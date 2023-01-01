@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 
-import DoubleLinkedList from '4_algorithms/4_linked_list/2_double_linked_list/double_linked_list';
+import DoubleLinkedList from '4_algorithms/5_linked_list/2_double_linked_list/double_linked_list';
 
 // === Concept
 // Hash Table is a table with index cell, and value cell(bucket)

@@ -1,4 +1,4 @@
-import Heap from '4_algorithms/9_heap/heap';
+import Heap from '4_algorithms/10_heap/heap';
 
 // === O(log(n))
 
