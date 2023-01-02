@@ -1,0 +1,34 @@
+big O is a formula used to determine the time and complexity of the algorithm.
+
+O(1) = Constant dependency
+No matter what the input size is, the time needed to execute the code will not change (grow).
+
+O(n) = Linear dependency
+Linear Search
+Input = 10000; Operations = 10 000;
+The qty of the operations grows linear on input grow.
+
+O(n ^ 2)
+Insertion Sort
+Input = 10; Operations = 100;
+Input = 100; Operations = 10 000;
+The qty of the operations grows square on input grow.
+
+O(n ^ 3)
+Input = 10; Operations = 1000;
+Input = 100; Operations = 1 000 000;
+The qty of the operations grows cubic on input grow.
+
+O(log(n)) = Log dependence
+Binary Search
+Heap Sort
+Input = 100; Operations = 7;
+Input = 10 000; Operations = 14;
+
+O(n * log(n))
+Merge Sort
+Quick Sort
+
+O(2^n)
+
+O(n!)
