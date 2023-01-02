@@ -20,7 +20,7 @@
 
 // === Counter = 2
 
-// === O(n)
+// === O(log(n))
 
 let counter = 0;
 

@@ -13,7 +13,7 @@
 // [4, 15, 50, 108], [8, 16, 23, 42]
 // [4, 8, 15, 16, 23, 42, 50, 108]
 
-// === O(n)
+// === O(n * log(n))
 
 function fnMerge(arrayLeft, arrayRight) {
   console.log(`arrayLeft = ${arrayLeft}`);

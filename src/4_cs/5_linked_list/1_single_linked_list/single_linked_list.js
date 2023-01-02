@@ -200,7 +200,7 @@ console.log(sll.insertAfter(100, 'after 100'));
 // delete
 console.log('\n\n\n delete(0)');
 console.log(sll.delete(0));
-console.log(sll.toArray());
+
 
 console.log('\n delete(-10)');
 console.log(sll.delete(-10));

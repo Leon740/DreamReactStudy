@@ -24,7 +24,7 @@
 // pivot < each element of array, swap pivot (8) with arr[wallIndex] (9)
 // [1, 2, 3, 4, 5, 6, 7, 8, 9 | ]
 
-// === O(n log(n))
+// === O(n * log(n))
 
 export default function fnQuickSort(arr = [6, 5, 1, 3, 8, 4, 7, 9, 2]) {
   let counter = 0;
