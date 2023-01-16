@@ -1,7 +1,5 @@
 /* eslint-disable indent */
-/* eslint-disable prefer-const */
 /* eslint-disable no-multiple-empty-lines */
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 // === Concept
 // Recursion is a function which calls itself
@@ -32,28 +30,32 @@ function fnCountdownRecursive(n) {
 
 // 2 ex
 function fnGetSumIterable(n, sum = 0) {
+  let summary = sum;
+
   for (let i = n; i > 0; i -= 1) {
-    sum += i;
+    summary += i;
     console.log(`i = ${i}`);
-    console.log(`sum = ${sum}`);
+    console.log(`sum = ${summary}`);
   }
 
-  console.log(sum);
+  console.log(summary);
 
-  return sum;
+  return summary;
 }
 // fnGetSumIterable(3);
 
 function fnGetSumRecursive(n, sum = 0) {
+  let summary = sum;
+
   if (n <= 0) {
-    return sum;
+    return summary;
   }
 
-  sum += n;
+  summary += n;
   console.log(`n = ${n}`);
-  console.log(`sum = ${sum}`);
+  console.log(`sum = ${summary}`);
 
-  return fnGetSumRecursive(n - 1, sum);
+  return fnGetSumRecursive(n - 1, summary);
 }
 // fnGetSumRecursive(3, 0);
   // fnGetSumRecursive(2, 3);
@@ -187,23 +189,49 @@ const objFolders = {
   ],
 };
 
-function fnGetFoldersQtyRecursive(folder, qty = 1) {
-  console.log('\n');
+// 1st approach
+function fnGetFoldersQty(folder) {
   console.log(folder);
-  console.log(qty);
+
+  let qty = 1;
 
   if (folder.subfolders.length) {
     folder.subfolders.forEach((folderItem) => {
-      qty = fnGetFoldersQtyRecursive(folderItem, qty + 1);
+      qty += fnGetFoldersQty(folderItem);
     });
   }
 
+  console.log(qty);
+
   return qty;
 }
-fnGetFoldersQtyRecursive(objFolders);
-// fnGetFoldersQtyRecursive('Parent')
-  // fnGetFoldersQtyRecursive('Child 1')
-    // fnGetFoldersQtyRecursive('Grand child 1')
-    // fnGetFoldersQtyRecursive('Grand child 2')
-      // fnGetFoldersQtyRecursive('Extra grand child 2')
-  // fnGetFoldersQtyRecursive('Child 2')
+console.log(fnGetFoldersQty(objFolders));
+// fnGetFoldersQty(Parent)
+  // fnGetFoldersQty(Child 1)
+    // fnGetFoldersQty(Grand child 1)
+    // fnGetFoldersQty(Grand child 2)
+      // fnGetFoldersQty(Extra grand child)
+  // fnGetFoldersQty(Child 2)
+
+// 2nd approach
+// function fnGetFoldersQty() {
+//   let qty = 0;
+
+//   function fnGetFoldersQtyRecursive(folder) {
+//     console.log(folder);
+//     qty += 1;
+//     console.log(qty);
+
+//     if (folder.subfolders) {
+//       folder.subfolders.forEach((folderItem) => fnGetFoldersQtyRecursive(folderItem));
+//     }
+
+//     return qty;
+//   }
+
+//   const result = fnGetFoldersQtyRecursive(objFolders);
+
+//   return result;
+// }
+
+// console.log(fnGetFoldersQty());
