@@ -19,8 +19,7 @@ export default function fnSelectionSort(arr = [5, 4, 3, 2, 1]) {
   let counter = 0;
 
   for (let k = 0; k < array.length; k += 1) {
-    let min = array[k];
-    let index = k;
+    let indexMin = k;
 
     for (let j = k + 1; j < array.length; j += 1) {
       counter += 1;
@@ -29,18 +28,17 @@ export default function fnSelectionSort(arr = [5, 4, 3, 2, 1]) {
       console.log(`k = ${k}`);
       console.log(`j = ${j}`);
 
-      if (min > array[j]) {
-        min = array[j];
-        index = j;
+      if (array[indexMin] > array[j]) {
+        indexMin = j;
       }
 
-      console.log(`min = ${min}`);
-      console.log(`index = ${index}`);
+      console.log(`indexMin = ${indexMin}`);
+      console.log(`min = ${array[indexMin]}`);
     }
 
     const buffer = array[k];
-    array[k] = min;
-    array[index] = buffer;
+    array[k] = array[indexMin];
+    array[indexMin] = buffer;
 
     console.log(array);
   }
