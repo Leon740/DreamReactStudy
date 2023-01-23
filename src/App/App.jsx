@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-// import '../4_cs/3_recursion/recursion';
-// import '../4_cs/1_sort/2_selection/selection_sort';
+import Form from '1_React/15_forms/Form1 copy/Form';
 
 function App() {
-  return <div />;
+  return <Form />;
 }
 
 export default App;

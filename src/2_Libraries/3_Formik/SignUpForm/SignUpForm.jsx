@@ -100,7 +100,7 @@ function SignUpForm() {
                     </Form.Group>
                   )}
 
-                  <Form.Group className="mb-4" controlId="password">
+                  <Form.Group className="mb-4" controlId="terms">
                     <Form.Check
                       id="terms"
                       name="terms"
