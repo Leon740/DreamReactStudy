@@ -11,7 +11,6 @@ import ThemeToggler from './ThemeToggler';
 // on each state update children re-render
 // === Solution
 // useCallback = returns (callback) which is updated when (dependency array) is changed
-// in (dependency array) instead of variable (stCar), use function (setStCar), in this case (CarSelect) will never re-render
 
 function Parent() {
   const [stCar, setStCar] = useState('Audi');
@@ -21,6 +20,9 @@ function Parent() {
     console.log('fnStCarOnChange');
     setStCar(car);
   }, [setStCar]);
+  // in (dependency array) instead of variable (stCar), use function (setStCar), in this case (CarSelect) will never re-render
+  // Note
+  // React guarantees that setState function identity is stable and won’t change on re-renders. This is why it’s safe to omit from the useEffect or useCallback dependency list.
 
   const fnStDarkThemeOnChange = useCallback(() => {
     console.log('fnStDarkThemeOnChange');
