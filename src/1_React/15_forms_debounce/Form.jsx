@@ -36,6 +36,8 @@ function Form() {
   function fieldsOnChange(fieldName, fieldValue) {
     clearTimeout(timeout);
 
+    console.log(timeout);
+
     timeout = setTimeout(() => {
       setStFields((prev) => ({ ...prev, [fieldName]: fieldValue }));
     }, 1000);

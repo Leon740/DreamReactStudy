@@ -20,6 +20,7 @@
     "import/no-unresolved": "warn",
     "no-continue": "off",
     "no-plusplus": "off",
+    "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": [1, { "allow": "as-needed" }]
   }
 }
