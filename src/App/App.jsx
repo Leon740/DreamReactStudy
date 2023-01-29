@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.scss';
-import Form from '1_React/15_forms/Form1 copy/Form';
+import TasksApp from '1_React/5_hooks/7_useReducer/3_TasksApp/TasksApp';
 
 function App() {
-  return <Form />;
+  return <TasksApp />;
 }
 
 export default App;
