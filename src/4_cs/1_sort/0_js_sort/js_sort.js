@@ -38,10 +38,16 @@ const sortComputersByPrice = [...computers].sort((a, b) => a.price - b.price);
 console.log(sortComputersByPrice);
 
 // Alphabet sort
-// localeCompare
+// 1st approach : localeCompare
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 const sortComputersByName = [...computers].sort((a, b) => a.name.localeCompare(b.name));
 console.log(sortComputersByName);
+
+// 2nd approach : have an array (2nd array) with strings, sort this array (2nd array), map through this array (2nd array) and take each item from (1st array)
+const computersNames = computers.map((computerItem) => computerItem.name);
+console.log(computersNames);
+console.log(computersNames.sort());
+console.log(computersNames.sort().map((computerItemName) => computers.find((computerItem) => computerItem.name === computerItemName)));
 
 const names = ['Grigoriy', 'Leonid', 'Danil'];
 names.sort((a, b) => a.length - b.length);
