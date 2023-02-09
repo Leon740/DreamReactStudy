@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.scss';
+import App1 from 'MadMobile/App';
 
 function App() {
   return (
-    <div />
+    <App1 />
   );
 }
 
