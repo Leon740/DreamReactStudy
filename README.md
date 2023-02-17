@@ -1,3 +1,5 @@
+# Title
+
 React App which contains all of the React concepts and is build based on a [official React documentation](reactjs.org).
 
 # Motivation
