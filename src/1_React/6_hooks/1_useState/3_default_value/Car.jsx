@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function Car() {
   const getDefaultCar = () => {
-    console.log('proccessing...');
+    console.log('processing...');
 
     return 'Evo 9';
   };

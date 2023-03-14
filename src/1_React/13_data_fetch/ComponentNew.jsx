@@ -22,7 +22,7 @@ function ComponentNew() {
       .then((data) => {
         if (data.length) {
           setStPhotos(data);
-          setStStatus((prev) => ({ ...prev, status: 'fulfilled' }));
+          setStStatus({ status: 'fulfilled', error: '' });
         }
       });
   }, []);

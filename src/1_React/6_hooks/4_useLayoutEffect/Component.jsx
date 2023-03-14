@@ -16,7 +16,6 @@ function Component() {
   useEffect(() => {
     if (rfBtn.current && rfModal.current) {
       const { bottom } = rfBtn.current.getBoundingClientRect();
-      // console.log(rfBtn.current.scrollHeight);
       rfModal.current.style.top = `${bottom * 5 + 30}px`;
     }
   }, [stModal]);

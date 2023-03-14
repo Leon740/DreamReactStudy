@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import useWindowDimensions from '1_React/5_hooks/examples/useWindowDimensions';
+import useWindowDimensions from '1_React/6_hooks/examples/useWindowDimensions';
 import VideoContainer from './VideoContainer';
 import VideoControls from './VideoControls';
 
