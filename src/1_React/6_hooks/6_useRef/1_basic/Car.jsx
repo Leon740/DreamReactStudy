@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 function Car() {
   // === Concept
   // useRef(defaultValue) creates object with current prop (ref.current)
-  // useRef can be used to create connections between logic and DOM
+  // useRef is used to create connections between logic and DOM
   const [car, setCar] = useState('Evo');
   const inputRef = useRef(null);
   const prevValue = useRef('');

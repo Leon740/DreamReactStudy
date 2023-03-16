@@ -1,57 +1,8 @@
-import React, {
-  useState, useRef, useEffect, useLayoutEffect,
-} from 'react';
+import React from 'react';
+import './App.scss';
+import Component from '1_React/6_hooks/7_memoization/2_memo/Component';
 
-// === Concept
-// Use useEffect in most of the cases
-// useEffect runs after all DOM updates
-// Use useLayoutEffect for DOM manipulations, when useEffect doesn't solve your issue
-// useLayoutEffect runs before all DOM updates
-
-function Component() {
-  const [stModal, setStModal] = useState(false);
-  const rfBtn = useRef();
-  const rfModal = useRef();
-
-  useEffect(() => {
-    if (rfBtn.current && rfModal.current) {
-      const { bottom } = rfBtn.current.getBoundingClientRect();
-      // console.log(rfBtn.current.scrollHeight);
-      rfModal.current.style.top = `${bottom * 5 + 30}px`;
-    }
-  }, [stModal]);
-
-  // useLayoutEffect runs before useEffect
-
-  useEffect(() => {
-    console.log('useEffect 1');
-  });
-  useEffect(() => {
-    console.log('useEffect 2');
-  });
-
-  useLayoutEffect(() => {
-    console.log('useLayoutEffect 1');
-  });
-  useLayoutEffect(() => {
-    console.log('useLayoutEffect 2');
-  });
-
-  return (
-    <div>
-      <button type="button" onClick={() => setStModal((prev) => !prev)} ref={rfBtn}>{stModal ? 'hide' : 'show'}</button>
-      {stModal && (
-      <div
-        style={{
-          position: 'absolute', background: 'black', height: '100px', width: '100px',
-        }}
-        ref={rfModal}
-      >
-        Modal
-      </div>
-      )}
-    </div>
-  );
+function App() {
+  return <Component />;
 }
-
-export default Component;
+export default App;
