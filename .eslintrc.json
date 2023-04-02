@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": ["plugin:react/recommended", "airbnb", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,18 +11,20 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks"],
+  "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
     "max-len": "off",
     "no-console": "off",
-    "react/prop-types": "off",
-    "react/no-array-index-key": "warn",
-    "import/no-unresolved": "warn",
     "no-continue": "off",
     "no-plusplus": "off",
+    "arrow-parens": "off",
+    "import/no-unresolved": "warn",
+    "react/prop-types": "off",
+    "react/no-array-index-key": "warn",
     "react/jsx-no-bind": "off",
-    "react/jsx-filename-extension": [1, { "allow": "as-needed" }]
+    "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "prettier/prettier": ["error", { "printWidth": 100, "singleQuote": true }]
   }
 }
