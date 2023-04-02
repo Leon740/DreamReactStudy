@@ -1,8 +1,13 @@
 import React from 'react';
 import './App.scss';
-import Component from '1_React/6_hooks/7_memoization/2_memo/Component';
+import { Container } from 'react-bootstrap';
+import Component from '../1_React/6_hooks/12_custom_hooks/11_useEventListener/Component';
 
 function App() {
-  return <Component />;
+  return (
+    <Container>
+      <Component />
+    </Container>
+  );
 }
 export default App;

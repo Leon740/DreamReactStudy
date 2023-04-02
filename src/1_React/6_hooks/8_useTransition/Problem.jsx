@@ -1,47 +1,43 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 
+// === Concept
+// === Problem
+// (React) gathers all of the state updates to one state and call (render) once with all of the state updates
+// (React) waits until all of the code including complex logic is executed
+// Because of this (App) gets stuck after each input update
+// === Solution
+// [isPending, startTransition] = useTransition();
+// Put complex code in (startTransition)
+// (isPending) is (true) while (startTransition) works
+// (isPending) is (false) when (startTransition) finishes working
+// In this case we have one (render) on (listArrSt) update, and one (render) on (stList) update
+// Because of separating renders (App) doesn't get stuck
+// (listArrSt) gets higher priority in updates, after (listArrSt) finishes updates, (React) will work on updating (listArrSt)
+
 function Problem() {
-  // === Concept
-  // === Problem
-  // (React) gathers all of the state updates to one state and call (render) once with all of the state updates
-  // (React) waits until all of the code including complex code is executed
-  // Because of this (App) gets stuck after input update
-  // === Solution
-  // [isPending, startTransition] = useTransition();
-  // Put complex code in (startTransition)
-  // (isPending) is (true) while (startTransition) works
-  // (isPending) is (false) when (startTransition) finishes working
-  // In this case we have one (render) on (stInput) update, and one (render) on (stList) update
-  // Because of separating renders (App) doesn't get stuck
-  // (stInput) gets higher priority in updates, after (stInput) finishes updates, (React) will work on updating (stList)
+  const [inputStrSt, setInputStrSt] = useState('');
+  const [listArrSt, setListArrSt] = useState([]);
 
-  const [stInput, setStInput] = useState('');
-  const [stList, setStList] = useState([]);
+  function inputOnChangeFn(keywordStr) {
+    setInputStrSt(keywordStr);
 
-  const LIST_SIZE = 20000;
-
-  function fnInputOnChange(value) {
-    setStInput(value);
-
-    // === Theory : complex logic
-    const list = [];
-
-    for (let i = 0; i <= LIST_SIZE; i += 1) {
-      list.push(value);
+    const listArr = [];
+    for (let i = 0; i < 20000; i++) {
+      listArr.push(keywordStr);
     }
 
-    setStList(list);
+    setListArrSt(listArr);
   }
 
   return (
-    <div>
-      <input value={stInput} onChange={(event) => fnInputOnChange(event.target.value)} />
-
+    <section>
+      <h2>Problem</h2>
+      <input value={inputStrSt} onChange={(event) => inputOnChangeFn(event.target.value)} />
       <ul>
-        {stList.map((item, index) => <li key={index}>{item}</li>)}
+        {listArrSt.map((listItemStr, index) => <li key={index}>{listItemStr}</li>)}
       </ul>
-    </div>
+    </section>
   );
 }
 

@@ -3,7 +3,7 @@
 import React from 'react';
 import CARS_DATA from './cars_data.json';
 
-function SearchResultsProblem({ carName }) {
+function SearchResults({ carName }) {
   function fnSanitizeString(string) {
     return string.trim().toLowerCase();
   }
@@ -21,4 +21,4 @@ function SearchResultsProblem({ carName }) {
     </ul>
   );
 }
-export default SearchResultsProblem;
+export default SearchResults;

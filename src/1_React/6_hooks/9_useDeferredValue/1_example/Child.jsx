@@ -2,11 +2,10 @@
 import React from 'react';
 
 function Child({ input }) {
-  const LIST_SIZE = 20000;
   const list = [];
 
   // === Theory : complex logic
-  for (let i = 0; i <= LIST_SIZE; i += 1) {
+  for (let i = 0; i <= 20000; i += 1) {
     list.push(input);
   }
 
