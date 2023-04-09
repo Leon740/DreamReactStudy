@@ -18,7 +18,10 @@ function InputOnChange(): JSX.Element {
     <>
       <h1>debouncedInputStr: {debouncedInputStr}</h1>
       <h2>inputStrSt: {inputStrSt}</h2>
-      <input value={inputStrSt} onChange={(event) => setInputStrSt(event.target.value)} />
+      <input
+        value={inputStrSt}
+        onChange={(event) => setInputStrSt(event.target.value)}
+      />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useDebounce from '../6_useDebounce/1_good/useDebounce';
+import useDebounce from '../5_useDebounce/1_good/useDebounce';
 
 function getWindowSizeFn() {
   const { innerWidth: width, innerHeight: height } = window;

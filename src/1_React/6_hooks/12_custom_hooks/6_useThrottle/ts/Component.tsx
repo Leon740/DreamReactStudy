@@ -19,7 +19,10 @@ function Component(): JSX.Element {
     <>
       <h1>inputThrottledValueStr: {inputThrottledValueStr}</h1>
       <h2>inputStrSt: {inputStrSt}</h2>
-      <input value={inputStrSt} onChange={(event) => setInputStrSt(event.target.value)} />
+      <input
+        value={inputStrSt}
+        onChange={(event) => setInputStrSt(event.target.value)}
+      />
     </>
   );
 }
