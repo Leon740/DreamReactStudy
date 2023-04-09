@@ -2,8 +2,8 @@ import React, { Profiler, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import useTimeout from './useTimeout';
 
-function Component() {
-  const [countNumSt, setCountNumSt] = useState(0);
+function Component(): JSX.Element {
+  const [countNumSt, setCountNumSt] = useState<number>(0);
 
   const [resetFn, clearFn] = useTimeout(() => {
     console.log('reset');
