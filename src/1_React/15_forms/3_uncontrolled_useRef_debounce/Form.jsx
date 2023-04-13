@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
+import Buttons from '../0_common/Buttons';
+import { INPUTS, getFormInputsFn } from '../0_common/common';
 
 function FormGroup({ name = '', label = '', type = 'text' }) {
   return (
@@ -13,36 +13,8 @@ function FormGroup({ name = '', label = '', type = 'text' }) {
   );
 }
 
-const FIELDS = [
-  {
-    name: 'name',
-    type: 'text',
-    label: 'name'
-  },
-  {
-    name: 'email',
-    type: 'email',
-    label: 'email'
-  },
-  {
-    name: 'password',
-    type: 'password',
-    label: 'password'
-  }
-];
-
-function getFieldsFn() {
-  const fields = {};
-
-  FIELDS.forEach((field) => {
-    fields[field.name] = '';
-  });
-
-  return fields;
-}
-
 function ExampleForm() {
-  const formDataRf = useRef(getFieldsFn());
+  const formDataRf = useRef(getFormInputsFn());
 
   let timeout = -1;
 
@@ -52,6 +24,7 @@ function ExampleForm() {
     // console.log(value);
     clearTimeout(timeout);
 
+    // reduce timeout in order to escape the empty inputs
     timeout = setTimeout(() => {
       formDataRf.current = { ...formDataRf.current, [name]: value };
       console.log(formDataRf.current);
@@ -59,7 +32,7 @@ function ExampleForm() {
   }
 
   function onResetFn() {
-    formDataRf.current = getFieldsFn();
+    formDataRf.current = getFormInputsFn();
   }
 
   function onSubmitFn(event) {
@@ -97,17 +70,10 @@ function ExampleForm() {
             onChange={(event) => onChangeFn(event)}
             onReset={onResetFn}
           >
-            {FIELDS.map((field, index) => (
-              <FormGroup key={index} name={field.name} label={field.label} type={field.type} />
+            {INPUTS.map(({ id, name, label, type }) => (
+              <FormGroup key={id} name={name} label={label} type={type} />
             ))}
-            <Stack direction="horizontal" gap={3} className="justify-content-between">
-              <Button variant="success" type="submit">
-                Submit
-              </Button>
-              <Button variant="danger" type="reset">
-                Reset
-              </Button>
-            </Stack>
+            <Buttons />
           </Form>
         </Col>
       </Row>

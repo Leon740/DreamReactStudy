@@ -1,40 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Stack from 'react-bootstrap/Stack';
 import RBForm from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import FormGroup from './FormGroup';
-
-const FIELDS = [
-  {
-    name: 'name',
-    type: 'text',
-    label: 'name'
-  },
-  {
-    name: 'email',
-    type: 'email',
-    label: 'email'
-  },
-  {
-    name: 'password',
-    type: 'password',
-    label: 'password'
-  }
-];
-
-function getFieldsFn() {
-  const fields = {};
-
-  FIELDS.forEach((field) => {
-    fields[field.name] = '';
-  });
-
-  return fields;
-}
+import Buttons from '../0_common/Buttons';
+import { INPUTS, getFormInputsFn } from '../0_common/common';
 
 function Form() {
-  const [formDataSt, setFormDataSt] = useState(() => getFieldsFn());
+  const [formDataSt, setFormDataSt] = useState(() => getFormInputsFn());
 
   function inputOnChangeFn(name, value) {
     // console.log(name);
@@ -50,7 +22,7 @@ function Form() {
   function onResetFn() {
     // console.log('reset');
     setIsFormResetSt((prev) => !prev);
-    setFormDataSt(getFieldsFn());
+    setFormDataSt(getFormInputsFn());
   }
 
   function onSubmitFn(event) {
@@ -86,25 +58,18 @@ function Form() {
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6} xl={5} xxl={4}>
           <RBForm onSubmit={(event) => onSubmitFn(event)} onReset={onResetFn}>
-            {FIELDS.map((field, index) => (
+            {INPUTS.map(({ id, name, label, type }) => (
               <FormGroup
-                key={index}
-                name={field.name}
-                label={field.label}
-                type={field.type}
-                value={formDataSt[field.name]}
+                key={id}
+                name={name}
+                label={label}
+                type={type}
+                value={formDataSt[name]}
                 onChangeFn={inputOnChangeFn}
                 formReset={[isFormResetSt, setIsFormResetSt]}
               />
             ))}
-            <Stack direction="horizontal" gap={3} className="justify-content-between">
-              <Button variant="success" type="submit">
-                Submit
-              </Button>
-              <Button variant="danger" type="reset">
-                Reset
-              </Button>
-            </Stack>
+            <Buttons />
           </RBForm>
         </Col>
       </Row>

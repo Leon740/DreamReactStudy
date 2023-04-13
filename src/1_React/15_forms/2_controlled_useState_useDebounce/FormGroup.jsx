@@ -11,8 +11,7 @@ function FormGroup({
   onChangeFn = () => {},
   formReset
 }) {
-  // eslint-disable-next-line object-shorthand
-  const [inputSt, setInputSt] = useState({ name, value: value });
+  const [inputSt, setInputSt] = useState({ name, value });
   const debouncedValue = useDebounce(inputSt.value, 1000);
 
   // reset logic:
@@ -27,10 +26,12 @@ function FormGroup({
       setInputSt({ name, value: '' });
       setIsFormResetSt((prev) => !prev);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormResetSt]);
 
   useEffect(() => {
     onChangeFn(inputSt.name, debouncedValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
 
   return (
