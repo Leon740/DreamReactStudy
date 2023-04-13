@@ -16,10 +16,10 @@ export default function ErrorMessage({ component, name }) {
 
 ErrorMessage.propTypes = {
   component: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 ErrorMessage.defaultProps = {
   component: '',
-  name: '',
+  name: ''
 };

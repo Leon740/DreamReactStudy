@@ -15,6 +15,7 @@
   "rules": {
     "max-len": "off",
     "no-console": "off",
+    "no-alert": "off",
     "no-continue": "off",
     "no-plusplus": "off",
     "arrow-parens": "off",

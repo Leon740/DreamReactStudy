@@ -25,13 +25,15 @@ function SignUpForm() {
                 email: '',
                 password: '',
                 confirmPassword: '',
-                terms: false,
+                terms: false
               }}
               validationSchema={Yup.object({
                 email: Yup.string().email('Invalid email address').required('required'),
                 password: Yup.string().min(8, 'Must be 8 characters or more').required('required'),
-                confirmPassword: Yup.string().min(8, 'Must be 8 characters or more').required('required'),
-                terms: Yup.bool().required('required').oneOf([true], 'Terms must be accepted'),
+                confirmPassword: Yup.string()
+                  .min(8, 'Must be 8 characters or more')
+                  .required('required'),
+                terms: Yup.bool().required('required').oneOf([true], 'Terms must be accepted')
               })}
               onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
@@ -40,14 +42,7 @@ function SignUpForm() {
                 }, 400);
               }}
             >
-              {({
-                handleSubmit,
-                handleChange,
-                handleBlur,
-                values,
-                touched,
-                errors,
-              }) => (
+              {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => (
                 <Form className="form-inner" onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="email">
                     <Form.Label>
@@ -96,7 +91,12 @@ function SignUpForm() {
                         isValid={touched.confirmPassword && !errors.confirmPassword}
                       />
                       <ErrorMessage component="div" name="confirmPassword" />
-                      <div className="form-error">{touched.confirmPassword && !errors.confirmPassword && values.password !== values.confirmPassword && 'passwords do not match'}</div>
+                      <div className="form-error">
+                        {touched.confirmPassword &&
+                          !errors.confirmPassword &&
+                          values.password !== values.confirmPassword &&
+                          'passwords do not match'}
+                      </div>
                     </Form.Group>
                   )}
 
