@@ -1,19 +1,28 @@
-/* eslint-disable no-unused-vars */
-import React, { useRef } from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useState, useCallback } from 'react';
+import { SiMaildotru } from 'react-icons/si';
+import { object, string } from 'yup';
 import Input from './Input';
 
-// ref, state, icon, right, submit, yup
+function Button({ type = '', className = '', children }) {
+  return (
+    <button type={type} className={`text-white px-3 py-1.5 rounded-md ${className}`}>
+      {children}
+    </button>
+  );
+}
 
 const INPUTS = [
   {
-    id: 'name',
-    name: 'name',
-    label: 'Name',
-    type: 'text',
-    placeholder: 'Enter your name',
-    ariaLabel: 'Name',
+    id: 'email',
+    name: 'email',
+    label: 'Email',
+    type: 'email',
+    placeholder: 'Enter your email',
+    ariaLabel: 'email input',
     required: true,
-    description: 'Name'
+    description: 'Type in your Email in format email@domain',
+    icon: <SiMaildotru />
   },
   {
     id: 'password',
@@ -21,95 +30,140 @@ const INPUTS = [
     label: 'Password',
     type: 'password',
     placeholder: 'Enter your password',
-    ariaLabel: 'Password',
+    ariaLabel: 'password input',
     required: true,
-    description: 'Password'
+    description: 'Type in your Password (min 8)'
   }
 ];
 
-function getFormInputsFn() {
+function getFormInputsFn(value) {
   const formInputs = {};
 
-  INPUTS.forEach((field) => {
-    formInputs[field.name] = '';
+  INPUTS.forEach(({ name }) => {
+    formInputs[name] = value;
   });
 
   return formInputs;
 }
 
-function SignIn({ onSubmitFnProp }) {
-  const formDataRf = useRef(getFormInputsFn());
+const formSchema = object().shape({
+  email: string().email().required('Email is a required field'),
+  password: string().min(8).required('Password is a required field')
+});
 
-  let timeout = -1;
+function SignIn({ onSubmitFnProp = (data) => console.log(data) }) {
+  const [formValuesSt, setFormValuesSt] = useState(() => getFormInputsFn(''));
+  const [formTouchedSt, setFormTouchedSt] = useState(() => getFormInputsFn(false));
+  const [formErrorsSt, setFormErrorsSt] = useState(() => getFormInputsFn(''));
 
-  function onChangeFn(event) {
-    const { name, value } = event.target;
-    // console.log(name);
-    // console.log(value);
-    clearTimeout(timeout);
+  const validateInput = async (name, value) => {
+    if (value.length > 1) {
+      setFormTouchedSt((prev) => ({ ...prev, [name]: true }));
 
-    // reduce timeout in order to escape the empty inputs
-    timeout = setTimeout(() => {
-      formDataRf.current = { ...formDataRf.current, [name]: value };
-      console.log(formDataRf.current);
-    }, 100);
+      const inputData = await formSchema.fields[name]
+        .validate(value, { abortEarly: false })
+        .catch((error) => {
+          setFormErrorsSt((prev) => ({ ...prev, [name]: error.message }));
+        });
+
+      if (inputData) {
+        setFormErrorsSt((prev) => ({ ...prev, [name]: '' }));
+      }
+    } else {
+      setFormTouchedSt((prev) => ({ ...prev, [name]: false }));
+    }
+  };
+
+  function inputOnChangeFn(name, value) {
+    setFormValuesSt((prev) => ({ ...prev, [name]: value }));
+    validateInput(name, value);
   }
 
+  const [isFormResetSt, setIsFormResetSt] = useState(false);
   function onResetFn() {
-    formDataRf.current = getFormInputsFn();
+    setFormValuesSt(getFormInputsFn(''));
+    setFormTouchedSt(getFormInputsFn(false));
+    setFormErrorsSt(getFormInputsFn(''));
+    setIsFormResetSt((prev) => !prev);
   }
 
-  function onSubmitFn(event) {
-    event.preventDefault();
+  const onSubmitFn = useCallback(
+    async (event) => {
+      event.preventDefault();
 
-    let formIsValid = true;
-    const formData = formDataRf.current;
+      setFormTouchedSt(getFormInputsFn(true));
 
-    if (formData) {
-      Object.values(formData).forEach((value) => {
-        console.log(value);
+      const formData = await formSchema
+        .validate(formValuesSt, { abortEarly: false })
+        .catch((err) => {
+          const errors = err.inner.reduce((acc, error) => {
+            return {
+              ...acc,
+              [error.path]: error.message
+            };
+          }, {});
 
-        if (!value) {
-          console.error('error');
-          formIsValid = false;
-        }
-      });
-    }
+          setFormErrorsSt((prev) => ({ ...prev, ...errors }));
+        });
 
-    if (formIsValid) {
-      alert(JSON.stringify(formData));
-      event.target.submit();
-      // clean the form fields after submit
-      onResetFn();
-    }
-  }
+      if (formData) {
+        onSubmitFnProp(JSON.stringify(formData));
+        onResetFn();
+      }
+    },
+    [formValuesSt]
+  );
+
+  const [sizeSt, setSizeSt] = useState('md');
 
   return (
-    <form
-      className="container mx-auto px-4 -my-8"
-      onSubmit={(event) => onSubmitFn(event)}
-      onChange={(event) => onChangeFn(event)}
-      onReset={onResetFn}
-    >
-      {INPUTS.map(({ id, name, label, type, placeholder, ariaLabel, required, description }) => (
-        <Input
-          key={id}
-          id={id}
-          name={name}
-          label={label}
-          type={type}
-          placeholder={placeholder}
-          ariaLabel={ariaLabel}
-          required={required}
-          description={description}
-          radius="md"
-          size="md"
-        />
-      ))}
-      <button type="submit" className="bg-green-500 text-white px-3 py-1.5 rounded-md">
-        Sign In
-      </button>
-    </form>
+    <div className="container mx-auto px-4">
+      <div className="flex mt-8">
+        <p>Size</p>
+        <select value={sizeSt} onChange={(event) => setSizeSt(event.target.value)}>
+          {['xs', 'sm', 'md', 'lg'].map((size, index) => (
+            <option key={index} value={size}>
+              {size}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <form onSubmit={(event) => onSubmitFn(event)} onReset={onResetFn} noValidate>
+        {INPUTS.map(
+          ({ id, name, label, type, placeholder, ariaLabel, required, description, icon }) => (
+            <Input
+              key={id}
+              id={id}
+              name={name}
+              label={label}
+              type={type}
+              placeholder={placeholder}
+              ariaLabel={ariaLabel}
+              required={required}
+              description={description}
+              radius="rounded-md"
+              size={sizeSt}
+              icon={icon}
+              touched={formTouchedSt[name]}
+              error={formErrorsSt[name]}
+              value={formValuesSt[name]}
+              onChangeFn={inputOnChangeFn}
+              formReset={[isFormResetSt, setIsFormResetSt]}
+            />
+          )
+        )}
+
+        <div className="flex justify-between">
+          <Button type="submit" className="bg-green-500">
+            Sign In
+          </Button>
+          <Button type="reset" className="bg-rose-500">
+            Reset
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }
 export default SignIn;
