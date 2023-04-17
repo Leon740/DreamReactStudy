@@ -21,7 +21,7 @@ function Form(): JSX.Element {
 
   function onResetFn(): void {
     // console.log('reset');
-    setIsFormResetSt((prev) => !prev);
+    setIsFormResetSt(true);
     setFormDataSt(getFormInputsFn());
   }
 
@@ -58,9 +58,7 @@ function Form(): JSX.Element {
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6} xl={5} xxl={4}>
           <RBForm
-            onSubmit={(event: ChangeEvent<HTMLFormElement>) =>
-              onSubmitFn(event)
-            }
+            onSubmit={(event: ChangeEvent<HTMLFormElement>) => onSubmitFn(event)}
             onReset={() => onResetFn()}
           >
             {INPUTS.map(({ id, name, label, type }) => (

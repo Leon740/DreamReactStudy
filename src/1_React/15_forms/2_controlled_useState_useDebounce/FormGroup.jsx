@@ -24,7 +24,7 @@ function FormGroup({
     // console.log(isFormResetSt);
     if (isFormResetSt) {
       setInputSt({ name, value: '' });
-      setIsFormResetSt((prev) => !prev);
+      setIsFormResetSt(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormResetSt]);

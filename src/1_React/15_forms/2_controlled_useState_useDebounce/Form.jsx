@@ -21,7 +21,7 @@ function Form() {
 
   function onResetFn() {
     // console.log('reset');
-    setIsFormResetSt((prev) => !prev);
+    setIsFormResetSt(true);
     setFormDataSt(getFormInputsFn());
   }
 

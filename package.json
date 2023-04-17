@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:css": "npx tailwindcss --postcss -i ./src/1_React/15_forms/task/Input.scss -o ./src/1_React/15_forms/task/Input.css --watch",
+    "start:css": "npx tailwindcss --postcss -i ./src/1_React/15_forms/5_task/RadioGroup/Radio.scss -o ./src/1_React/15_forms/5_task/RadioGroup/Radio.css --watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
