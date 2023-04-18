@@ -1,4 +1,3 @@
-* <form onChange={(event) => console.log(event.target.name, event.target.value)}>
-* <Form initialValues={} validationSchema={} onSubmitFn={} onResetFn={} onChangeFn={}>inputs</Form>
-* ts
-* tests
+confirm password
+error msg onChange
+Form optimizations

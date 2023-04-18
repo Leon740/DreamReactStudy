@@ -1,65 +1,57 @@
-import React, { forwardRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useContextValueFn } from '../FormContext';
 import LabelWrapper from '../Label/LabelWrapper';
 import RadioWrapper from '../Radio/RadioWrapper';
 import ErrorWrapper from '../Error/ErrorWrapper';
 
-const RadioGroup = forwardRef(
-  (
-    {
-      name = '',
-      label = '',
-      type = '',
-      ariaLabel = '',
-      required = false,
-      disabled = false,
-      description,
-      variants = []
-    },
-    ref
-  ) => {
-    RadioGroup.displayName = 'RadioGroup';
+function RadioGroup({
+  name = '',
+  label = '',
+  type = '',
+  ariaLabel = '',
+  required = false,
+  disabled = false,
+  description,
+  options = []
+}) {
+  const { value, onChangeFn } = useContextValueFn(name);
 
-    const { isTouched, error, value, onChangeFn } = useContextValueFn(name);
+  const [selectedSt, setSelectedSt] = useState(value);
+  useEffect(() => {
+    onChangeFn(name, selectedSt);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSt]);
 
-    const isInvalid = isTouched && error;
+  return (
+    <div className="my-8">
+      <LabelWrapper htmlFor={name} isAsterisk={required}>
+        {label}
+      </LabelWrapper>
 
-    const [selectedSt, setSelectedSt] = useState(value);
-    useEffect(() => {
-      onChangeFn(name, selectedSt);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedSt]);
+      {description && <p className="text-md text-slate-400">{description}</p>}
 
-    return (
-      <div className="my-8">
-        <LabelWrapper htmlFor={name} isAsterisk={required}>
-          {label}
-        </LabelWrapper>
-
-        {description && <p className="text-md text-slate-400">{description}</p>}
-
-        <ul className="flex items-center my-2 -ml-2">
-          {variants.map((variant) => (
+      <ul className="flex items-center my-2 -ml-2">
+        {options.map((option) => (
+          <li className="flex mx-2">
             <RadioWrapper
-              key={variant}
-              ref={ref}
-              id={variant}
+              key={option}
+              id={option}
               name={name}
-              label={variant}
+              label={option}
               type={type}
               ariaLabel={ariaLabel}
               required={required}
               disabled={disabled}
-              checked={value === variant}
-              value={variant}
+              checked={value === option}
+              value={option}
               onChangeFn={setSelectedSt}
             />
-          ))}
-        </ul>
+          </li>
+        ))}
+      </ul>
 
-        {isInvalid && <ErrorWrapper>{error}</ErrorWrapper>}
-      </div>
-    );
-  }
-);
+      <ErrorWrapper name={name} />
+    </div>
+  );
+}
 export default RadioGroup;

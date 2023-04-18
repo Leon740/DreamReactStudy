@@ -1,35 +1,31 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
+import { useContextValueFn } from '../FormContext';
 
-const Checkbox = forwardRef(
-  (
-    {
-      name = '',
-      type = 'checkbox',
-      ariaLabel = '',
-      required = false,
-      disabled = false,
-      value = '',
-      onChangeFn = () => {},
-      className = ''
-    },
-    ref
-  ) => {
-    Checkbox.displayName = 'Checkbox';
+function Checkbox({
+  name = '',
+  type = 'checkbox',
+  ariaLabel = '',
+  required = false,
+  disabled = false,
+  className = ''
+}) {
+  const { value, onChangeFn, ref } = useContextValueFn(name);
 
-    return (
-      <input
-        ref={ref}
-        id={name}
-        type={type}
-        name={name}
-        aria-label={ariaLabel}
-        required={required}
-        disabled={disabled}
-        checked={value}
-        onChange={(event) => onChangeFn(name, event.target.checked)}
-        className={className}
-      />
-    );
-  }
-);
+  return (
+    <input
+      ref={ref}
+      id={name}
+      type={type}
+      name={name}
+      aria-label={ariaLabel}
+      required={required}
+      disabled={disabled}
+      value={value}
+      // checked={value === 'on'}
+      onChange={(event) => onChangeFn(name, event.target.checked ? 'on' : 'off')}
+      className={className}
+    />
+  );
+}
+
 export default Checkbox;

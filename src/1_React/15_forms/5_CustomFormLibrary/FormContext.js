@@ -9,13 +9,15 @@ export function useContextValueFn(name) {
     touched: { [name]: isTouched },
     errors: { [name]: error },
     values: { [name]: value },
-    onChangeFn
+    onChangeFn,
+    refs: { [name]: ref }
   } = useContext(FormContext);
 
   return {
     isTouched,
     error,
     value,
-    onChangeFn
+    onChangeFn,
+    ref
   };
 }

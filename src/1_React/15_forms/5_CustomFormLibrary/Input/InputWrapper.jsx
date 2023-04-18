@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { BiCheckCircle, BiErrorCircle } from 'react-icons/bi';
 import { useContextValueFn } from '../FormContext';
 import Input from './Input';
@@ -17,56 +17,47 @@ function InputStatus({ isValid }) {
   );
 }
 
-const InputWrapper = forwardRef(
-  (
-    {
-      name = '',
-      label = '',
-      type = 'text',
-      placeholder = '',
-      ariaLabel = '',
-      required = false,
-      disabled = false,
-      description,
-      icon
-    },
-    ref
-  ) => {
-    InputWrapper.displayName = 'InputWrapper';
+function InputWrapper({
+  name = '',
+  label = '',
+  type = 'text',
+  placeholder = '',
+  ariaLabel = '',
+  required = false,
+  disabled = false,
+  description,
+  icon
+}) {
+  const { isTouched, error } = useContextValueFn(name);
 
-    const { isTouched, error, value, onChangeFn } = useContextValueFn(name);
+  const isTextarea = type === 'textarea';
 
-    const isTextarea = type === 'textarea';
+  const isValid = isTouched && !error;
+  const isInvalid = isTouched && error;
 
-    const isValid = isTouched && !error;
-    const isInvalid = isTouched && error;
+  return (
+    <div className="my-8">
+      <LabelWrapper htmlFor={name} className="block text-lg" isAsterisk={required}>
+        {label}
+      </LabelWrapper>
 
-    return (
-      <div className="my-8">
-        <LabelWrapper htmlFor={name} className="block text-lg" isAsterisk={required}>
-          {label}
-        </LabelWrapper>
+      {description && <p className="text-md text-slate-400">{description}</p>}
 
-        {description && <p className="text-md text-slate-400">{description}</p>}
+      <div className="relative">
+        {icon && (
+          <span className="text-slate-500 absolute top-1/2 -translate-y-1/2 text-base left-4">
+            {icon}
+          </span>
+        )}
 
-        <div className="relative">
-          {icon && (
-            <span className="text-slate-500 absolute top-1/2 -translate-y-1/2 text-base left-4">
-              {icon}
-            </span>
-          )}
-
-          <Input
-            ref={ref}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            aria-label={ariaLabel}
-            required={required}
-            disabled={disabled}
-            value={value}
-            onChangeFn={onChangeFn}
-            className={`
+        <Input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          aria-label={ariaLabel}
+          required={required}
+          disabled={disabled}
+          className={`
               block w-full px-3 py-1.5 text-slate-400 text-lg my-2 border border-slate-400 rounded-md
               ${icon ? 'pl-10' : ''}
               outline-0
@@ -76,15 +67,14 @@ const InputWrapper = forwardRef(
               ${isValid ? 'border-green-500' : ''}
               ${isTextarea ? 'resize-y' : ''}
             `}
-          />
+        />
 
-          {isTouched && <InputStatus isValid={isValid} />}
-        </div>
-
-        {isInvalid && <ErrorWrapper>{error}</ErrorWrapper>}
+        {isTouched && <InputStatus isValid={isValid} />}
       </div>
-    );
-  }
-);
+
+      <ErrorWrapper name={name} />
+    </div>
+  );
+}
 
 export default InputWrapper;

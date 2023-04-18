@@ -1,38 +1,34 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
+import { useContextValueFn } from '../FormContext';
 
-const Radio = forwardRef(
-  (
-    {
-      id = '',
-      name = '',
-      type = '',
-      ariaLabel = '',
-      required = false,
-      disabled = false,
-      checked = false,
-      value = '',
-      onChangeFn = () => {},
-      className = ''
-    },
-    ref
-  ) => {
-    Radio.displayName = 'Radio';
+function Radio({
+  id = '',
+  name = '',
+  type = '',
+  ariaLabel = '',
+  required = false,
+  disabled = false,
+  checked = false,
+  value = '',
+  onChangeFn = () => {},
+  className = ''
+}) {
+  const { ref } = useContextValueFn(name);
 
-    return (
-      <input
-        ref={ref}
-        id={id}
-        name={name}
-        type={type}
-        aria-label={ariaLabel}
-        required={required}
-        disabled={disabled}
-        checked={checked}
-        value={value}
-        onChange={(event) => onChangeFn(event.target.value)}
-        className={className}
-      />
-    );
-  }
-);
+  return (
+    <input
+      ref={ref}
+      id={id}
+      name={name}
+      type={type}
+      aria-label={ariaLabel}
+      required={required}
+      disabled={disabled}
+      checked={checked}
+      value={value}
+      onChange={(event) => onChangeFn(event.target.value)}
+      className={className}
+    />
+  );
+}
 export default Radio;
