@@ -10,24 +10,49 @@ import CheckboxWrapper from './Checkbox/CheckboxWrapper';
 import RadioGroup from './RadioGroup/RadioGroup';
 import ButtonWrapper from './Button/ButtonWrapper';
 
+function getErrorMsgFn(validationName, minChar = 8) {
+  let msg = '';
+
+  switch (validationName) {
+    case 'required':
+      msg = 'This field is required.';
+      break;
+    case 'email':
+      msg = 'Please enter a valid email.';
+      break;
+    case 'minChar':
+      msg = `Please enter at least ${minChar} characters.`;
+      break;
+    case 'confirmPassword':
+      msg = "The passwords don't match.";
+      break;
+    default:
+      msg = 'This field is required.';
+  }
+
+  return msg;
+}
+
 function Example() {
   const initialValues = {
     email: '',
     password: '',
     confirmPassword: '',
-    message: 'message initial value',
+    message: '',
     sex: '',
     terms: 'off'
   };
 
   const validationSchema = object().shape({
-    email: string().email().required('Email is a required field'),
-    password: string().min(8).required('Password is a required field'),
-    confirmPassword: string().oneOf([ref('password'), null]),
-    message: string().min(15).required('Message is a required field'),
-    sex: string().required('Sex is a required field'),
-    terms: string().oneOf(['on'], 'Terms is a required field')
+    email: string().email(getErrorMsgFn('email')).required(getErrorMsgFn('required')),
+    password: string().min(8, getErrorMsgFn('minChar', 8)).required(getErrorMsgFn('required')),
+    confirmPassword: string().oneOf([ref('password'), null], getErrorMsgFn('confirmPassword')),
+    message: string().min(15, getErrorMsgFn('minChar', 15)).required(getErrorMsgFn('required')),
+    sex: string().required(getErrorMsgFn('required')),
+    terms: string().oneOf(['on'], getErrorMsgFn('required'))
   });
+
+  console.log(ref('password'));
 
   const emailRf = useRef();
   const passwordRf = useRef();
