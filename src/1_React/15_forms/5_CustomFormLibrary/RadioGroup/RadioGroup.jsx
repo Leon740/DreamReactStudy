@@ -32,9 +32,8 @@ function RadioGroup({
 
       <ul className="flex items-center my-2 -ml-2">
         {options.map((option) => (
-          <li className="flex mx-2">
+          <li className="flex mx-2" key={option}>
             <RadioWrapper
-              key={option}
               id={option}
               name={name}
               label={option}
