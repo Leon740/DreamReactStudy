@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContextValueFn } from '../FormContext';
+import { useFieldContextValueFn } from '../FormContext';
 
 function Radio({
   id = '',
@@ -13,7 +13,7 @@ function Radio({
   onChangeFn = () => {},
   className = ''
 }) {
-  const { ref } = useContextValueFn(name);
+  const { ref } = useFieldContextValueFn(name);
 
   return (
     <input

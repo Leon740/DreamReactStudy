@@ -1,8 +1,8 @@
 import React from 'react';
-import { useContextValueFn } from '../FormContext';
+import { useFieldContextValueFn } from '../FormContext';
 
 function Error({ as = 'p', className = '', name }) {
-  const { isTouched, error } = useContextValueFn(name);
+  const { isTouched, error } = useFieldContextValueFn(name);
 
   const Tag = as;
 

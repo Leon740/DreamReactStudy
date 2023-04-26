@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContextValueFn } from '../FormContext';
+import { useFieldContextValueFn } from '../FormContext';
 
 function Checkbox({
   name = '',
@@ -9,7 +9,7 @@ function Checkbox({
   disabled = false,
   className = ''
 }) {
-  const { value, onChangeFn, ref } = useContextValueFn(name);
+  const { value, onChangeFn, ref } = useFieldContextValueFn(name);
 
   return (
     <input

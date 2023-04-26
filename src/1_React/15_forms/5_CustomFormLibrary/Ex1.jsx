@@ -1,13 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-import { object, string, ref } from 'yup';
-
-import { SiMaildotru } from 'react-icons/si';
+import { object, string } from 'yup';
 
 import Form from './Form';
+import { useFormContextValueFn } from './FormContext';
 import InputWrapper from './Input/InputWrapper';
 import CheckboxWrapper from './Checkbox/CheckboxWrapper';
-import RadioGroup from './RadioGroup/RadioGroup';
 import ButtonWrapper from './Button/ButtonWrapper';
 
 function getErrorMsgFn(validationName, minLength = 8) {
@@ -37,54 +35,56 @@ const initialValues = {
   email: '',
   password: '',
   confirmPassword: '',
-  message: '',
-  sex: '',
   terms: 'off'
 };
 
-function Example() {
+function Test() {
+  console.log(useFormContextValueFn());
+  return <>test</>;
+}
+
+function Ex1() {
+  const yupConfirmPassword = (passwordKey = 'password') => {
+    return string().when(passwordKey, (values) => {
+      console.log(values);
+      const [passwordValue] = values;
+      // const passwordValue = valuesSt[passwordKey];
+      console.log(passwordValue);
+
+      if (passwordValue) {
+        console.log('if');
+        return string().test(
+          'confirmPassword',
+          getErrorMsgFn('confirmPassword'),
+          (confirmPasswordValue) => {
+            console.log(`passwordValue = ${passwordValue}`);
+            console.log(`confirmPasswordValue = ${confirmPasswordValue}`);
+            return passwordValue === confirmPasswordValue;
+          }
+        );
+      }
+
+      console.log('else');
+      return string().required(getErrorMsgFn('required'));
+    });
+  };
   const validationSchema = object().shape({
     email: string().email(getErrorMsgFn('email')).required(getErrorMsgFn('required')),
     password: string().min(8, getErrorMsgFn('minLength', 8)).required(getErrorMsgFn('required')),
-    confirmPassword: string().oneOf([ref('password'), null], getErrorMsgFn('confirmPassword')),
-    message: string().min(15, getErrorMsgFn('minLength', 15)).required(getErrorMsgFn('required')),
-    sex: string().required(getErrorMsgFn('required')),
+    // confirmPassword: string().oneOf(
+    //   [useContextValueFn('password').value],
+    //   getErrorMsgFn('confirmPassword')
+    // ),
+    confirmPassword: yupConfirmPassword('password'),
     terms: string().oneOf(['on'], getErrorMsgFn('required'))
   });
 
-  console.log(ref('password'));
-
-  const emailRf = useRef();
-  const passwordRf = useRef();
-  const messageRf = useRef();
-  const sexRf = useRef();
-  const termsRf = useRef();
-
-  const refs = {
-    email: emailRf,
-    password: passwordRf,
-    message: messageRf,
-    sex: sexRf,
-    terms: termsRf
-  };
-
-  const onSubmitFn = (formData) => {
-    alert('onSubmitFn');
-    alert(formData);
-  };
-
-  const onResetFn = () => {
-    alert('onResetFn');
-  };
+  // console.log(useFormContextValueFn());
 
   return (
-    <Form
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      refs={refs}
-      handleSubmitFn={onSubmitFn}
-      handleResetFn={onResetFn}
-    >
+    <Form initialValues={initialValues} validationSchema={validationSchema}>
+      {/* {touchedSt.email && !errorsSt.email && ( */}
+      <Test />
       <InputWrapper
         name="email"
         label="Email"
@@ -92,10 +92,8 @@ function Example() {
         placeholder="Enter your email"
         ariaLabel="email input"
         required
-        description="Type in your email in format email@domain"
-        icon={<SiMaildotru />}
+        description="Type in your email (min 8)"
       />
-      {/* {touchedSt.email && !errorsSt.email && ( */}
       <InputWrapper
         name="password"
         label="Password"
@@ -115,24 +113,6 @@ function Example() {
         description="Type in your password (min 8)"
       />
       {/* )} */}
-      <InputWrapper
-        name="message"
-        label="Message"
-        type="textarea"
-        placeholder="Enter your message"
-        ariaLabel="message textarea"
-        required
-        description="Type in your message (min 8)"
-      />
-      <RadioGroup
-        name="sex"
-        label="Sex"
-        type="radio"
-        ariaLabel="sex radio"
-        required
-        description="Select your sex"
-        options={['male', 'female']}
-      />
       <CheckboxWrapper
         name="terms"
         label="I accept Terms & Conditions"
@@ -155,20 +135,7 @@ function Example() {
           Reset
         </ButtonWrapper>
       </div>
-
-      <div className="flex -mx-4 mt-8">
-        {Object.entries(refs).map(([name, refItem]) => (
-          <ButtonWrapper
-            key={`button__${name}`}
-            type="button"
-            className="bg-yellow-500 mx-4"
-            onClick={() => refItem.current.focus()}
-          >
-            focus on {name}
-          </ButtonWrapper>
-        ))}
-      </div>
     </Form>
   );
 }
-export default Example;
+export default Ex1;

@@ -4,14 +4,17 @@ const FormContext = createContext();
 
 export default FormContext;
 
-export function useContextValueFn(name) {
+export function useFieldContextValueFn(name) {
+  const context = useContext(FormContext);
+
   const {
     touched: { [name]: isTouched },
     errors: { [name]: error },
     values: { [name]: value },
     onChangeFn,
-    refs: { [name]: ref }
-  } = useContext(FormContext);
+    refs
+  } = context;
+  const ref = refs && refs[name];
 
   return {
     isTouched,
@@ -20,4 +23,8 @@ export function useContextValueFn(name) {
     onChangeFn,
     ref
   };
+}
+
+export function useFormContextValueFn() {
+  return useContext(FormContext);
 }

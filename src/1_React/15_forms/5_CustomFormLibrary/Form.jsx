@@ -2,20 +2,20 @@ import React, { useState, useCallback, useMemo } from 'react';
 
 import FormContext from './FormContext';
 
+function fillFieldsFn(initialValues, value) {
+  const filledInputs = {};
+
+  Object.keys(initialValues).forEach((name) => {
+    filledInputs[name] = value;
+  });
+
+  return filledInputs;
+}
+
 function Form({ initialValues, validationSchema, refs, handleSubmitFn, handleResetFn, children }) {
-  function fillFieldsFn(value) {
-    const filledInputs = {};
-
-    Object.keys(initialValues).forEach((name) => {
-      filledInputs[name] = value;
-    });
-
-    return filledInputs;
-  }
-
   const [valuesSt, setValuesSt] = useState(() => initialValues);
-  const [touchedSt, setTouchedSt] = useState(() => fillFieldsFn(false));
-  const [errorsSt, setErrorsSt] = useState(() => fillFieldsFn(''));
+  const [touchedSt, setTouchedSt] = useState(() => fillFieldsFn(initialValues, false));
+  const [errorsSt, setErrorsSt] = useState(() => fillFieldsFn(initialValues, ''));
 
   const validateInputFn = async (name, value) => {
     if (typeof value === 'string' && value.length > 1) {
@@ -24,6 +24,7 @@ function Form({ initialValues, validationSchema, refs, handleSubmitFn, handleRes
       const inputData = await validationSchema.fields[name]
         .validate(value, { abortEarly: false })
         .catch((error) => {
+          // console.log(error);
           setErrorsSt((prev) => ({ ...prev, [name]: error.message }));
         });
 
@@ -42,8 +43,8 @@ function Form({ initialValues, validationSchema, refs, handleSubmitFn, handleRes
 
   function onResetFn() {
     setValuesSt(initialValues);
-    setTouchedSt(fillFieldsFn(false));
-    setErrorsSt(fillFieldsFn(''));
+    setTouchedSt(fillFieldsFn(initialValues, false));
+    setErrorsSt(fillFieldsFn(initialValues, ''));
     handleResetFn();
   }
 
@@ -51,7 +52,7 @@ function Form({ initialValues, validationSchema, refs, handleSubmitFn, handleRes
     async (event) => {
       event.preventDefault();
 
-      setTouchedSt(fillFieldsFn(true));
+      setTouchedSt(fillFieldsFn(initialValues, true));
 
       const formData = await validationSchema
         .validate(valuesSt, { abortEarly: false })

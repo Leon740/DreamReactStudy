@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiCheckCircle, BiErrorCircle } from 'react-icons/bi';
-import { useContextValueFn } from '../FormContext';
+import { useFieldContextValueFn } from '../FormContext';
 import Input from './Input';
 import LabelWrapper from '../Label/LabelWrapper';
 import ErrorWrapper from '../Error/ErrorWrapper';
@@ -28,7 +28,7 @@ function InputWrapper({
   description,
   icon
 }) {
-  const { isTouched, error } = useContextValueFn(name);
+  const { isTouched, error } = useFieldContextValueFn(name);
 
   const isTextarea = type === 'textarea';
 
@@ -58,13 +58,13 @@ function InputWrapper({
           required={required}
           disabled={disabled}
           className={`
-              block w-full px-3 py-1.5 text-slate-400 text-lg my-2 border border-slate-400 rounded-md
+              block w-full px-3 py-1.5 text-slate-400 text-lg my-2 border-2 border-slate-200 rounded-md
               ${icon ? 'pl-10' : ''}
               outline-0
               disabled:bg-slate-200 disabled:cursor-not-allowed
               ${!isInvalid && !isValid ? 'focus:border-blue-600' : ''}
-              ${isInvalid ? 'border-rose-500' : ''}
-              ${isValid ? 'border-green-500' : ''}
+              ${isInvalid ? 'border-rose-300' : ''}
+              ${isValid ? 'border-green-300' : ''}
               ${isTextarea ? 'resize-y' : ''}
             `}
         />

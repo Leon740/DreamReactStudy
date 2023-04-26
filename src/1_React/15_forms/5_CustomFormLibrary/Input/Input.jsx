@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { forwardRef } from 'react';
-import { useContextValueFn } from '../FormContext';
+import React from 'react';
+import { useFieldContextValueFn } from '../FormContext';
 
 function Input({
   name = '',
@@ -11,7 +10,7 @@ function Input({
   disabled = false,
   className = ''
 }) {
-  const { value, onChangeFn, ref } = useContextValueFn(name);
+  const { value, onChangeFn, ref } = useFieldContextValueFn(name);
 
   const isTextarea = type === 'textarea';
   const Tag = isTextarea ? 'textarea' : 'input';
