@@ -24,7 +24,3 @@ export function useFieldContextValueFn(name) {
     ref
   };
 }
-
-export function useFormContextValueFn() {
-  return useContext(FormContext);
-}
