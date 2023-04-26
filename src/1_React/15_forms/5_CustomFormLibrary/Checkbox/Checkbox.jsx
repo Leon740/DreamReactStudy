@@ -2,8 +2,8 @@ import React from 'react';
 import { useFieldContextValueFn } from '../FormContext';
 
 function Checkbox({
+  id = '',
   name = '',
-  type = 'checkbox',
   ariaLabel = '',
   required = false,
   disabled = false,
@@ -14,8 +14,8 @@ function Checkbox({
   return (
     <input
       ref={ref}
-      id={name}
-      type={type}
+      id={id}
+      type="checkbox"
       name={name}
       aria-label={ariaLabel}
       required={required}

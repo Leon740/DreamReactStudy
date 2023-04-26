@@ -4,22 +4,22 @@ import LabelWrapper from '../Label/LabelWrapper';
 import ErrorWrapper from '../Error/ErrorWrapper';
 
 function CheckboxWrapper({
+  id = '',
   name = '',
   label = '',
-  type = 'checkbox',
   ariaLabel = '',
   required = false,
   disabled = false,
   description
 }) {
   return (
-    <div className="my-8">
+    <>
       <div className="flex items-start">
         <div>
           <Checkbox
+            id={id}
             name={name}
-            type={type}
-            aria-label={ariaLabel}
+            ariaLabel={ariaLabel}
             required={required}
             disabled={disabled}
             className="cursor-pointer accent-blue-600 outline-1 outline-blue-600"
@@ -27,7 +27,7 @@ function CheckboxWrapper({
         </div>
 
         <div className="ml-2">
-          <LabelWrapper htmlFor={name} isAsterisk={required}>
+          <LabelWrapper htmlFor={id} isAsterisk={required}>
             {label}
           </LabelWrapper>
 
@@ -36,7 +36,7 @@ function CheckboxWrapper({
       </div>
 
       <ErrorWrapper name={name} />
-    </div>
+    </>
   );
 }
 export default CheckboxWrapper;

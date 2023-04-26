@@ -6,7 +6,6 @@ function RadioWrapper({
   id = '',
   name = '',
   label = '',
-  type = '',
   ariaLabel = '',
   required = false,
   disabled = false,
@@ -20,8 +19,7 @@ function RadioWrapper({
         <Radio
           id={id}
           name={name}
-          type={type}
-          aria-label={ariaLabel}
+          ariaLabel={ariaLabel}
           required={required}
           disabled={disabled}
           checked={checked}
@@ -29,9 +27,9 @@ function RadioWrapper({
           onChangeFn={onChangeFn}
           className={`
             appearance-none cursor-pointer
-            w-4 h-4 border border-slate-400 rounded-full
+            w-4 h-4 rounded-full
             focus:border-4 focus:border-blue-500
-            ${checked ? 'border-4 border-blue-500' : ''}
+            ${checked ? 'border-4 border-blue-500' : 'border-2 border-slate-300 '}
           `}
         />
       </div>

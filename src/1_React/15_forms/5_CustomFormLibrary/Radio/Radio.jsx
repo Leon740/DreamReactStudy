@@ -4,7 +4,6 @@ import { useFieldContextValueFn } from '../FormContext';
 function Radio({
   id = '',
   name = '',
-  type = '',
   ariaLabel = '',
   required = false,
   disabled = false,
@@ -20,7 +19,7 @@ function Radio({
       ref={ref}
       id={id}
       name={name}
-      type={type}
+      type="radio"
       aria-label={ariaLabel}
       required={required}
       disabled={disabled}

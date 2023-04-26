@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useContextValueFn } from '../FormContext';
+import { useFieldContextValueFn } from '../FormContext';
 import LabelWrapper from '../Label/LabelWrapper';
-import RadioWrapper from '../Radio/RadioWrapper';
+import RadioWrapper from './RadioWrapper';
 import ErrorWrapper from '../Error/ErrorWrapper';
 
 function RadioGroup({
   name = '',
   label = '',
-  type = '',
-  ariaLabel = '',
   required = false,
   disabled = false,
   description,
   options = []
 }) {
-  const { value, onChangeFn } = useContextValueFn(name);
+  const { value, onChangeFn } = useFieldContextValueFn(name);
 
   const [selectedSt, setSelectedSt] = useState(value);
   useEffect(() => {
@@ -37,8 +35,7 @@ function RadioGroup({
               id={option}
               name={name}
               label={option}
-              type={type}
-              ariaLabel={ariaLabel}
+              ariaLabel={`${option} radio`}
               required={required}
               disabled={disabled}
               checked={value === option}

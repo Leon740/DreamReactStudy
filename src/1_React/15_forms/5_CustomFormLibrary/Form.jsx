@@ -12,7 +12,14 @@ function fillFieldsFn(initialValues, value) {
   return filledInputs;
 }
 
-function Form({ initialValues, validationSchema, refs, handleSubmitFn, handleResetFn, children }) {
+function Form({
+  initialValues,
+  validationSchema,
+  refs,
+  handleSubmitFn,
+  handleResetFn,
+  renderForm
+}) {
   const [valuesSt, setValuesSt] = useState(() => initialValues);
   const [touchedSt, setTouchedSt] = useState(() => fillFieldsFn(initialValues, false));
   const [errorsSt, setErrorsSt] = useState(() => fillFieldsFn(initialValues, ''));
@@ -84,7 +91,7 @@ function Form({ initialValues, validationSchema, refs, handleSubmitFn, handleRes
     <div className="container mx-auto px-4">
       <FormContext.Provider value={context}>
         <form noValidate onSubmit={(event) => onSubmitFn(event)} onReset={onResetFn}>
-          {children}
+          {renderForm({ values: valuesSt, touched: touchedSt, errors: errorsSt })}
         </form>
       </FormContext.Provider>
     </div>
