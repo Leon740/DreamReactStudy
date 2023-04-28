@@ -83,9 +83,9 @@ function Example() {
         return (
           <div>
             <div className="flex">
-              <Debug name="values" object={values} />
-              <Debug name="touched" object={touched} />
-              <Debug name="errors" object={errors} />
+              <Debug name="values" object={values} className="w-1/3" />
+              <Debug name="touched" object={touched} className="w-1/3" />
+              <Debug name="errors" object={errors} className="w-1/3" />
             </div>
 
             <InputWrapper
