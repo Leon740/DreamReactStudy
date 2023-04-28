@@ -5,8 +5,6 @@ function Radio({
   id = '',
   name = '',
   ariaLabel = '',
-  required = false,
-  disabled = false,
   checked = false,
   value = '',
   onChangeFn = () => {},
@@ -21,8 +19,6 @@ function Radio({
       name={name}
       type="radio"
       aria-label={ariaLabel}
-      required={required}
-      disabled={disabled}
       checked={checked}
       value={value}
       onChange={(event) => onChangeFn(event.target.value)}

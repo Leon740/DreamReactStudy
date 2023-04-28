@@ -2,13 +2,11 @@ import React from 'react';
 import LabelWrapper from '../Label/LabelWrapper';
 import Radio from './Radio';
 
-function RadioWrapper({
+function RadioGroupItem({
   id = '',
   name = '',
   label = '',
   ariaLabel = '',
-  required = false,
-  disabled = false,
   checked = false,
   value = '',
   onChangeFn = () => {}
@@ -20,8 +18,6 @@ function RadioWrapper({
           id={id}
           name={name}
           ariaLabel={ariaLabel}
-          required={required}
-          disabled={disabled}
           checked={checked}
           value={value}
           onChangeFn={onChangeFn}
@@ -34,12 +30,10 @@ function RadioWrapper({
         />
       </div>
 
-      <div>
-        <LabelWrapper htmlFor={id} className="ml-2">
-          {label}
-        </LabelWrapper>
-      </div>
+      <LabelWrapper htmlFor={id} className="ml-2">
+        {label}
+      </LabelWrapper>
     </>
   );
 }
-export default RadioWrapper;
+export default RadioGroupItem;
