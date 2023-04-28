@@ -5,11 +5,13 @@ function Checkbox({
   id = '',
   name = '',
   ariaLabel = '',
-  required = false,
   disabled = false,
+  checked = false,
+  value = '',
+  onChangeFn = () => {},
   className = ''
 }) {
-  const { value, onChangeFn, ref } = useFieldContextValueFn(name);
+  const { ref } = useFieldContextValueFn(name);
 
   return (
     <input
@@ -18,11 +20,10 @@ function Checkbox({
       type="checkbox"
       name={name}
       aria-label={ariaLabel}
-      required={required}
       disabled={disabled}
+      checked={checked}
       value={value}
-      // checked={value === 'on'}
-      onChange={(event) => onChangeFn(name, event.target.checked ? 'on' : 'off')}
+      onChange={(event) => onChangeFn(event.target.value)}
       className={className}
     />
   );

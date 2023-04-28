@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { object, string } from 'yup';
+import { object, string, array } from 'yup';
 
 import { SiMaildotru } from 'react-icons/si';
 
@@ -8,7 +8,7 @@ import Form from './Form';
 import Debug from './Debug';
 import InputWrapper from './Input/InputWrapper';
 import CheckboxWrapper from './Checkbox/CheckboxWrapper';
-// import CheckboxGroup from './Checkbox/CheckboxGroup';
+import CheckboxGroup from './Checkbox/CheckboxGroup';
 import RadioGroup from './Radio/RadioGroup';
 import ButtonWrapper from './Button/ButtonWrapper';
 
@@ -18,10 +18,10 @@ const initialValues = {
   email: '',
   password: '',
   confirmPassword: '',
-  message: '',
-  sex: '',
+  message: 'Default message',
+  sex: 'male',
   terms: 'off',
-  hobbies: []
+  hobbies: ['driving']
 };
 
 function Example() {
@@ -31,7 +31,7 @@ function Example() {
   const messageRf = useRef();
   const sexRf = useRef();
   const termsRf = useRef();
-  // const hobbiesRf = useRef();
+  const hobbiesRf = useRef();
 
   const refs = {
     email: emailRf,
@@ -39,8 +39,8 @@ function Example() {
     confirmPassword: confirmPasswordRf,
     message: messageRf,
     sex: sexRf,
-    terms: termsRf
-    // hobbies: hobbiesRf
+    terms: termsRf,
+    hobbies: hobbiesRf
   };
 
   const onSubmitFn = (formData) => {
@@ -73,13 +73,13 @@ function Example() {
           .min(15, getErrorMsgFn('minLength', 15))
           .required(getErrorMsgFn('required')),
         sex: string().required(getErrorMsgFn('required')),
-        terms: string().oneOf(['on'], getErrorMsgFn('required'))
-        // hobbies: string().required(getErrorMsgFn('required'))
+        terms: string().oneOf(['on'], getErrorMsgFn('required')),
+        hobbies: array().of(string()).min(1, getErrorMsgFn('required'))
       })}
       refs={refs}
       handleSubmitFn={onSubmitFn}
       handleResetFn={onResetFn}
-      renderForm={({ values, touched, errors, onChangeFn }) => {
+      renderForm={({ values, touched, errors }) => {
         return (
           <div>
             <div className="flex">
@@ -94,7 +94,7 @@ function Example() {
               type="email"
               placeholder="Enter your email"
               ariaLabel="email input"
-              required
+              isAsterisk
               description="Type in your email (min 8)"
               icon={<SiMaildotru />}
             />
@@ -104,7 +104,7 @@ function Example() {
               type="password"
               placeholder="Enter your password"
               ariaLabel="password input"
-              required
+              isAsterisk
               description="Type in your password (min 8)"
             />
             {values.password.length > 1 && !errors.password && (
@@ -114,7 +114,7 @@ function Example() {
                 type="password"
                 placeholder="Confirm your password"
                 ariaLabel="confirm password input"
-                required
+                isAsterisk
                 description="Type in your password (min 8)"
               />
             )}
@@ -124,13 +124,13 @@ function Example() {
               type="textarea"
               placeholder="Enter your message"
               ariaLabel="message textarea"
-              required
+              isAsterisk
               description="Type in your message (min 8)"
             />
             <RadioGroup
               name="sex"
               label="Sex"
-              required
+              isAsterisk
               description="Select your sex"
               options={['male', 'female']}
             />
@@ -140,24 +140,21 @@ function Example() {
                 name="terms"
                 label="I accept Terms & Conditions"
                 ariaLabel="terms checkbox"
-                required
+                isAsterisk
                 description={
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                  <a href="#" className="underline">
+                  <a href="/" className="underline">
                     Read Terms & Conditions
                   </a>
                 }
-                value={values.terms}
-                onChangeFn={onChangeFn}
               />
             </div>
-            {/* <CheckboxGroup
+            <CheckboxGroup
               name="hobbies"
               label="Hobbies"
-              required
+              isAsterisk
               description="Select your hobbies"
               options={['coding', 'driving', 'reading', 'surfing']}
-            /> */}
+            />
 
             <div className="flex justify-between">
               <ButtonWrapper type="submit" className="bg-green-500">

@@ -25,7 +25,8 @@ function Form({
   const [errorsSt, setErrorsSt] = useState(() => fillFieldsFn(initialValues, ''));
 
   const validateInputFn = async (name, value) => {
-    if (typeof value === 'string' && value.length > 1) {
+    // Array.isArray(value) = CheckboxGroup
+    if ((typeof value === 'string' && value.length > 1) || Array.isArray(value)) {
       setTouchedSt((prev) => ({ ...prev, [name]: true }));
 
       const inputData = await validationSchema.fields[name]
