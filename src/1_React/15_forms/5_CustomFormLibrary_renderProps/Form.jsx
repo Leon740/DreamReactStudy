@@ -1,6 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
-
-import FormContext from './FormContext';
+import React, { useState, useCallback } from 'react';
 
 function fillFieldsFn(initialValues, value) {
   const filledInputs = {};
@@ -12,14 +10,7 @@ function fillFieldsFn(initialValues, value) {
   return filledInputs;
 }
 
-function Form({
-  initialValues,
-  validationSchema,
-  refs,
-  handleSubmitFn,
-  handleResetFn,
-  renderForm
-}) {
+function Form({ initialValues, validationSchema, handleSubmitFn, handleResetFn, renderForm }) {
   const [valuesSt, setValuesSt] = useState(() => initialValues);
   const [touchedSt, setTouchedSt] = useState(() => fillFieldsFn(initialValues, false));
   const [errorsSt, setErrorsSt] = useState(() => fillFieldsFn(initialValues, ''));
@@ -44,10 +35,10 @@ function Form({
     }
   };
 
-  const onChangeFn = useCallback((name, value) => {
+  const onChangeFn = (name, value) => {
     setValuesSt((prev) => ({ ...prev, [name]: value }));
     validateInputFn(name, value);
-  }, []);
+  };
 
   function onResetFn() {
     setValuesSt(initialValues);
@@ -81,21 +72,14 @@ function Form({
         onResetFn();
       }
     },
-    [valuesSt, handleSubmitFn]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [valuesSt]
   );
 
-  const context = useMemo(() => {
-    return { values: valuesSt, touched: touchedSt, errors: errorsSt, onChangeFn, refs };
-  }, [valuesSt, touchedSt, errorsSt, onChangeFn]);
-
   return (
-    <div className="container mx-auto px-4">
-      <FormContext.Provider value={context}>
-        <form noValidate onSubmit={(event) => onSubmitFn(event)} onReset={onResetFn}>
-          {renderForm({ values: valuesSt, touched: touchedSt, errors: errorsSt })}
-        </form>
-      </FormContext.Provider>
-    </div>
+    <form noValidate onSubmit={(event) => onSubmitFn(event)} onReset={onResetFn}>
+      {renderForm({ values: valuesSt, touched: touchedSt, errors: errorsSt, onChangeFn })}
+    </form>
   );
 }
 export default Form;
