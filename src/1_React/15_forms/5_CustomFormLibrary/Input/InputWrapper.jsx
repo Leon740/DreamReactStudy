@@ -23,7 +23,7 @@ function InputWrapper({
   type = 'text',
   placeholder = '',
   ariaLabel = '',
-  required = false,
+  isAsterisk = false,
   disabled = false,
   description,
   icon
@@ -37,7 +37,7 @@ function InputWrapper({
 
   return (
     <div className="my-8">
-      <LabelWrapper htmlFor={name} className="block text-lg" isAsterisk={required}>
+      <LabelWrapper htmlFor={name} className="block text-lg" isAsterisk={isAsterisk}>
         {label}
       </LabelWrapper>
 
@@ -55,7 +55,6 @@ function InputWrapper({
           type={type}
           placeholder={placeholder}
           aria-label={ariaLabel}
-          required={required}
           disabled={disabled}
           className={`
               block w-full px-3 py-1.5 text-slate-400 text-lg my-2 border-2 border-slate-200 rounded-md

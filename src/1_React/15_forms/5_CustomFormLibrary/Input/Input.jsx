@@ -6,7 +6,6 @@ function Input({
   type = 'text',
   placeholder = '',
   ariaLabel = '',
-  required = false,
   disabled = false,
   className = ''
 }) {
@@ -23,7 +22,6 @@ function Input({
       type={type}
       placeholder={placeholder}
       aria-label={ariaLabel}
-      required={required}
       disabled={disabled}
       value={value}
       onChange={(event) => onChangeFn(name, event.target.value)}
