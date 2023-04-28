@@ -46,8 +46,8 @@ function CheckboxWrapper({
             name={name}
             ariaLabel={ariaLabel}
             disabled={disabled}
-            checked={selectedSt === 'on'}
-            value={selectedSt}
+            checked={selectedCheckboxSt === 'on'}
+            value={selectedCheckboxSt}
             onChangeFn={checkboxOnChangeFn}
             className="cursor-pointer accent-blue-600 outline-1 outline-blue-600"
           />
