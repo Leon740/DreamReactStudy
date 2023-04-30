@@ -8,9 +8,7 @@ function Component() {
   return (
     <div className="app">
       {/* <Header /> */}
-      <StrictMode>
-        {/* <Body /> */}
-      </StrictMode>
+      <StrictMode>{/* <Body /> */}</StrictMode>
       {/* <Footer /> */}
     </div>
   );

@@ -41,7 +41,9 @@ function Solution() {
         <h3>Loading</h3>
       ) : (
         <ul>
-          {listArrSt.map((listItemStr, index) => <li key={index}>{listItemStr}</li>)}
+          {listArrSt.map((listItemStr, index) => (
+            <li key={index}>{listItemStr}</li>
+          ))}
         </ul>
       )}
     </section>

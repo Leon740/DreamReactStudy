@@ -30,12 +30,11 @@ function ComponentNew() {
   if (stStatus.status === 'rejected') {
     return (
       <div className="alert alert-danger" role="alert">
-        { stStatus.error }
-        {' '}
-        Error
+        {stStatus.error} Error
       </div>
     );
-  } if (stStatus.status === 'pending') {
+  }
+  if (stStatus.status === 'pending') {
     return (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -55,7 +54,7 @@ function ComponentNew() {
           </tr>
         </thead>
         <tbody>
-          {stStatus.status === 'fulfilled' && (
+          {stStatus.status === 'fulfilled' &&
             stPhotos.map((user) => (
               <tr key={user.id}>
                 <td>{user.albumId}</td>
@@ -63,7 +62,7 @@ function ComponentNew() {
                 <td>{user.url}</td>
                 <td>{user.thumbnailUrl}</td>
               </tr>
-            )))}
+            ))}
         </tbody>
       </table>
     </div>

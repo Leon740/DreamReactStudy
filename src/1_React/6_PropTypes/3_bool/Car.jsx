@@ -6,18 +6,14 @@ function CarAvailability(props) {
 
   return (
     <p>
-      <b>{name}</b>
-      {' '}
-      {inStock ? 'is' : 'is not'}
-      {' '}
-      in Stock
+      <b>{name}</b> {inStock ? 'is' : 'is not'} in Stock
     </p>
   );
 }
 
 CarAvailability.propTypes = {
   name: PropTypes.string.isRequired,
-  inStock: PropTypes.bool.isRequired,
+  inStock: PropTypes.bool.isRequired
 };
 
 function Car() {

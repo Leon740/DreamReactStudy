@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-import useWindowDimensions from '1_React/6_hooks/examples/useWindowDimensions';
+import useWindowDimensions from '1_React/7_hooks/examples/useWindowDimensions';
 import Video from './Video';
 
 const VideoContainer = React.forwardRef((props, ref) => {
@@ -11,7 +11,7 @@ const VideoContainer = React.forwardRef((props, ref) => {
     className: videoClassName,
     poster: videoPoster,
     url: videoUrl,
-    settings: videoSettings,
+    settings: videoSettings
   } = video;
 
   const { className: imgClassName, url: imgUrl, alt: imgAlt } = image;
@@ -44,13 +44,13 @@ VideoContainer.propTypes = {
     poster: PropTypes.string,
     url: PropTypes.string.isRequired,
     // eslint-disable-next-line react/forbid-prop-types
-    settings: PropTypes.object,
+    settings: PropTypes.object
   }),
   image: PropTypes.shape({
     className: PropTypes.string,
     url: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-  }),
+    alt: PropTypes.string.isRequired
+  })
 };
 
 export default VideoContainer;

@@ -8,10 +8,7 @@ function GrandChild() {
     <>
       <code>GrandChild :</code>
       <br />
-      <input
-        value={carName}
-        onChange={(event) => setCarName(event.target.value)}
-      />
+      <input value={carName} onChange={(event) => setCarName(event.target.value)} />
     </>
   );
 }

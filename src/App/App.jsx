@@ -1,13 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-// import SignIn from '1_React/15_forms/task/SignIn';
-// import Example from '1_React/15_forms/5_CustomFormLibrary_renderProps/Example';
-import Example from '1_React/15_forms/5_CustomFormLibrary_context/Example';
-// import ExSignUp from '1_React/15_forms/5_CustomFormLibrary/Example';
-// import SignUpForm from '1_React/15_forms/4_ReactFormik/SignUpForm/SignUpForm';
+import Loader from '1_React/5_loader/Loader';
 
 function App() {
-  return <Example />;
+  return <Loader />;
 }
 export default App;

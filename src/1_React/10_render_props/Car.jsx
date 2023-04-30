@@ -5,13 +5,7 @@ function Car({ favoriteCar }) {
   return (
     <div>
       <p>
-        My
-        {' '}
-        <b>Dream</b>
-        {' '}
-        is
-        {' '}
-        <u>Lancer Evo</u>
+        My <b>Dream</b> is <u>Lancer Evo</u>
       </p>
       {favoriteCar()}
     </div>
@@ -19,7 +13,7 @@ function Car({ favoriteCar }) {
 }
 
 Car.propTypes = {
-  favoriteCar: PropTypes.func.isRequired,
+  favoriteCar: PropTypes.func.isRequired
 };
 
 export default Car;
