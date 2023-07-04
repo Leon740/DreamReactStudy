@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useDebounce from '../5_useDebounce/useDebounce';
+import useDebounce from '../../5_useDebounce/1_good/ts/useDebounce';
 
 interface IWindowSize {
   width: number;
@@ -13,15 +13,10 @@ function getWindowSizeFn(): IWindowSize {
 }
 
 export default function useWindowSize(delayNum: number = 1000): IWindowSize {
-  const [windowSize, setWindowSize] = useState<IWindowSize>(() =>
-    getWindowSizeFn()
-  );
+  const [windowSize, setWindowSize] = useState<IWindowSize>(() => getWindowSizeFn());
 
   const debouncedWindowWidth = useDebounce<number>(windowSize.width, delayNum);
-  const debouncedWindowHeight = useDebounce<number>(
-    windowSize.height,
-    delayNum
-  );
+  const debouncedWindowHeight = useDebounce<number>(windowSize.height, delayNum);
 
   // 1) mount: useEffect call
   // 2) resize: setWindowSize,

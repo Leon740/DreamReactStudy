@@ -3,7 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,7 +16,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["import", "react", "react-hooks", "prettier", "@typescript-eslint"],
   "rules": {
     "max-len": "off",
     "no-console": "off",
@@ -20,12 +25,24 @@
     "no-plusplus": "off",
     "arrow-parens": "off",
     "import/no-unresolved": "warn",
+
     "react/prop-types": "off",
     "react/no-array-index-key": "warn",
     "react/jsx-no-bind": "off",
-    "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
+    "react/jsx-filename-extension": "off",
+
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+
+    "@typescript-eslint/no-empty-function": "warn",
+
     "prettier/prettier": ["error", { "printWidth": 100, "singleQuote": true }]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

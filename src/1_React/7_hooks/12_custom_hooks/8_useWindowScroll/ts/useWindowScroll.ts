@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import useEventListener from '../3_useEventListener/useEventListener';
-import useDebounce from '../5_useDebounce/useDebounce';
+import useEventListener from '../../3_useEventListener/useEventListener';
+import useDebounce from '../../5_useDebounce/1_good/ts/useDebounce';
 
 interface IWindowScroll {
   x: number;
@@ -21,17 +21,12 @@ function getWindowScrollPositionFn(): IWindowScroll {
 export default function useWindowScroll(
   delayNum: number = 1000
 ): [IWindowScroll, (options: IWindowScrollToFnArgs) => void] {
-  const [windowScrollPositionSt, setWindowScrollPositionSt] =
-    useState<IWindowScroll>(() => getWindowScrollPositionFn());
+  const [windowScrollPositionSt, setWindowScrollPositionSt] = useState<IWindowScroll>(() =>
+    getWindowScrollPositionFn()
+  );
 
-  const debouncedWindowScrollPositionX = useDebounce<number>(
-    windowScrollPositionSt.x,
-    delayNum
-  );
-  const debouncedWindowScrollPositionY = useDebounce<number>(
-    windowScrollPositionSt.y,
-    delayNum
-  );
+  const debouncedWindowScrollPositionX = useDebounce<number>(windowScrollPositionSt.x, delayNum);
+  const debouncedWindowScrollPositionY = useDebounce<number>(windowScrollPositionSt.y, delayNum);
 
   useEffect(() => {
     console.log(`x = ${debouncedWindowScrollPositionX}`);
