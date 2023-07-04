@@ -25,7 +25,7 @@ const Checkbox = forwardRef(
     }: CheckboxPropsI,
     ref: Ref<HTMLInputElement>
   ) => {
-    Checkbox.displayName = `Checkbox ${name}`;
+    Checkbox.displayName = `Checkbox${name[0].toUpperCase()}${name.substring(1)}`;
 
     return (
       <input

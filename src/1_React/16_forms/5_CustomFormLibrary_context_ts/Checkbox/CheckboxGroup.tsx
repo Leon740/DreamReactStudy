@@ -11,8 +11,8 @@ interface CheckboxGroupPropsI {
   options: string[];
   touched: boolean;
   error: string;
-  value: string[];
-  onChangeFn: (name: string, value: string[]) => void;
+  value: string;
+  onChangeFn: (name: string, value: string) => void;
 }
 
 // eslint-disable-next-line prettier/prettier
@@ -26,7 +26,7 @@ const CheckboxGroup = forwardRef(
       options = [],
       touched = false,
       error = '',
-      value = [''],
+      value = '',
       onChangeFn = () => {}
     }: CheckboxGroupPropsI,
     ref: Ref<HTMLInputElement>
@@ -35,7 +35,11 @@ const CheckboxGroup = forwardRef(
 
     const isMountedRf = useRef<boolean>(false);
 
-    const [selectedCheckboxesSt, setSelectedCheckboxesSt] = useState<string[]>(value);
+    // 1 no separ
+    // 2 empty
+    const [selectedCheckboxesSt, setSelectedCheckboxesSt] = useState<string[]>(
+      value.length > 0 ? value.split(', ') : []
+    );
 
     const checkboxGroupOnChangeFn = (checkboxValue: string) => {
       console.log(checkboxValue);
@@ -44,13 +48,19 @@ const CheckboxGroup = forwardRef(
           prev.filter((value: string) => value !== checkboxValue)
         );
       } else {
-        setSelectedCheckboxesSt((prev: string[]) => [...prev, checkboxValue]);
+        setSelectedCheckboxesSt((prev: string[]) => [
+          ...prev,
+          // ...prev.filter((value: string) => value.length > 0),
+          checkboxValue
+        ]);
       }
     };
 
+    // const str = 'driving, reading, surfing';
+
     useEffect(() => {
       if (isMountedRf.current) {
-        onChangeFn(name, selectedCheckboxesSt);
+        onChangeFn(name, selectedCheckboxesSt.join(', '));
       } else {
         isMountedRf.current = true;
       }

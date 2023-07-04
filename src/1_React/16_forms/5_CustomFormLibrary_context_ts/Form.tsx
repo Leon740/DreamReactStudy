@@ -11,15 +11,8 @@ function fillFieldsFn<T extends string | boolean>(initialValues: object, value: 
   return filledInputs;
 }
 
-// type ObjectT<T extends string | string[] | boolean> = {
-//   [key: string]: T;
-// };
-type ObjectT = {
-  [key: string]: string | string[] | boolean;
-};
-
 type ObjectStringT = {
-  [key: string]: string | string[];
+  [key: string]: string;
 };
 type ObjectBooleanT = {
   [key: string]: boolean;
@@ -29,7 +22,7 @@ interface renderFormI {
   values: ObjectStringT;
   touched: ObjectBooleanT;
   errors: ObjectStringT;
-  onChangeFn: (name: string, value: string | string[] | boolean) => void;
+  onChangeFn: (name: string, value: string) => void;
 }
 
 interface FormPropsI {
@@ -53,9 +46,8 @@ function Form({
   );
   const [errorsSt, setErrorsSt] = useState<ObjectStringT>(() => fillFieldsFn(initialValues, ''));
 
-  const validateInputFn = async (name: string, value: string | string[] | boolean) => {
-    // Array.isArray(value) = CheckboxGroup
-    if ((typeof value === 'string' && value.length > 1) || Array.isArray(value)) {
+  const validateInputFn = async (name: string, value: string) => {
+    if (value.length > 1) {
       setTouchedSt((prev) => ({ ...prev, [name]: true }));
 
       const inputData = await validationSchema.fields[name]
@@ -75,9 +67,8 @@ function Form({
     }
   };
 
-  const onChangeFn = <T extends string | string[] | boolean>(name: string, value: T) => {
-    const val: string = value as string;
-    setValuesSt((prev) => ({ ...prev, [name]: val }));
+  const onChangeFn = (name: string, value: string) => {
+    setValuesSt((prev) => ({ ...prev, [name]: value }));
     validateInputFn(name, value);
   };
 

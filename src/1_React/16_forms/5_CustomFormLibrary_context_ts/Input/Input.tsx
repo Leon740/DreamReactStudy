@@ -5,7 +5,7 @@ interface InputPropsI {
   type: 'text' | 'textarea' | 'email' | 'password';
   placeholder: string;
   ariaLabel: string;
-  disabled: boolean;
+  disabled?: boolean;
   className: string;
   value: string;
   onChangeFn: (name: string, value: string) => void;

@@ -27,9 +27,9 @@ interface InputWrapperPropsI {
   placeholder: string;
   ariaLabel: string;
   isAsterisk: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   description: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   touched: boolean;
   error: string;
   value: string;

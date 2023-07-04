@@ -9,7 +9,7 @@ interface CheckboxWrapperPropsI {
   label: ReactNode;
   ariaLabel: string;
   isAsterisk: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   description: JSX.Element;
   touched: boolean;
   error: string;

@@ -21,7 +21,8 @@ const initialValues = {
   message: 'Default message',
   sex: 'male',
   terms: 'off',
-  hobbies: ['driving']
+  // hobbies: ''
+  hobbies: 'driving, reading, surfing'
 };
 
 function Example() {
@@ -77,7 +78,8 @@ function Example() {
             .required(getErrorMsgFn('required')),
           sex: string().required(getErrorMsgFn('required')),
           terms: string().oneOf(['on'], getErrorMsgFn('required')),
-          hobbies: array().of(string()).min(1, getErrorMsgFn('required'))
+          // hobbies: array().of(string()).min(1, getErrorMsgFn('required'))
+          hobbies: string().required(getErrorMsgFn('required'))
         })}
         handleSubmitFn={onSubmitFn}
         handleResetFn={onResetFn}
@@ -166,7 +168,7 @@ function Example() {
                   ref={refs.terms}
                   id="terms"
                   name="terms"
-                  label="I accept Terms & Conditions</>"
+                  label="I accept Terms & Conditions"
                   ariaLabel="terms checkbox"
                   isAsterisk
                   description={
