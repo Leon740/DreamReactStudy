@@ -30,6 +30,7 @@
     "react/no-array-index-key": "warn",
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": "off",
+    "react/require-default-props": "warn",
 
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
