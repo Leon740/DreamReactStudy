@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import Loader from '1_React/5_loader/Loader';
+import Example from '../1_React/16_forms/forms/Example';
 
 function App() {
-  return <Loader />;
+  return <Example />;
 }
 export default App;
