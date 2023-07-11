@@ -3,6 +3,6 @@ module.exports = {
     tailwindcss: {},
     autoprefixer: {},
     'postcss-import': {},
-    'tailwindcss/nesting': {},
-  },
+    'tailwindcss/nesting': {}
+  }
 };

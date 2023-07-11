@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import './App.scss';
-import Example from '../1_React/16_forms/5_CustomFormLibrary_renderProps_ts/Example';
+import App1 from '../1_React/17_rounting_ReactRouter/10_task_1/App';
 
 function App() {
-  return <Example />;
+  return <App1 />;
 }
 export default App;
