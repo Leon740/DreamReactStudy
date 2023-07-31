@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link, useOutletContext, useSearchParams } from 'react-router-dom';
 
 function CarMark() {

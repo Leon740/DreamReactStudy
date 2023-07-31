@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, Ref } from 'react';
 import { BrowserRouter, Route, Routes, matchPath, useLocation } from 'react-router-dom';
 
-import HomePage from './pages/HomePage';
+import SignInPage from './pages/SignInPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CategoryPage from './pages/CategoryPage';
 import DetailPage from './pages/DetailPage';
@@ -12,8 +12,10 @@ import BackButton from './components/BackButton';
 import CHARACTERS_DATA from './data/characters.json';
 import EPISODES_DATA from './data/episodes.json';
 import LOCATIONS_DATA from './data/locations.json';
+import AuthProvider from './components/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 
-interface IDataItem {
+interface DataItemI {
   id: number | string;
   name: string;
   image?: string;
@@ -22,19 +24,19 @@ interface IDataItem {
   gender?: string;
 }
 
-const DATA: { [key: string]: { name: string; items: IDataItem[] } } = {
+const DATA: { [key: string]: { name: string; items: DataItemI[] } } = {
   characters: { name: 'characters', items: CHARACTERS_DATA },
   episodes: { name: 'episodes', items: EPISODES_DATA },
   locations: { name: 'locations', items: LOCATIONS_DATA }
 };
 
-interface ICategoriesItem {
+interface CategoriesItemI {
   key: string;
   to: string;
   label: string;
 }
 
-const CATEGORIES_DATA: ICategoriesItem[] = [
+const CATEGORIES_DATA: CategoriesItemI[] = [
   {
     key: 'characters',
     to: '/characters',
@@ -54,11 +56,9 @@ const CATEGORIES_DATA: ICategoriesItem[] = [
 
 function App() {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
-  const isActive = (path: string) => {
-    return !!matchPath(location.pathname, path);
-  };
+  const isActive = (path: string) => !!matchPath(location.pathname, path);
 
   const mainRf: Ref<HTMLDivElement> = useRef<HTMLDivElement>(null);
 
@@ -72,10 +72,10 @@ function App() {
   return (
     <div className="bg-slate-900 text-white min-h-screen">
       <div className="max-w-7xl m-auto">
-        <header className="flex items-center justify-between px-8 border-b-2 border-white sticky top-0 bg-slate-900">
+        <header className="flex items-center justify-between border-b-2 border-white sticky top-0 bg-slate-900">
           <nav className="flex">
             <LinkWrapper to="/" className={isActive('/') ? 'bg-slate-800' : ''}>
-              HomePage
+              Sign In
             </LinkWrapper>
 
             {CATEGORIES_DATA.map(({ key, to, label }) => (
@@ -94,10 +94,17 @@ function App() {
 
         <main className="px-8" ref={mainRf}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<SignInPage charactersData={DATA.characters} />} />
 
             <Route path=":category" element={<CategoryPage />} />
-            <Route path=":category/:name" element={<DetailPage />} />
+            <Route
+              path=":category/:name"
+              element={
+                <PrivateRoute>
+                  <DetailPage />
+                </PrivateRoute>
+              }
+            />
 
             <Route path="*" element={<NotFoundPage isRedirect to="/" />} />
           </Routes>
@@ -110,7 +117,9 @@ function App() {
 function AppContainer() {
   return (
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

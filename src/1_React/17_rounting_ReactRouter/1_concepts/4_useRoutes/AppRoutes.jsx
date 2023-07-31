@@ -11,16 +11,6 @@ import BackButton from '../Components/BackButton/BackButton';
 import NestedRoutes from '../2_nested_routes/NestedRoutes';
 import OutletExample from '../3_Outlet/OutletExample';
 
-// === Concept
-// AppRoutes should be wrapped in <Router>
-function AppRoutesContainer() {
-  return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
-  );
-}
-
 function AppRoutes() {
   // === Concept
   // create (render) element based on the object
@@ -98,4 +88,15 @@ function AppRoutes() {
     </div>
   );
 }
+
+// === Concept
+// AppRoutes should be wrapped in <Router>
+function AppRoutesContainer() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
+
 export default AppRoutesContainer;

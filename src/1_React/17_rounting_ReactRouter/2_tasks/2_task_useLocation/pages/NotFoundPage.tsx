@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-interface INotFoundPageProps {
+interface NotFoundPagePropsI {
   isRedirect: boolean;
   to: string;
 }
 
-function NotFoundPage({ isRedirect = false, to = '' }: INotFoundPageProps) {
+function NotFoundPage({ isRedirect = false, to = '' }: NotFoundPagePropsI) {
   const navigate = useNavigate();
 
   useEffect(() => {

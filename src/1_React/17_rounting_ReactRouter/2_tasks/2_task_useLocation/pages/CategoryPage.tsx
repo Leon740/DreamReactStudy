@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-interface IDataItem {
+interface DataItemI {
   id: number | string;
   name: string;
   image?: string;
@@ -12,6 +12,7 @@ interface IDataItem {
 
 function CategoryPage() {
   const { state: category } = useLocation();
+  console.log(useLocation());
   const { name, items } = category;
 
   return (
@@ -22,7 +23,7 @@ function CategoryPage() {
       </h1>
 
       <ul className="flex flex-wrap -mx-4">
-        {items.map((item: IDataItem) => {
+        {items.map((item: DataItemI) => {
           const { id, image, name, species, status, gender } = item;
 
           return (

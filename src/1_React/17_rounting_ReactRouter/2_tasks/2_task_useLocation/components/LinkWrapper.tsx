@@ -12,7 +12,7 @@ function LinkWrapper(props: INavLinkWrapperProps) {
   const { to = '', children = <></>, className = '', state = {} } = props;
 
   return (
-    <Link {...props} className="flex">
+    <Link to={to} state={state} className="flex">
       <span className={`px-8 py-8 ${className}`}>{children}</span>
     </Link>
   );

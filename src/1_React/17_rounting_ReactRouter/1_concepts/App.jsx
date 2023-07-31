@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import HomePage from '../2_tasks/9_useLocation/HomePage';
+import HomePage from './9_useLocation/HomePage';
 import ContactPage from './pages/ContactPage';
 import CarsList from './Components/Car/CarsList';
 import CarMark from './Components/Car/CarMark';
