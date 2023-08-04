@@ -7,26 +7,26 @@ function Component() {
     padding: '10px 20px',
     margin: '50px auto',
     width: '200px',
-    textAlign: 'center',
+    textAlign: 'center'
   };
 
   const inlineStyles = {
     // required space = max-content width
     // no width, height, margin
     ...basicStyles,
-    display: 'inline',
+    display: 'inline'
   };
   const inlineBlockStyles = {
     // required space = max-content width
     // yes width, height, margin
     ...basicStyles,
-    display: 'inline-block',
+    display: 'inline-block'
   };
   const blockStyles = {
     // required space = 100%
     // yes width, height, margin
     ...basicStyles,
-    display: 'block',
+    display: 'block'
   };
 
   return (

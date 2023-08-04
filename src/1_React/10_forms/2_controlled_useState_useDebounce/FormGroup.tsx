@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import Form from 'react-bootstrap/Form';
-import useDebounce from '../../7_hooks/12_custom_hooks/5_useDebounce/1_good/ts/useDebounce';
+import useDebounce from '../../3_hooks/12_custom_hooks/5_useDebounce/1_good/ts/useDebounce';
 
 interface IFormGroupProps {
   name: string;

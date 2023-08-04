@@ -14,10 +14,7 @@ function Form() {
         Dream is
         {inputValue}
       </h3>
-      <input
-        value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
-      />
+      <input value={inputValue} onChange={(event) => setInputValue(event.target.value)} />
     </div>
   );
 }

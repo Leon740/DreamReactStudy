@@ -1,14 +1,8 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Spinner from 'react-bootstrap/Spinner';
 import useFetch from './useFetch';
 
-interface IPost {
-  id: number;
-  title: string;
-}
-
-function Component(): JSX.Element {
+function Component1() {
   const { data, isLoading, error, refetchFn } = useFetch();
 
   return (
@@ -38,13 +32,12 @@ function Component(): JSX.Element {
 
       {data && !isLoading && (
         <ul>
-          {data.map((post: IPost) => (
-            <li key={post.id}>{post.title}</li>
+          {data.map((item) => (
+            <li key={item.id}>{item.title}</li>
           ))}
         </ul>
       )}
     </>
   );
 }
-
-export default Component;
+export default Component1;

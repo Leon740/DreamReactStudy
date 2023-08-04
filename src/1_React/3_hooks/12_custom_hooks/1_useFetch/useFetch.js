@@ -1,26 +1,11 @@
 import { useEffect, useState } from 'react';
 
-type TData = any;
-type TIsLoading = boolean;
-type TError = boolean | number;
-type TRefetchFn = (params: object) => void;
+export default function useFetch(url = 'https://jsonplaceholder.typicode.com/posts') {
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
-interface IUseFetchReturnType {
-  data: TData;
-  isLoading: TIsLoading;
-  error: TError;
-  refetchFn: TRefetchFn;
-}
-
-export default function useFetch(
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  url: string = 'https://jsonplaceholder.typicode.com/posts'
-): IUseFetchReturnType {
-  const [data, setData] = useState<TData>();
-  const [isLoading, setIsLoading] = useState<TIsLoading>(true);
-  const [error, setError] = useState<TError>(false);
-
-  const fetchFn = (fetchUrl: string): void => {
+  const fetchFn = (fetchUrl) => {
     console.log('fetchFn');
 
     setIsLoading(true);
@@ -44,8 +29,8 @@ export default function useFetch(
     }, 1000);
   };
 
-  const refetchFn: TRefetchFn = (params) => {
-    const queryStr: string = Object.entries(params)
+  const refetchFn = (params) => {
+    const queryStr = Object.entries(params)
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
     fetchFn(`${url}?${queryStr}`);

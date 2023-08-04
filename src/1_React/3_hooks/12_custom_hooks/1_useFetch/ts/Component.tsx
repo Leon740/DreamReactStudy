@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Spinner from 'react-bootstrap/Spinner';
 import useFetch from './useFetch';
 
-function Component1() {
-  const {
-    data, isLoading, error, refetchFn,
-  } = useFetch();
+interface IPost {
+  id: number;
+  title: string;
+}
+
+function Component(): ReactElement {
+  const { data, isLoading, error, refetchFn } = useFetch();
 
   return (
     <>
       <button
         type="button"
-        onClick={() => refetchFn(
-          {
-            _limit: 3,
-          },
-        )}
+        onClick={() =>
+          refetchFn({
+            _limit: 3
+          })
+        }
       >
         Call Again
       </button>
@@ -28,16 +32,19 @@ function Component1() {
 
       {error && (
         <div className="alert alert-danger" role="alert">
-          { error }
+          {error}
         </div>
       )}
 
       {data && !isLoading && (
         <ul>
-          {data.map((item) => <li key={item.id}>{item.title}</li>)}
+          {data.map((post: IPost) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
         </ul>
       )}
     </>
   );
 }
-export default Component1;
+
+export default Component;

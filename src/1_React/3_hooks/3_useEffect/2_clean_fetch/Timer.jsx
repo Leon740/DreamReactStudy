@@ -15,13 +15,22 @@ function Timer() {
       }
     }
 
-    return () => { clearInterval(intervalId); };
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [time]);
 
   return (
     <div>
       <div>{time.qty}</div>
-      <button type="button" onClick={() => { setTime((prev) => ({ ...prev, isActive: !prev.isActive })); }}>{time.isActive ? 'Pause' : 'Play'}</button>
+      <button
+        type="button"
+        onClick={() => {
+          setTime((prev) => ({ ...prev, isActive: !prev.isActive }));
+        }}
+      >
+        {time.isActive ? 'Pause' : 'Play'}
+      </button>
     </div>
   );
 }
