@@ -18,7 +18,7 @@ const useInput = (initialValue) => {
   return {
     bind: { value, onChange },
     value,
-    reset: onReset,
+    reset: onReset
   };
 };
 
@@ -35,17 +35,11 @@ function SolutionM() {
     <div>
       <section>
         <h3>
-          Car
-          {' '}
-          <u>name</u>
-          {' '}
-          is
-          {' '}
-          {carName.value}
+          Car <u>name</u> is {carName.value}
         </h3>
         <div>
           <input {...carName.bind} />
-          <button className="btn btn-danger" onClick={carName.reset}>
+          <button type="button" className="btn btn-danger" onClick={carName.reset}>
             Reset
           </button>
         </div>
@@ -53,17 +47,11 @@ function SolutionM() {
 
       <section>
         <h3>
-          Car
-          {' '}
-          <u>name</u>
-          {' '}
-          is
-          {' '}
-          {carYear.value}
+          Car <u>name</u> is {carYear.value}
         </h3>
         <div>
           <input {...carYear.bind} />
-          <button className="btn btn-danger" onClick={carYear.reset}>
+          <button type="button" className="btn btn-danger" onClick={carYear.reset}>
             Reset
           </button>
         </div>

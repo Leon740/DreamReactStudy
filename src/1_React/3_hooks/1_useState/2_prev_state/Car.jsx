@@ -5,7 +5,7 @@ function Car() {
 
   return (
     <div className="Car">
-      {/* concept: updVarFunc(previousValue => previousValue + newValue) */}
+      {/* === Concept: updVarFunc(previousValue => previousValue + newValue) */}
       <h3>Select multiple Cars</h3>
       <button
         type="button"
@@ -32,11 +32,7 @@ function Car() {
         Evo
       </button>
 
-      <p>
-        You selected
-        {' '}
-        {carsState}
-      </p>
+      <p>You selected {carsState}</p>
     </div>
   );
 }

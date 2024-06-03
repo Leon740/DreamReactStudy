@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import Problem from './Problem';
-import Solution from './Solution';
+import React, { useState, useTransition } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Row, Col, Container } from 'react-bootstrap';
+
+// === Concept
+// === Problem
+// React gathers state updates to optimize rendering
+// (setInputValueSt) and (setListSt) calls are combined together
+// === Solution
+// Give the priority to the state update
+// const [isPending, startTransition] = useTransition()
+// isPending = boolean, indicates the progress of the transition
+// startTransition = function to make a transition, downgrades the priority
+// (setListSt) gets lower priority
 
 // === Concept
 // === Problem
@@ -17,30 +27,92 @@ import Solution from './Solution';
 // Because of separating renders (App) doesn't get stuck
 // (listArrSt) gets higher priority in updates, after (listArrSt) finishes updates, (React) will work on updating (listArrSt)
 
-function Component() {
-  const [inputValueStrSt, setInputStrSt] = useState('');
-  const [listArrSt, setListArrSt] = useState([]);
+function Problem() {
+  const [inputValueSt, setInputValueSt] = useState('');
+  const [listSt, setListSt] = useState([]);
 
-  function inputOnChangeFn(keywordStr) {
-    setInputStrSt(keywordStr);
+  function inputOnChangeFn(inputValue) {
+    setInputValueSt(inputValue);
 
-    const listArr = [];
+    const list = [];
+
     for (let i = 0; i < 20000; i++) {
-      listArr.push(keywordStr);
+      list.push(inputValue);
     }
 
-    setListArrSt(listArr);
+    setListSt(list);
   }
 
   return (
-    <Row>
-      <Col xs={6}>
-        <Problem inputValueStr={inputValueStrSt} inputOnChangeFn={inputOnChangeFn} list={listArrSt} />
-      </Col>
-      <Col xs={6}>
-        <Solution inputValueStr={inputValueStrSt} inputOnChangeFn={inputOnChangeFn} list={listArrSt} />
-      </Col>
-    </Row>
+    <section>
+      <h2>Problem</h2>
+      <input
+        type="text"
+        value={inputValueSt}
+        onChange={(event) => inputOnChangeFn(event.target.value)}
+      />
+      <ul>
+        {listSt.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function Solution() {
+  const [inputValueSt, setInputValueSt] = useState('');
+  const [listSt, setListSt] = useState([]);
+
+  const [isPending, startTransition] = useTransition();
+
+  function inputOnChangeFn(inputValue) {
+    setInputValueSt(inputValue);
+
+    startTransition(() => {
+      const list = [];
+
+      for (let i = 0; i < 20000; i++) {
+        list.push(inputValue);
+      }
+
+      setListSt(list);
+    });
+  }
+
+  return (
+    <section>
+      <h2>Solution</h2>
+      <input
+        type="text"
+        value={inputValueSt}
+        onChange={(event) => inputOnChangeFn(event.target.value)}
+      />
+      {isPending ? (
+        <p>Loading ...</p>
+      ) : (
+        <ul>
+          {listSt.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function Component() {
+  return (
+    <Container>
+      <Row>
+        <Col sm={6}>
+          <Problem />
+        </Col>
+        <Col sm={6}>
+          <Solution />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

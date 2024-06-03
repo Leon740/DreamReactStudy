@@ -1,24 +1,24 @@
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Timer from './Timer';
-import Tabs from '../1_React/12_optimizations/6_dynamic_component/Tabs';
-import ErrorBoundary from '../1_React/12_optimizations/7_error_boundary/ErrorBoundary';
+import ErrorBoundary from '1_React/11_optimizations/7_error_boundary/ErrorBoundary';
+import Loader from '../1_React/11_optimizations/3_loader/Loader';
 
 function AppInner() {
-  return <Tabs />;
+  return 'AppInner';
 }
 
 function App() {
   return (
     // StrictMode
-    <ErrorBoundary>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/timer" element={<Timer />} />
-          <Route path="/" element={<AppInner />} />
-        </Routes>
-      </BrowserRouter>
+    <ErrorBoundary fallback={<h1>Error</h1>}>
+      <Loader>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<AppInner />} />
+          </Routes>
+        </BrowserRouter>
+      </Loader>
     </ErrorBoundary>
   );
 }

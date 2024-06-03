@@ -1,6 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+// eslint-disable-next-line max-classes-per-file
+import React from 'react';
 
+// === Info
 // 1) constructor
 // 2) render
 // 3) componentDidMount
@@ -8,40 +10,42 @@ import React, { useState } from 'react';
 // 5) componentDidUpdate
 // 6) componentWillUnmount
 
-// eslint-disable-next-line react/prefer-stateless-function
 class Clock extends React.Component {
   constructor(props) {
-    super(props);
-
     console.log('constructor');
 
+    super(props);
+
     this.state = {
-      time: new Date().toLocaleTimeString(),
+      time: new Date().toLocaleTimeString()
     };
   }
 
   componentDidMount() {
     console.log('componentDidMount');
-    this.interval = setInterval(() => {
-      this.setState({ time: new Date().toLocaleTimeString() });
-      console.log(this.state.time);
+    this.intervalId = setInterval(() => {
+      this.setState({
+        time: new Date().toLocaleTimeString()
+      });
     }, 1000);
+    // eslint-disable-next-line react/destructuring-assignment
+    console.log(this.state.time);
   }
 
-  // eslint-disable-next-line no-unused-vars
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
+  shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate');
-    // console.log('old state : ', this.state);
-    // console.log('new state : ', nextState);
+    console.log('old state : ', this.state);
+    console.log('new state : ', nextState);
 
     // true - to update
     // false - to not update
     return true;
   }
 
-  // eslint-disable-next-line no-unused-vars
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('componentDidUpdate');
+    // eslint-disable-next-line react/destructuring-assignment
+    console.log(this.state.time);
     console.log(prevProps);
     console.log(prevState);
     console.log(snapshot);
@@ -49,27 +53,32 @@ class Clock extends React.Component {
 
   componentWillUnmount() {
     console.log('componentWillUnmount');
-    clearInterval(this.interval);
+    clearInterval(this.intervalId);
   }
 
   render() {
     console.log('render');
+    // eslint-disable-next-line react/destructuring-assignment
+    return <>Now: {this.state.time}</>;
+  }
+}
 
+class Component extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { clock: true };
+  }
+
+  render() {
     return (
-      <div>{this.state.time}</div>
+      <>
+        {this.state.clock && <Clock />}
+        <button type="button" onClick={() => this.setState((prevSt) => ({ clock: !prevSt.clock }))}>
+          {this.state.clock ? 'Hide' : 'Show'}
+        </button>
+      </>
     );
   }
 }
 
-function App() {
-  const [stClock, setStClock] = useState(true);
-
-  return (
-    <>
-      {stClock && <Clock />}
-      <button type="button" onClick={() => setStClock((prev) => !prev)}>{stClock ? 'hide' : 'show'}</button>
-    </>
-  );
-}
-
-export default App;
+export default Component;

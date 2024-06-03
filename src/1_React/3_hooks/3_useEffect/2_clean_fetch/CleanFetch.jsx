@@ -10,6 +10,7 @@ function CleanFetch() {
       .then((json) => setData(json));
 
     return () => {
+      // === Concept
       // The clean-up function runs before the component is removed from the UI to prevent memory leaks. Additionally, if a component renders multiple times (as they typically do), the previous effect is cleaned up before executing the next effect.
       console.log('clean type');
     };

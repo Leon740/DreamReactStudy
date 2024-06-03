@@ -1,32 +1,71 @@
-import React, { useState, useDeferredValue } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import SearchResults from './SearchResults';
+import React, { useState, useDeferredValue, memo } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Row, Col } from 'react-bootstrap';
+import CARS_DATA from './cars_data.json';
 
-// === Concept
-// === Problem
-// Complex logic runs each time we update (input)
-// Because of this (App) gets stuck after each (input) update
-// === Solution
-// useDeferredValue
-// (useDeferredValue) waits around 100 milliseconds after (input) finished updating (typing stopped for more than 100 ms)
-// (updating input) gets higher priority in updates, after finishing (updating input), (React) will work on executing complex logic
+function sanitizeStringFn(string) {
+  return string.trim().toLowerCase();
+}
 
-function Parent() {
-  const [stCarName, setStCarName] = useState('');
-
-  const deferredCarName = useDeferredValue(stCarName);
-
-  // loading
-  const isPending = stCarName !== deferredCarName;
+// (memo) in order to not to rerender the (CarSearchResults) on (inputValueSt) change
+const CarSearchResults = memo(({ data, name }) => {
+  const results = data.filter((car) => sanitizeStringFn(car.name).includes(sanitizeStringFn(name)));
 
   return (
-    <Container className="pt-5">
-      <input value={stCarName} onChange={(event) => setStCarName(event.target.value)} />
-      <Row>
-        <Col xs={6}><SearchResults carName={stCarName} /></Col>
-        <Col xs={6}>{isPending ? <div>Loading...</div> : <SearchResults carName={deferredCarName} />}</Col>
-      </Row>
-    </Container>
+    <ul>
+      {results.map((car, index) => (
+        <li
+          key={index}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: sanitizeStringFn(car.name).replace(
+              sanitizeStringFn(name),
+              `<span style='background-color: yellow;'>${sanitizeStringFn(name)}</span>`
+            )
+          }}
+        />
+      ))}
+    </ul>
+  );
+});
+
+function CarSearch() {
+  const [inputValueSt, setInputValueSt] = useState('');
+
+  const inputOnChangeFn = (value) => {
+    setInputValueSt(value);
+  };
+
+  const deferredInputValue = useDeferredValue(inputValueSt);
+  const isPending = deferredInputValue !== inputValueSt;
+
+  return (
+    <Row>
+      <Col xs={12}>
+        <input
+          type="text"
+          value={inputValueSt}
+          onChange={(event) => inputOnChangeFn(event.target.value)}
+        />
+      </Col>
+      <Col sm={6}>
+        <h2>Problem</h2>
+        <CarSearchResults data={CARS_DATA} name={inputValueSt} />
+      </Col>
+      <Col sm={6}>
+        <h2>Solution</h2>
+        {isPending ? (
+          <p>Loading ...</p>
+        ) : (
+          <CarSearchResults data={CARS_DATA} name={deferredInputValue} />
+        )}
+        {/* 2nd way of indicating the progress */}
+        {/* <Suspense fallback={<p>Loading ...</p>}>
+          <CarSearchResults data={CARS_DATA} name={deferredInputValue} />
+        </Suspense> */}
+      </Col>
+    </Row>
   );
 }
-export default Parent;
+
+export default CarSearch;

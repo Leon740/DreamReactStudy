@@ -1,42 +1,51 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/destructuring-assignment */
+// eslint-disable-next-line max-classes-per-file
+import React, { useState, useEffect } from 'react';
 
-// 1) render
-// 2) componentDidMount
-// 3) componentWillUnmount
+// === Info
+// 1) mount
+// 2) update
+// 3) unmount
+// let name = 'Leonid';
 
 function Clock() {
-  const [stTime, setStTime] = useState(new Date().toLocaleTimeString());
+  const [timeSt, setTimeSt] = useState(new Date().toLocaleTimeString());
+
+  let name = 'Leonid';
+  console.log('name', name);
 
   useEffect(() => {
     console.log('componentDidMount');
 
     const intervalId = setInterval(() => {
-      setStTime(new Date().toLocaleTimeString());
-      console.log(stTime);
+      setTimeSt(new Date().toLocaleTimeString());
+      console.log('name 0', name);
+      name = Date.now();
+      console.log('name 1', name);
     }, 1000);
 
     return () => {
       console.log('componentWillUnmount');
       clearInterval(intervalId);
     };
-  }, [stTime]);
+  }, [timeSt]);
 
   console.log('render');
 
-  return (
-    <div>{stTime}</div>
-  );
+  return <>Now: {timeSt}</>;
 }
 
-function App() {
-  const [stClock, setStClock] = useState(true);
+function Component() {
+  const [clockSt, setClockSt] = useState(true);
 
   return (
     <>
-      {stClock && <Clock />}
-      <button type="button" onClick={() => setStClock((prev) => !prev)}>{stClock ? 'hide' : 'show'}</button>
+      {clockSt && <Clock />}
+      <button type="button" onClick={() => setClockSt((prevSt) => !prevSt)}>
+        {clockSt ? 'Hide' : 'Show'}
+      </button>
     </>
   );
 }
 
-export default App;
+export default Component;

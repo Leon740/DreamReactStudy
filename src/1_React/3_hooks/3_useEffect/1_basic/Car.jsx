@@ -14,7 +14,7 @@ function Car() {
   // }, []);
 
   useEffect(() => {
-    // [dependencies] = called when carState is changed
+    // [dependencies] = called every time when carState is changed
     console.log('render');
   }, [carState]);
 

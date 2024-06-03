@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 function Car() {
   // === Concept
   // useRef(defaultValue) creates object with current prop (ref.current)
-  // useRef is used to create connections between logic and DOM
+  // useRef is used to create connections between logic and DOM, also data storage
   const [car, setCar] = useState('Evo');
   const inputRef = useRef(null);
   const prevValue = useRef('');
@@ -15,14 +15,12 @@ function Car() {
 
   return (
     <div className="Car">
-      <h1>
-        Car is
-        {' '}
-        {car}
-      </h1>
+      <h1>Car is {car}</h1>
 
       <input ref={inputRef} onChange={(event) => setCar(event.target.value)} />
-      <button type="button" onClick={() => inputRef.current.focus()}>Focus on input</button>
+      <button type="button" onClick={() => inputRef.current.focus()}>
+        Focus on input
+      </button>
 
       <p>
         Previous Value:

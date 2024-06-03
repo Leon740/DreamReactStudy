@@ -8,6 +8,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "airbnb",
+    "plugin:import/typescript",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -26,7 +27,11 @@
     "no-continue": "off",
     "no-plusplus": "off",
     "arrow-parens": "off",
-    "import/no-unresolved": "warn",
+    "no-use-before-define": "off",
+    "no-shadow": "off",
+    "comma-dangle": "off",
+
+    // "import/no-unresolved": "warn",
     "import/extensions": [
       "error",
       "always",
@@ -37,25 +42,55 @@
         "tsx": "never"
       }
     ],
+    "import/prefer-default-export": "off",
 
     "react/prop-types": "off",
-    "react/no-array-index-key": "warn",
-    "react/jsx-no-bind": "off",
+    "react/jsx-props-no-spreading": "warn",
     "react/jsx-filename-extension": "off",
+    "react/no-array-index-key": "warn",
+    "react/jsx-no-bind": [
+      1,
+      {
+        "allowFunctions": true,
+        "allowArrowFunctions": true
+      }
+    ],
     "react/require-default-props": "warn",
 
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
 
     "@typescript-eslint/no-empty-function": "warn",
-
-    "prettier/prettier": ["error", { "printWidth": 100, "singleQuote": true }]
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-inferrable-types": ["off"],
+    "@typescript-eslint/explicit-function-return-type": [
+      "off",
+      {
+        "allowExpressions": true
+      }
+    ]
   },
+  // "overrides": [
+  //   {
+  //     // enable the rule specifically for TypeScript files
+  //     "files": ["*.ts", "*.tsx"],
+  //     "rules": {
+  //       "@typescript-eslint/explicit-function-return-type": "error"
+  //     }
+  //   }
+  // ],
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src"]
       }
     }
+  },
+  "globals": {
+    "React": true,
+    "JSX": true
   }
 }

@@ -1,6 +1,4 @@
-import React, {
-  useState, useRef, useEffect, useLayoutEffect,
-} from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 
 // === Concept
 // Use useEffect in most of the cases
@@ -20,7 +18,7 @@ function Component() {
     }
   }, [stModal]);
 
-  // useLayoutEffect runs before useEffect
+  // === Concept: useLayoutEffect(before DOM) runs before useEffect(after DOM)
 
   useEffect(() => {
     console.log('useEffect 1');
@@ -38,16 +36,21 @@ function Component() {
 
   return (
     <div>
-      <button type="button" onClick={() => setStModal((prev) => !prev)} ref={rfBtn}>{stModal ? 'hide' : 'show'}</button>
+      <button type="button" onClick={() => setStModal((prev) => !prev)} ref={rfBtn}>
+        {stModal ? 'hide' : 'show'}
+      </button>
       {stModal && (
-      <div
-        style={{
-          position: 'absolute', background: 'black', height: '100px', width: '100px',
-        }}
-        ref={rfModal}
-      >
-        Modal
-      </div>
+        <div
+          style={{
+            position: 'absolute',
+            background: 'black',
+            height: '100px',
+            width: '100px'
+          }}
+          ref={rfModal}
+        >
+          Modal
+        </div>
       )}
     </div>
   );
