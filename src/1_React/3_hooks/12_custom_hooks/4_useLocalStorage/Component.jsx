@@ -13,16 +13,12 @@ function CarInput() {
       <input
         type="text"
         value={value.name}
-        onChange={(event) =>
-          setValue((prevValue) => ({ ...prevValue, name: event.target.value }))
-        }
+        onChange={(event) => setValue((prevValue) => ({ ...prevValue, name: event.target.value }))}
       />
       <input
         type="text"
         value={value.year}
-        onChange={(event) =>
-          setValue((prevValue) => ({ ...prevValue, year: event.target.value }))
-        }
+        onChange={(event) => setValue((prevValue) => ({ ...prevValue, year: event.target.value }))}
       />
     </section>
   );

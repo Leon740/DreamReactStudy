@@ -12,13 +12,8 @@ function getLocalStorageFn(key: string, initialValue: object | string) {
   return initialValue;
 }
 
-export default function useLocalStorage(
-  key: string,
-  initialValue: object | string
-) {
-  const [valueSt, setValueSt] = useState(() =>
-    getLocalStorageFn(key, initialValue)
-  );
+export default function useLocalStorage(key: string, initialValue: object | string) {
+  const [valueSt, setValueSt] = useState(() => getLocalStorageFn(key, initialValue));
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(valueSt));
