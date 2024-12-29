@@ -22,16 +22,16 @@ console.log(array3);
 const computers = [
   {
     name: 'phone',
-    price: 500,
+    price: 500
   },
   {
     name: 'laptop',
-    price: 1000,
+    price: 1000
   },
   {
     name: 'desktop',
-    price: 1500,
-  },
+    price: 1500
+  }
 ];
 
 const sortComputersByPrice = [...computers].sort((a, b) => a.price - b.price);
@@ -47,7 +47,13 @@ console.log(sortComputersByName);
 const computersNames = computers.map((computerItem) => computerItem.name);
 console.log(computersNames);
 console.log(computersNames.sort());
-console.log(computersNames.sort().map((computerItemName) => computers.find((computerItem) => computerItem.name === computerItemName)));
+console.log(
+  computersNames
+    .sort()
+    .map((computerItemName) =>
+      computers.find((computerItem) => computerItem.name === computerItemName)
+    )
+);
 
 const names = ['Grigoriy', 'Leonid', 'Danil'];
 names.sort((a, b) => a.length - b.length);

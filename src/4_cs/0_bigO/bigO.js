@@ -18,8 +18,6 @@
 
 // No matter what the input size is, the time needed to execute the code will not change (grow)
 
-
-
 // === 2) O(n) - linear dependency
 
 // let counter = 0;
@@ -34,7 +32,6 @@
 
 //   console.log(sum);
 
-
 //   return sum;
 // }
 // fnGetSumOfArrayElements();
@@ -44,8 +41,6 @@
 // n = input size, in this case n is a length of an array
 // if we have 3 elements, the code will be executed for 3 times
 // if we have 100 elements, the code will be executed for 100 times
-
-
 
 // === 3) O(n ^ 2)
 
